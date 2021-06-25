@@ -1,0 +1,22 @@
+{
+  "name": "cyberyimein.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:cyberyimein/cyberyimein.github.io.git",
+  "author": "Wayne Wong <cyberyimein@outlook.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-blog": "^1.9.4",
+    "vuepress": "^1.8.2",
+    "vuepress-theme-maker": "^1.2.0"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "deploy": "bash deploy.sh"
+  },
+  "dependencies": {
+    "@vssue/api-github-v4": "^1.4.7",
+    "@vssue/vuepress-plugin-vssue": "^1.4.8"
+  }
+}
