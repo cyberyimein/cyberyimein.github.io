@@ -1,10 +1,11 @@
 module.exports = {
     title: 'typoKnight',
     description: "cyberyimein's sandpit",
-    head: [
-      ['link', { rel: 'shortcut icon', type: "image/x-icon", href: './favicon.ico' }]
-    ],
 
+    head: [
+      ["link", { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      ["link", { rel: "shortcut icon", type: "image/x-icon", href: "/favicon.ico" }]
+    ],
 
     theme: 'vuepress-theme-maker',
     themeConfig: {
@@ -68,7 +69,8 @@ module.exports = {
           }
         ],
         sitemap: {
-          hostname: 'https://cyberyimein.github.io/'
+          hostname: 'https://cyberyimein.github.io/',
+          exclude: ["/404"]
         },
         feed: {
           canonical_base: 'canonical_base',
@@ -81,6 +83,8 @@ module.exports = {
       copyright: `© ${new Date().getFullYear()} ❤️ <a target="_blank" rel="external nofollow noopener" </a>`
     },
 
+
+
     plugins: {
       '@vssue/vuepress-plugin-vssue': {
         // 设置 `platform` 而不是 `api`
@@ -91,6 +95,11 @@ module.exports = {
         clientId: 'ed1cc440f490d6065b2c',
         clientSecret: 'e111fce5a641364db054fe8a14c8e6e21d489e71',
       },
+      '@vuepress/last-updated': {
+        transformer: timestamp => {
+          return new Date(timestamp).toUTCString()
+        }
+      }
     },
 
   }
