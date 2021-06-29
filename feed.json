@@ -1,0 +1,30 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "typoKnight",
+    "home_page_url": "canonical_base",
+    "feed_url": "canonical_base/feed.json",
+    "description": "cyberyimein's sandpit",
+    "items": [
+        {
+            "id": "canonical_base/post/2021/06/25/helloworld.html",
+            "url": "canonical_base/post/2021/06/25/helloworld.html",
+            "title": "Hello World",
+            "summary": "\n就只是一個Hello world。\n",
+            "date_modified": "2021-06-25T00:00:00.000Z"
+        },
+        {
+            "id": "canonical_base/post/2021/06/29/probabilitymgf.html",
+            "url": "canonical_base/post/2021/06/29/probabilitymgf.html",
+            "title": "矩母函数基础的复习",
+            "summary": "\n院试的过去问很重视矩母函数，但是我记忆中概率论课程这块是快速带过的。所以稍微记录下重新理解矩母函数的过程。\n",
+            "date_modified": "2021-06-29T00:00:00.000Z"
+        },
+        {
+            "id": "canonical_base/post/2021/06/27/aboutpagelayout.html",
+            "url": "canonical_base/post/2021/06/27/aboutpagelayout.html",
+            "title": "About页面的自定义布局",
+            "summary": "\n本博客使用的Maker主题并没有About页面的模板，所以花了点时间研究了页面的自定义布局，并给About页面写了个布局。\n",
+            "date_modified": "2021-06-27T00:00:00.000Z"
+        }
+    ]
+}

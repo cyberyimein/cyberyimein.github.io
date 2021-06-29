@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>typoKnight</title>
+        <link>canonical_base</link>
+        <description>cyberyimein&apos;s sandpit</description>
+        <lastBuildDate>Tue, 29 Jun 2021 13:38:37 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>
+        <atom:link href="canonical_base/feed.atom" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>canonical_base/post/2021/06/25/helloworld.html</link>
+            <guid>canonical_base/post/2021/06/25/helloworld.html</guid>
+            <pubDate>Fri, 25 Jun 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+就只是一個Hello world。
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[矩母函数基础的复习]]></title>
+            <link>canonical_base/post/2021/06/29/probabilitymgf.html</link>
+            <guid>canonical_base/post/2021/06/29/probabilitymgf.html</guid>
+            <pubDate>Tue, 29 Jun 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+院试的过去问很重视矩母函数，但是我记忆中概率论课程这块是快速带过的。所以稍微记录下重新理解矩母函数的过程。
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[About页面的自定义布局]]></title>
+            <link>canonical_base/post/2021/06/27/aboutpagelayout.html</link>
+            <guid>canonical_base/post/2021/06/27/aboutpagelayout.html</guid>
+            <pubDate>Sun, 27 Jun 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+本博客使用的Maker主题并没有About页面的模板，所以花了点时间研究了页面的自定义布局，并给About页面写了个布局。
+]]></description>
+        </item>
+    </channel>
+</rss>
