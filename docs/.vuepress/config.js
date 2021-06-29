@@ -7,6 +7,17 @@ module.exports = {
       ["link", { rel: "shortcut icon", type: "image/x-icon", href: "/favicon.ico" }]
     ],
 
+    markdown: {
+      lineNumbers: true,
+      extractHeaders: [ 'h2', 'h3', 'h4' ],
+      plugins: {
+        'markdown-it-mark': true,
+        'markdown-it-footnote': true,
+        'markdown-it-abbr': true,
+        'markdown-it-task-lists': true
+      }
+    },
+
     theme: 'vuepress-theme-maker',
     themeConfig: {
       logo: '/logo.jpg',
@@ -99,6 +110,9 @@ module.exports = {
         transformer: timestamp => {
           return new Date(timestamp).toUTCString()
         }
+      },
+      '@maginapp/katex': {
+        delimiters: 'dollars'
       }
     },
 
