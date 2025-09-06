@@ -1,56 +1,30 @@
-# CyberYIMEIN
+# 👋 Hi, I'm YIMEIN
 
-A modern, multi-language personal homepage template. Built for web developers, designers, and tech enthusiasts.
+I'm a passionate developer focused on building innovative solutions in software engineering and technology.
 
-## Features
+| 领域 Focus | 关键词 Keywords |
+| ---------- | --------------- |
 
-- Multi-language support (English, Chinese, Japanese)
-- Dynamic project cards and badges
-- Roadmap visualization
-- Theme toggle (light/dark)
-- Responsive design
-- PWA ready (manifest included)
+## 🔭 Current Roadmap (Snapshot)
 
-## Structure
+| Version | Status | Brief |
+| ------- | ------ | ----- |
 
-```
-index.html                # Main entry
-assets/
-  js/                     # JavaScript modules (framework, keep)
-  css/                    # Stylesheets (framework, keep)
-  i18n/                   # Language JSON files (framework, keep)
-  data/                   # Project, roadmap, badge data (content, can replace/delete)
-manifest.webmanifest      # PWA manifest (framework, keep)
-```
+## 🧩 Selected Stack
 
-## Framework vs. Content
+| Layer | Choice | Note |
+| ----- | ------ | ---- |
 
-**Must keep (framework core):**
+## 🛠 Philosophy
 
-- `index.html`
-- `assets/js/`
-- `assets/css/`
-- `assets/i18n/`
-- `manifest.webmanifest`
+## 📬 Contact
 
-**Can replace or delete (content):**
+- GitHub: @cyberyimein
+- Email: [example@example.com](mailto:example@example.com)
+- (More channels coming soon)
 
-- `assets/data/projects.json`
-- `assets/data/roadmap.json`
-- `assets/data/badges.json`
-
-**Note:**
-
-- Do not delete files in `assets/i18n/` unless you know how to update language support.
-
-...existing code...
-
-## Customization
-
-- Edit `assets/data/projects.json` to add your projects.
-- Update language files in `assets/i18n/` for translations.
-- Modify styles in `assets/css/` as needed.
-
-## License
+## ⚖️ License
 
 MIT
+
+> This repository hosts the source of my personal homepage—not a generic boilerplate. Forking is fine, but expect minimal template support.
