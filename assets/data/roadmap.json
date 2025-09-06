@@ -1,0 +1,54 @@
+{
+    "current": [
+        {
+            "id": "v0.2",
+            "version": "v0.2",
+            "title": {
+                "zh-CN": "项目数据化",
+                "en-US": "Project Data Layer",
+                "ja-JP": "プロジェクトデータ化"
+            },
+            "desc": {
+                "zh-CN": "projects.json + 动态渲染 + 可选 GitHub stars",
+                "en-US": "projects.json + dynamic render + optional GitHub stars",
+                "ja-JP": "projects.json と動的レンダー + 任意のGitHubスター"
+            },
+            "percent": 25,
+            "status": "progress"
+        },
+        {
+            "id": "v0.3",
+            "version": "v0.3",
+            "title": {
+                "zh-CN": "主题切换 & 统计",
+                "en-US": "Theme Toggle & Analytics",
+                "ja-JP": "テーマ切替と解析"
+            },
+            "desc": {
+                "zh-CN": "灰暗色模式 / localStorage / 访问统计",
+                "en-US": "Gray dark mode / localStorage / analytics",
+                "ja-JP": "グレー系ダークモード / localStorage / アナリティクス"
+            },
+            "percent": 5,
+            "status": "progress"
+        }
+    ],
+    "completed": [
+        {
+            "id": "v0.1",
+            "version": "v0.1",
+            "title": {
+                "zh-CN": "基础上线",
+                "en-US": "Initial Launch",
+                "ja-JP": "初期リリース"
+            },
+            "desc": {
+                "zh-CN": "首页结构 / 多语言骨架 / NASA White Theme",
+                "en-US": "Layout / i18n skeleton / NASA White Theme",
+                "ja-JP": "レイアウト / i18n スケルトン / NASAホワイトテーマ"
+            },
+            "percent": 100,
+            "status": "done"
+        }
+    ]
+}

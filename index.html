@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>个人主页 · Your Name</title>
+    <meta name="description" content="个人主页 | Your Name" />
+    <meta name="keywords" content="Your Name, Developer, Web, Frontend, JavaScript" />
+    <meta name="author" content="Your Name" />
+    <link rel="canonical" href="https://yourname.github.io/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="个人主页 · Your Name" />
+    <meta property="og:description" content="个人主页 | Your Name" />
+    <meta property="og:url" content="https://yourname.github.io/" />
+    <meta property="og:site_name" content="Your Name" />
+    <meta property="og:image" content="https://yourname.github.io/og-cover.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="个人主页 · Your Name" />
+    <meta name="twitter:description" content="个人主页 | Your Name" />
+    <meta name="twitter:image" content="https://yourname.github.io/og-cover.png" />
+    <meta name="twitter:creator" content="@your_twitter" />
+
+    <!-- PWA / Icons -->
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#f2f5f8" />
+    <!-- 主题：NASA Punk 航天白版本 -->
+    <link rel="stylesheet" href="./assets/css/nasa.css" />
+    <!-- 如需回退深色霓虹版本，改为： ./assets/css/style.css -->
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" data-i18n="hero.tagline">构建 · 探索 · 学习</div>
+            <div class="lang-switch">
+                <button data-lang="zh-CN" class="active">ZH</button>
+                <button data-lang="en-US">EN</button>
+                <button data-lang="ja-JP">JP</button>
+            </div>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <div class="tagline" data-i18n="hero.tagline">构建 · 探索 · 学习</div>
+                <h1 data-i18n="hero.title.html">你好，我是 <span style="white-space:nowrap">你的名字</span></h1>
+                <p data-i18n="hero.subtitle.html">一个热衷于 <strong>代码艺术</strong> 与 <strong>宇宙科技美学</strong> 的开发者。<br>专注 Web
+                    / 前端体验 / 可视化 / 自动化。</p>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h2 data-i18n="projects.title">项目</h2>
+                <div class="bar"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card empty">
+                    <h4 data-i18n="projects.empty.title">即将到来</h4>
+                    <p data-i18n="projects.empty.desc">这里会展示精选项目，敬请期待。</p>
+                    <div class="empty-note">placeholder</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="badges" class="section">
+            <div class="section-header">
+                <h2 data-i18n="badges.title">资格徽章</h2>
+                <div class="bar"></div>
+            </div>
+            <div class="badges-grid"></div>
+        </section>
+
+        <section id="roadmap" class="section">
+            <div class="section-header">
+                <h2 data-i18n="roadmap.title">Roadmap</h2>
+                <div class="bar"></div>
+            </div>
+            <div class="roadmap">
+                <div class="roadmap-columns">
+                    <div class="roadmap-col">
+                        <h3 class="roadmap-title" data-i18n="roadmap.current">Current Focus</h3>
+                        <ul class="roadmap-list" id="roadmap-current"></ul>
+                    </div>
+                    <div class="roadmap-col">
+                        <h3 class="roadmap-title" data-i18n="roadmap.completed">Completed</h3>
+                        <ul class="roadmap-list" id="roadmap-completed"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section" style="margin-top:40px;">
+            <div class="section-header">
+                <h2 data-i18n="contact.title">联系我</h2>
+                <div class="bar"></div>
+            </div>
+            <p style="margin:0;font-size:14px;color:#55616c;line-height:1.6;">
+                <strong>Email:</strong> <a href="mailto:example@example.com"
+                    style="color:var(--accent);text-decoration:none;">example@example.com</a>
+                <span style="margin:0 10px;color:#c7d2dc;">|</span>
+                <strong>GitHub:</strong> <a href="https://github.com/yourname" target="_blank"
+                    style="color:var(--accent);text-decoration:none;">@yourname</a>
+                <span style="margin:0 10px;color:#c7d2dc;">|</span>
+                <strong>More:</strong> <span data-i18n="contact.placeholder">更多方式即将补充……</span>
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; <span id="year"></span> <span>Your Name</span> · <span data-i18n="footer.powered">构建</span>. <span
+                    data-i18n="footer.copyright">版权所有</span>.</p>
+        </footer>
+
+    </div>
+    <button id="backToTop" aria-label="Back to top">▲</button>
+    <script src="./assets/js/i18n.js"></script>
+    <script src="./assets/js/badges.js"></script>
+    <script src="./assets/js/projects.js"></script>
+    <script src="./assets/js/roadmap.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

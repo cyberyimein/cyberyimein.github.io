@@ -1,0 +1,21 @@
+{
+    "hero.tagline": "构建 · 探索 · 学习",
+    "hero.title.html": "你好，我是 <span style=\"white-space:nowrap\">你的名字</span>",
+    "hero.subtitle.html": "一个热衷于 <strong>代码艺术</strong> 与 <strong>宇宙科技美学</strong> 的开发者。<br>专注 Web / 前端体验 / 可视化 / 自动化。",
+    "projects.title": "项目",
+    "projects.empty.title": "即将到来",
+    "projects.empty.desc": "这里会展示精选项目，敬请期待。",
+    "roadmap.title": "路线图",
+    "roadmap.completed": "已完成",
+    "roadmap.current": "当前专注",
+    "badges.title": "资格徽章",
+    "badges.group.skills": "技能栈",
+    "badges.group.certs": "认证",
+    "badges.placeholder": "正在准备中…",
+    "contact.title": "联系我",
+    "contact.email.title": "邮件",
+    "contact.email.desc": "发送邮件与我取得联系。",
+    "contact.placeholder": "更多方式即将补充……",
+    "footer.copyright": "版权所有",
+    "footer.powered": "构建"
+}

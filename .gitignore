@@ -1,0 +1,12 @@
+# Node / tooling (future)
+node_modules/
+.DS_Store
+*.log
+.cache/
+dist/
+# OS
+Thumbs.db
+# Editor
+.vscode/
+.idea/
+README.local.md

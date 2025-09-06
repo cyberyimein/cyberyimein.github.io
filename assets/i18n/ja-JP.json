@@ -1,0 +1,21 @@
+{
+    "hero.tagline": "創造 · 探索 · 学習",
+    "hero.title.html": "こんにちは、私は <span style=\"white-space:nowrap\">あなたの名前</span>",
+    "hero.subtitle.html": "<strong>コードの表現</strong> と <strong>宇宙美学</strong> に情熱を持つ開発者。<br>Web / フロントエンド体験 / 可視化 / オートメーションに注力。",
+    "projects.title": "プロジェクト",
+    "projects.empty.title": "近日公開",
+    "projects.empty.desc": "ここに注目プロジェクトを掲載します。",
+    "roadmap.title": "ロードマップ",
+    "roadmap.completed": "完了",
+    "roadmap.current": "現在のフォーカス",
+    "badges.title": "認定バッジ",
+    "badges.group.skills": "スキルスタック",
+    "badges.group.certs": "認定",
+    "badges.placeholder": "準備中…",
+    "contact.title": "連絡先",
+    "contact.email.title": "メール",
+    "contact.email.desc": "メールで連絡してください。",
+    "contact.placeholder": "他のチャンネルは追加予定…",
+    "footer.powered": "構築",
+    "footer.copyright": "無断転載禁止"
+}

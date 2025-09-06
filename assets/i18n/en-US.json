@@ -1,0 +1,21 @@
+{
+    "hero.tagline": "Build · Explore · Learn",
+    "hero.title.html": "Hi, I'm <span style=\"white-space:nowrap\">Your Name</span>",
+    "hero.subtitle.html": "A developer passionate about <strong>code artistry</strong> & <strong>space‑tech aesthetics</strong>.<br>Focus on Web / Frontend Experience / Visualization / Automation.",
+    "projects.title": "Projects",
+    "projects.empty.title": "Coming Soon",
+    "projects.empty.desc": "Selected works will appear here soon.",
+    "roadmap.title": "Roadmap",
+    "roadmap.completed": "Completed",
+    "roadmap.current": "Current Focus",
+    "badges.title": "Badges",
+    "badges.group.skills": "Skill Stack",
+    "badges.group.certs": "Certifications",
+    "badges.placeholder": "Coming soon…",
+    "contact.title": "Contact",
+    "contact.email.title": "Email",
+    "contact.email.desc": "Drop me a message via email.",
+    "contact.placeholder": "More channels coming soon...",
+    "footer.copyright": "All rights reserved",
+    "footer.powered": "Powered"
+}
