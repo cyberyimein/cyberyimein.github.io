@@ -17,17 +17,23 @@
         console.warn('[projects] load failed', e);
     }
 
-    const lang = (window.I18N && I18N.state && I18N.state.lang) || 'zh-CN';
-    const fallbackChain = [lang, 'en-US', 'zh-CN'];
-
-    function pick(obj) {
-        for (const k of fallbackChain) { if (obj[k]) return obj[k]; }
-        // 如果对象是字符串直接返回
-        if (typeof obj === 'string') return obj;
-        return Object.values(obj)[0] || '';
+    function getFallbackChain() {
+    const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+    const activeLang = (window.I18N && I18N.state && I18N.state.lang) || stored || 'en-US';
+    const chain = [activeLang, 'en-US', 'zh-CN'];
+        return chain.filter((lang, idx) => chain.indexOf(lang) === idx);
     }
 
-    const frag = document.createDocumentFragment();
+    function pick(obj) {
+        if (!obj) return '';
+        if (typeof obj === 'string') return obj;
+        const chain = getFallbackChain();
+        for (const k of chain) {
+            if (obj && obj[k]) return obj[k];
+        }
+        const values = Object.values(obj || {});
+        return values.find(Boolean) || '';
+    }
 
     function createCard(item) {
         const card = document.createElement('div');
@@ -48,18 +54,20 @@
         title.textContent = pick(item.name);
         card.appendChild(title);
 
-        const desc = document.createElement('p');
-        const descSource = item.desc || item.description || '';
-        desc.textContent = pick(descSource);
+    const desc = document.createElement('p');
+    const descSource = item.description || '';
+    desc.textContent = pick(descSource);
         card.appendChild(desc);
 
         if (item.tags && item.tags.length) {
             const tagBar = document.createElement('div');
             tagBar.className = 'project-tags';
             item.tags.forEach(t => {
+                if (!t) return;
+                const label = typeof t === 'string' ? t : pick(t);
                 const span = document.createElement('span');
                 span.className = 'badge project-tag';
-                span.textContent = t;
+                span.textContent = label;
                 tagBar.appendChild(span);
             });
             card.appendChild(tagBar);
@@ -79,25 +87,24 @@
         return card;
     }
 
-    if (!data.length) {
-        renderEmpty();
-    } else {
-        data.forEach(item => {
-            frag.appendChild(createCard(item));
-        });
-        grid.appendChild(frag);
-    }
-
-    // 语言切换后重新渲染（简单监听 i18n apply）
-    document.addEventListener('languageChanged', () => {
+    function renderProjects() {
         grid.querySelectorAll('.project-card').forEach(c => c.remove());
         if (!data.length) {
             renderEmpty();
-        } else {
-            data.forEach(item => {
-                grid.appendChild(createCard(item));
-            });
+            return;
         }
+        const containerFrag = document.createDocumentFragment();
+        data.forEach(item => {
+            containerFrag.appendChild(createCard(item));
+        });
+        grid.appendChild(containerFrag);
+    }
+
+    renderProjects();
+
+    // 语言切换后重新渲染（简单监听 i18n apply）
+    document.addEventListener('languageChanged', () => {
+        renderProjects();
     });
 
     function renderEmpty() {

@@ -2,14 +2,14 @@
 // 语言检测 -> 加载对应 JSON -> 替换 data-i18n 属性元素文本
 
 const I18N = (function () {
-    const state = { lang: 'zh-CN', dict: {} };
+    const state = { lang: 'en-US', dict: {} };
     const supported = ['zh-CCN', 'zh-CN', 'en', 'en-US', 'ja', 'ja-JP'];
 
     function detect() {
-        const nav = navigator.language || (navigator.languages && navigator.languages[0]) || 'zh-CN';
-        if (nav.startsWith('zh')) return 'zh-CN';
-        if (nav.startsWith('ja')) return 'ja-JP';
-        return 'en-US';
+    const nav = navigator.language || (navigator.languages && navigator.languages[0]) || 'en-US';
+    if (nav.startsWith('zh')) return 'zh-CN';
+    if (nav.startsWith('ja')) return 'ja-JP';
+    return 'en-US';
     }
 
     async function load(lang) {
@@ -26,6 +26,8 @@ const I18N = (function () {
             console.warn('[i18n] fallback zh-CN', e);
         }
         apply();
+        updateLangSwitcher(state.lang);
+        document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: state.lang } }));
     }
 
     function t(key) { return state.dict[key] || key; }
@@ -42,21 +44,29 @@ const I18N = (function () {
     }
 
     function switchLang(lang) {
-        load(lang).then(() => {
-            document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
-        });
+        load(lang);
         localStorage.setItem('lang', lang);
+        updateLangSwitcher(lang);
     }
 
     function init() {
         const saved = localStorage.getItem('lang');
-        load(saved || detect());
+        const initial = saved || detect();
+        updateLangSwitcher(initial);
+        load(initial);
+
         document.querySelectorAll('[data-lang]').forEach(btn => {
             btn.addEventListener('click', () => {
                 const l = btn.getAttribute('data-lang');
                 switchLang(l);
-                document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b === btn));
             });
+        });
+    }
+
+    function updateLangSwitcher(lang) {
+        document.querySelectorAll('.lang-switch button').forEach(btn => {
+            const active = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', active);
         });
     }
 

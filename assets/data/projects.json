@@ -4,21 +4,32 @@
 		"name": {
 			"zh-CN": "Kabumemo",
 			"en-US": "Kabumemo",
-			"ja-JP": "カブメモ"
+			"ja-JP": "Kabumemo"
 		},
 		"description": {
 			"zh-CN": "一个 vibecoding 的尝试：完全未手写代码，由指导 GPT-5/Codex 生成的个人股票交易记录网站，目标是在最低成本下满足个性化系统需求。",
 			"en-US": "An experiment in vibecoding: a personal stock trade logging site built entirely by guiding GPT (no hand-written code), exploring how to meet custom system needs at minimal cost.",
 			"ja-JP": "Vibecoding の試み：GPT を指示してコードを書かせ、手書きなしで構築した個人用株式取引記録サイト。最小コストでカスタム需要を満たす実験。"
 		},
-		"desc": {
-			"zh-CN": "一个 vibecoding 的尝试：完全未手写代码，由指导 GPT-5/Codex 生成的个人股票交易记录网站，目标是在最低成本下满足个性化系统需求。",
-			"en-US": "An experiment in vibecoding: a personal stock trade logging site built entirely by guiding GPT (no hand-written code), exploring how to meet custom system needs at minimal cost.",
-			"ja-JP": "Vibecoding の試み：GPT を指示してコードを書かせ、手書きなしで構築した個人用株式取引記録サイト。最小コストでカスタム需要を満たす実験。"
-		},
 		"repo": "https://github.com/cyberyimein/kabumemo",
 		"url": "https://github.com/cyberyimein/kabumemo",
-		"tags": ["Vibe Coding", "TypeScript", "Python"],
+		"tags": [
+			{
+				"zh-CN": "Vibe Coding",
+				"en-US": "Vibe Coding",
+				"ja-JP": "Vibe Coding"
+			},
+			{
+				"zh-CN": "TypeScript",
+				"en-US": "TypeScript",
+				"ja-JP": "TypeScript"
+			},
+			{
+				"zh-CN": "Python",
+				"en-US": "Python",
+				"ja-JP": "Python"
+			}
+		],
 		"tech": ["GPT", "Static Site", "JSON"],
 		"status": "active",
 		"createdAt": "2025-09-29"

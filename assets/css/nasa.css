@@ -297,6 +297,21 @@ nav a.active {
     opacity: .75;
 }
 
+[data-theme="dark"] .project-card {
+    background: linear-gradient(165deg, rgba(66, 72, 79, .96) 0%, rgba(49, 54, 61, .94) 100%);
+    border-color: rgba(124, 136, 148, .58);
+    box-shadow: 0 20px 36px -26px rgba(4, 6, 9, .72);
+}
+
+[data-theme="dark"] .project-card::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .12) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: .22;
+}
+
+[data-theme="dark"] .project-card:hover::before {
+    opacity: .32;
+}
+
 .project-card h4 {
     margin: 0 0 12px;
     font-size: 21px;

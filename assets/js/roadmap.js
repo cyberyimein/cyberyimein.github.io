@@ -1,12 +1,18 @@
 (function () {
     const FILE = './assets/data/roadmap.json';
     const qs = sel => document.querySelector(sel);
-    const state = { data: null };
+    const state = { data: null, lang: 'zh-CN' };
 
     function resolveLang(obj) {
         if (!obj || typeof obj !== 'object') return '';
-        const lang = (window.I18N && I18N.state.lang) || 'zh-CN';
-        return obj[lang] || obj['en-US'] || obj['zh-CN'] || Object.values(obj)[0] || '';
+    const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+    const lang = (window.I18N && I18N.state && I18N.state.lang) || stored || state.lang || 'en-US';
+        state.lang = lang;
+        if (obj[lang]) return obj[lang];
+        if (lang.startsWith('en') && obj['en-US']) return obj['en-US'];
+        if (lang.startsWith('zh') && obj['zh-CN']) return obj['zh-CN'];
+        if (lang.startsWith('ja') && obj['ja-JP']) return obj['ja-JP'];
+        return Object.values(obj)[0] || '';
     }
 
     function createItem(item) {
@@ -77,6 +83,16 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', load);
-    window.addEventListener('languageChanged', render);
+    document.addEventListener('DOMContentLoaded', () => {
+        state.lang = (window.I18N && I18N.state && I18N.state.lang) || state.lang;
+        load();
+    });
+
+    document.addEventListener('languageChanged', (evt) => {
+        const next = (evt && evt.detail && evt.detail.lang) || (window.I18N && I18N.state && I18N.state.lang);
+        if (next) state.lang = next;
+        if (state.data) {
+            render();
+        }
+    });
 })();
