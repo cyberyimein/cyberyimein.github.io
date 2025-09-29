@@ -1,7 +1,7 @@
 {
-    "hero.tagline": "創造 · 探索 · 学習",
-    "hero.title.html": "こんにちは、私は <span style=\"white-space:nowrap\">あなたの名前</span>",
-    "hero.subtitle.html": "<strong>コードの表現</strong> と <strong>宇宙美学</strong> に情熱を持つ開発者。<br>Web / フロントエンド体験 / 可視化 / オートメーションに注力。",
+    "hero.tagline": "創造 · 探索 · AI",
+    "hero.title.html": "ALOHA、私は <span style=\"white-space:nowrap\">CyberYimein</span>",
+    "hero.subtitle.html": "<strong>AIエージェント</strong> と <strong>LLM駆動の自動化</strong> に注力し、アイデアからプロトタイプ〜本番までを加速。",
     "projects.title": "プロジェクト",
     "projects.empty.title": "近日公開",
     "projects.empty.desc": "ここに注目プロジェクトを掲載します。",

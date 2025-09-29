@@ -1,7 +1,7 @@
 {
-    "hero.tagline": "构建 · 探索 · 学习",
-    "hero.title.html": "你好，我是 <span style=\"white-space:nowrap\">你的名字</span>",
-    "hero.subtitle.html": "一个热衷于 <strong>代码艺术</strong> 与 <strong>宇宙科技美学</strong> 的开发者。<br>专注 Web / 前端体验 / 可视化 / 自动化。",
+    "hero.tagline": "创造 · 探索 · AI",
+    "hero.title.html": "ALOHA，我是 <span style=\"white-space:nowrap\">CyberYimein</span>",
+    "hero.subtitle.html": "专注构建 <strong>AI Agent</strong> 与 <strong>LLM 驱动自动化</strong>，加速想法从原型到上线。",
     "projects.title": "项目",
     "projects.empty.title": "即将到来",
     "projects.empty.desc": "这里会展示精选项目，敬请期待。",

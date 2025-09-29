@@ -9,25 +9,58 @@
             },
             "items": [
                 {
-                    "id": "javascript",
+                    "id": "ts",
                     "label": {
-                        "zh-CN": "JavaScript",
-                        "en-US": "JavaScript",
-                        "ja-JP": "JavaScript"
+                        "en-US": "TypeScript"
                     },
-                    "icon": "<svg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'><rect width='128' height='128' rx='18' fill='#1d2c3a'/><path fill='#f7df1e' d='M19 19h90v90H19z'/><path d='M70.4 92.6c0 8.5-5 15-15.2 15-10.2 0-16.3-4.9-19.4-11.2l10.5-6.3c2 3.6 3.8 6.6 8.2 6.6 3.5 0 5.7-1.4 5.7-6.9V58.2h10.2v34.4zm17.5 15c-10.1 0-16.6-4.8-19.7-11.1l10.5-6.1c2 3.6 4.6 6.3 9.2 6.3 3.9 0 6.4-1.9 6.4-4.6 0-3.2-2.6-4.3-7-6.2l-2.4-1c-7-3-11.6-6.8-11.6-14.8 0-7.4 5.6-13 14.3-13 6.2 0 10.7 2.2 13.9 8l-9.5 6.1c-2.1-3.6-4.4-5-8.2-5-3.7 0-6 2.3-6 5 0 3.5 2.3 4.6 7.5 6.6l2.4 1c8.2 3.5 12.8 7.2 12.8 15.4-.1 8.8-6.9 13.8-16.6 13.8z' fill='#1d2c3a'/></svg>",
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#3178c6'/><text x='32' y='40' font-size='20' text-anchor='middle' fill='#fff'>TS</text></svg>",
                     "kind": "skill",
-                    "url": "https://developer.mozilla.org/docs/Web/JavaScript"
+                    "url": "https://www.typescriptlang.org/"
                 },
                 {
-                    "id": "css",
+                    "id": "python",
                     "label": {
-                        "zh-CN": "CSS",
-                        "en-US": "CSS",
-                        "ja-JP": "CSS"
+                        "en-US": "Python"
                     },
-                    "icon": "<svg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'><rect width='128' height='128' rx='18' fill='#1d2c3a'/><path fill='#1572B6' d='M19 19h90v90H19z'/><path fill='#fff' d='M64.1 98.7l-26.8-7.4-5.9-66.7h65.4l-5.9 66.7-26.8 7.4z'/><path fill='#1572B6' d='M64.1 44.6H50.6l.4 4.9h13.1v-4.9zm0 19.4H51.6l.5 4.9h12v-4.9z'/><path fill='#1d2c3a' d='M64.1 98.7l26.8-7.4 5.9-66.7H64.1v74.1z'/></svg>",
-                    "kind": "skill"
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#3776ab'/><text x='32' y='40' font-size='18' text-anchor='middle' fill='#ffd343'>Py</text></svg>",
+                    "kind": "skill",
+                    "url": "https://www.python.org/"
+                },
+                {
+                    "id": "nlp",
+                    "label": {
+                        "en-US": "NLP"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#6b5b95'/><circle cx='32' cy='28' r='10' fill='#fff'/></svg>",
+                    "kind": "skill",
+                    "url": "https://en.wikipedia.org/wiki/Natural_language_processing"
+                },
+                {
+                    "id": "llm",
+                    "label": {
+                        "en-US": "LLM"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#00aaff'/><path d='M16 40h32v4H16z' fill='#00334d'/></svg>",
+                    "kind": "skill",
+                    "url": "https://en.wikipedia.org/wiki/Large_language_model"
+                },
+                {
+                    "id": "ai-agent",
+                    "label": {
+                        "en-US": "AI Agent"
+                    },
+                    "icon": "<svg viewBox='0 0 80 64' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='80' height='64' rx='10' fill='#00b894'/><rect x='48' y='8' width='32' height='48' rx='8' fill='#ff7f50' opacity='0.9'/><circle cx='24' cy='24' r='8' fill='#fff'/></svg>",
+                    "kind": "skill",
+                    "url": "https://en.wikipedia.org/wiki/Intelligent_agent"
+                },
+                {
+                    "id": "vibe-coding",
+                    "label": {
+                        "en-US": "Vibe Coding"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8e44ad'/><text x='32' y='36' font-size='12' text-anchor='middle' fill='#fff'>Vibe</text><text x='32' y='48' font-size='12' text-anchor='middle' fill='#fff'>Coding</text></svg>",
+                    "kind": "skill",
+                    "url": "https://en.wikipedia.org/wiki/Vibe_coding"
                 }
             ]
         },
@@ -40,15 +73,37 @@
             },
             "items": [
                 {
-                    "id": "aws-cloud-practitioner",
+                    "id": "java-silver",
                     "label": {
-                        "zh-CN": "AWS 云从业者",
-                        "en-US": "AWS Cloud Practitioner",
-                        "ja-JP": "AWS クラウドプラクティショナー"
+                        "zh-CN": "Java 银牌",
+                        "en-US": "Java Silver",
+                        "ja-JP": "Java シルバー"
                     },
-                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#232f3e'/><path fill='#ff9900' d='M16 20h32v6H16zm0 12h32v6H16zm0 12h20v6H16z'/></svg>",
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#2c3e50'/><path d='M32 10c-6 0-10 4-10 9s4 9 10 9 10-4 10-9-4-9-10-9zm0 28c-9 0-16 5-16 11v3h32v-3c0-6-7-11-16-11z' fill='#f89820'/></svg>",
                     "kind": "cert",
-                    "url": "https://aws.amazon.com/certification/certified-cloud-practitioner/"
+                    "url": "https://catalog-education.oracle.com/ords/certview/sharebadge?id=C70CB34EB0ECC0AA6DDA2C83D85F1C96E767FE4FD386C08EE8E9FE9A4101A63C#"
+                },
+                {
+                    "id": "az-900",
+                    "label": {
+                        "zh-CN": "Azure 基础 (AZ-900)",
+                        "en-US": "Microsoft Azure Fundamentals (AZ-900)",
+                        "ja-JP": "Azure 基礎 (AZ-900)"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#072b59'/><path d='M12 20h40v24H12z' fill='#0078d4'/></svg>",
+                    "kind": "cert",
+                    "url": "https://learn.microsoft.com/zh-cn/users/cyberpasta-0637/credentials/19a6ad768905c66d?ref=https%3A%2F%2Fwww.linkedin.com%2F"
+                },
+                {
+                    "id": "ai-102",
+                    "label": {
+                        "zh-CN": "Azure AI 工程师 (AI-102)",
+                        "en-US": "Azure AI Engineer (AI-102)",
+                        "ja-JP": "Azure AI エンジニア (AI-102)"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#0f1724'/><circle cx='32' cy='30' r='10' fill='#00bcd4'/></svg>",
+                    "kind": "cert",
+                    "url": "https://learn.microsoft.com/zh-cn/users/68546526/credentials/FBB5EC4E8338B131?ref=https%3A%2F%2Fwww.linkedin.com%2F"
                 }
             ]
         }

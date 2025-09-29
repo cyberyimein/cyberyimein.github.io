@@ -1,7 +1,7 @@
 {
-    "hero.tagline": "Build · Explore · Learn",
-    "hero.title.html": "Hi, I'm <span style=\"white-space:nowrap\">Your Name</span>",
-    "hero.subtitle.html": "A developer passionate about <strong>code artistry</strong> & <strong>space‑tech aesthetics</strong>.<br>Focus on Web / Frontend Experience / Visualization / Automation.",
+    "hero.tagline": "Create · Explore · AI",
+    "hero.title.html": "ALOHA, I'm <span style=\"white-space:nowrap\">CyberYimein</span>",
+    "hero.subtitle.html": "Focused on building <strong>AI Agents</strong> and <strong>LLM-driven automation</strong>, accelerating ideas from prototype to production.",
     "projects.title": "Projects",
     "projects.empty.title": "Coming Soon",
     "projects.empty.desc": "Selected works will appear here soon.",

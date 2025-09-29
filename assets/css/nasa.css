@@ -15,6 +15,8 @@
     --grid-line: #d8e0e7;
     --divider: #c7d2dc;
     --divider-bold: #aeb9c3;
+    --divider-soft: rgba(199, 210, 220, .58);
+    --divider-strong: rgba(174, 185, 195, .82);
     --shadow: 0 2px 4px rgba(31, 45, 61, .06), 0 6px 18px -6px rgba(31, 45, 61, .12);
     --radius: 18px;
     --text: #17212a;
@@ -47,6 +49,33 @@ body {
     letter-spacing: .8px;
 }
 
+body {
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, 0) 55%),
+        linear-gradient(0deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, 0) 45%),
+        linear-gradient(90deg, rgba(199, 210, 220, .28) 0%, rgba(199, 210, 220, 0) 15%, rgba(199, 210, 220, 0) 85%, rgba(199, 210, 220, .28) 100%);
+    opacity: .38;
+}
+
+html[data-theme="dark"] body::before {
+    background:
+        linear-gradient(180deg, rgba(32, 35, 40, .88) 0%, rgba(32, 35, 40, 0) 55%),
+        linear-gradient(0deg, rgba(32, 35, 40, .88) 0%, rgba(32, 35, 40, 0) 42%),
+        linear-gradient(90deg, rgba(255, 255, 255, .08) 0%, rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, 0) 82%, rgba(255, 255, 255, .08) 100%);
+    opacity: .3;
+}
+
 /* 全局排版 */
 h1,
 h2,
@@ -58,15 +87,21 @@ h4 {
 }
 
 .container {
-    width: min(1180px, 90%);
-    margin-inline: auto;
+    width: min(1160px, 90%);
+    margin: 44px auto 72px;
+    padding: 40px 48px 60px;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
+    border: 1px solid var(--divider);
+    border-radius: 18px;
+    box-shadow: 0 28px 80px -48px rgba(23, 33, 42, .32);
+    box-sizing: border-box;
 }
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 26px 0 18px;
+    padding: 12px 0 6px;
 }
 
 /* 顶部导航条：模块分段风格 */
@@ -159,6 +194,8 @@ nav a.active {
     --panel-alt: #40474e;
     --divider: #4a525a;
     --divider-bold: #5a646e;
+    --divider-soft: rgba(102, 112, 124, .55);
+    --divider-strong: rgba(122, 136, 148, .72);
     --text: #e6eaed;
     --text-dim: #b3bcc3;
     --text-faint: #7d868e;
@@ -191,7 +228,7 @@ nav a.active {
     position: relative;
     background: var(--panel);
     border: 1px solid var(--divider);
-    border-radius: var(--radius);
+    border-radius: 14px;
     padding: 30px 32px 34px;
     box-shadow: var(--shadow);
     overflow: hidden;
@@ -203,9 +240,7 @@ nav a.active {
     inset: 0;
     pointer-events: none;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, .85), rgba(255, 255, 255, .2) 48%, rgba(255, 255, 255, .05)),
-        repeating-linear-gradient(90deg, transparent 0 41px, rgba(0, 0, 0, .04) 41px 42px);
-    mix-blend-mode: overlay;
+        linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, 0) 65%);
     opacity: .55;
 }
 
@@ -229,41 +264,45 @@ nav a.active {
 .project-card {
     background: linear-gradient(180deg, var(--panel-alt), var(--panel));
     border: 1px solid var(--divider);
-    border-radius: 14px;
-    padding: 20px 20px 24px;
+    border-radius: 12px;
+    padding: 24px 26px 26px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 150px;
+    gap: 16px;
+    justify-content: flex-start;
+    min-height: 180px;
     position: relative;
     overflow: hidden;
-    transition: border-color var(--trans), transform var(--trans);
+    transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
+    cursor: pointer;
+    box-shadow: 0 12px 24px -24px rgba(23, 33, 42, .32);
 }
 
 .project-card::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(11, 61, 145, .08), rgba(15, 167, 201, .06));
-    opacity: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: .55;
     transition: opacity var(--trans);
 }
 
 .project-card:hover {
     border-color: var(--accent);
     transform: translateY(-3px);
+    box-shadow: 0 18px 34px -24px rgba(23, 33, 42, .4);
 }
 
 .project-card:hover::before {
-    opacity: 1;
+    opacity: .75;
 }
 
 .project-card h4 {
-    margin: 0 0 8px;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: .4px;
-    color: var(--text);
+    margin: 0 0 12px;
+    font-size: 21px;
+    font-weight: 650;
+    letter-spacing: .3px;
+    color: var(--accent-warm);
 }
 
 .project-card p {
@@ -271,6 +310,61 @@ nav a.active {
     font-size: 13px;
     color: var(--text-faint);
     line-height: 1.55;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.project-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.project-card:hover .project-tag {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.project-github {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--divider);
+    background: var(--panel-alt);
+    transition: border-color var(--trans), transform var(--trans), color var(--trans);
+    color: var(--text-dim);
+}
+
+.project-github svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.project-github:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.project-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.project-card-active {
+    transform: translateY(-2px) scale(0.99);
 }
 
 .empty {
@@ -302,7 +396,7 @@ nav a.active {
     font-size: 12px;
     letter-spacing: .8px;
     font-weight: 600;
-    border-radius: 12px;
+    border-radius: 10px;
     color: var(--text-dim);
     display: inline-flex;
     align-items: center;
@@ -373,31 +467,6 @@ nav a.active {
     height: 20px;
 }
 
-/* skill / cert 细分：用轻量边框 / 前景色区分，不增加额外视觉噪点 */
-/* skill 使用基础 badge 样式即可（不额外加视觉噪点） */
-
-.badge.cert {
-    border-color: var(--accent-cyan);
-}
-
-.badge.cert:hover {
-    border-color: var(--accent);
-}
-
-/* 链接型徽章：去下划线 + 焦点可见 */
-a.badge {
-    text-decoration: none;
-}
-
-a.badge:focus-visible {
-    outline: 2px solid var(--accent-cyan);
-    outline-offset: 2px;
-}
-
-a.badge:hover {
-    text-decoration: none;
-}
-
 /* 暗色下的微调：保持对比与暖色协调 */
 [data-theme="dark"] .badge.cert {
     border-color: var(--accent-cyan);
@@ -460,7 +529,7 @@ a.badge:hover {
 .roadmap-list li {
     background: linear-gradient(180deg, var(--panel-alt), var(--panel));
     border: 1px solid var(--divider);
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 16px 18px 18px;
     position: relative;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
@@ -604,7 +673,7 @@ a.badge:hover {
 .section-header .bar {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, var(--divider) 0, transparent 70%);
+    background: linear-gradient(90deg, var(--divider) 0%, transparent 100%);
 }
 
 /* 时间线：工程式竖线 + 模块点 */
@@ -752,6 +821,12 @@ footer a:hover {
 
 /* 响应式 */
 @media (max-width:780px) {
+    .container {
+        padding: 26px 22px 40px;
+        margin: 20px auto 48px;
+        border-radius: 16px;
+    }
+
     header {
         flex-wrap: wrap;
         gap: 16px;

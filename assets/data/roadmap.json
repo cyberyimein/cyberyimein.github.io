@@ -1,35 +1,35 @@
 {
     "current": [
         {
-            "id": "v0.2",
+            "id": "agent-usecases",
             "version": "v0.2",
             "title": {
-                "zh-CN": "项目数据化",
-                "en-US": "Project Data Layer",
-                "ja-JP": "プロジェクトデータ化"
+                "zh-CN": "Agent 用例落地",
+                "en-US": "Agent Use-Case Rollout",
+                "ja-JP": "エージェント活用展開"
             },
             "desc": {
-                "zh-CN": "projects.json + 动态渲染 + 可选 GitHub stars",
-                "en-US": "projects.json + dynamic render + optional GitHub stars",
-                "ja-JP": "projects.json と動的レンダー + 任意のGitHubスター"
+                "zh-CN": "多 Agent 联携 (A2A) / MCP 集成 / 实战流程",
+                "en-US": "Multi-agent coordination (A2A) / MCP integration / Applied workflows",
+                "ja-JP": "マルチエージェント連携 (A2A) / MCP統合 / 実運用ワークフロー"
             },
-            "percent": 25,
+            "percent": 35,
             "status": "progress"
         },
         {
-            "id": "v0.3",
+            "id": "vibe-workflow",
             "version": "v0.3",
             "title": {
-                "zh-CN": "主题切换 & 统计",
-                "en-US": "Theme Toggle & Analytics",
-                "ja-JP": "テーマ切替と解析"
+                "zh-CN": "Vibe Coding 工作流",
+                "en-US": "Vibe Coding Workflow",
+                "ja-JP": "Vibe Coding ワークフロー"
             },
             "desc": {
-                "zh-CN": "灰暗色模式 / localStorage / 访问统计",
-                "en-US": "Gray dark mode / localStorage / analytics",
-                "ja-JP": "グレー系ダークモード / localStorage / アナリティクス"
+                "zh-CN": "数据驱动提示链 / 自动化评审 / Agent 辅助部署",
+                "en-US": "Data-driven prompt chains / Automated reviews / Agent-assisted deployment",
+                "ja-JP": "データ駆動プロンプト連結 / 自動レビュー / エージェント支援デプロイ"
             },
-            "percent": 5,
+            "percent": 20,
             "status": "progress"
         }
     ],
@@ -38,14 +38,14 @@
             "id": "v0.1",
             "version": "v0.1",
             "title": {
-                "zh-CN": "基础上线",
-                "en-US": "Initial Launch",
-                "ja-JP": "初期リリース"
+                "zh-CN": "AI Agent 应用",
+                "en-US": "AI Agent Applications",
+                "ja-JP": "AI エージェント活用"
             },
             "desc": {
-                "zh-CN": "首页结构 / 多语言骨架 / NASA White Theme",
-                "en-US": "Layout / i18n skeleton / NASA White Theme",
-                "ja-JP": "レイアウト / i18n スケルトン / NASAホワイトテーマ"
+                "zh-CN": "Azure AI Foundry / OpenAI SDK / Prompt Engineering",
+                "en-US": "Azure AI Foundry / OpenAI SDK / Prompt Engineering",
+                "ja-JP": "Azure AI Foundry / OpenAI SDK / プロンプトエンジニアリング"
             },
             "percent": 100,
             "status": "done"
