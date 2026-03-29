@@ -55,16 +55,16 @@
                 </div>
                 <div class="nasa-doc-rule"></div>
                 <div class="nasa-doc-meta">
-                    <div class="meta-left">
-                        <div>CyberYimein</div>
-                        <div>Research Center, Tokyo, Japan</div>
+                    <div class="meta-row"><span>CyberYimein</span></div>
+                    <div class="meta-row">
+                        <span>Research Center, Tokyo, Japan</span>
+                        <span class="meta-for-release">For Release</span>
                     </div>
-                    <div class="meta-right">
-                        <div class="meta-for-release">For Release</div>
-                        <div>${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <div class="meta-row">
+                        <span class="nasa-doc-release-no"></span>
+                        <span>${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                 </div>
-                <div class="nasa-doc-release-no"></div>
                 <div class="nasa-doc-title"></div>
                 <div class="nasa-doc-body"></div>
                 <div class="nasa-doc-signature">
@@ -74,6 +74,7 @@
                     <div class="sig-title">AI Agent Engineer<br>CyberYimein Engineering Division</div>
                 </div>
                 <div class="nasa-doc-end">-end-</div>
+                <div class="nasa-doc-telemetry"></div>
             </div>
         `;
         document.body.appendChild(overlay);
@@ -130,7 +131,6 @@
             MD.fetch(item.content).then(md => {
                 if (!md) return;
                 const parsed = MD.parse(md);
-                if (parsed.title && titleEl) titleEl.textContent = parsed.title;
                 if (parsed.html) body.innerHTML = parsed.html;
             });
         }

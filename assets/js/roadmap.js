@@ -210,7 +210,6 @@
                 MD.fetch(item.content).then(md => {
                     if (!md) return;
                     const parsed = MD.parse(md);
-                    if (parsed.title && titleEl) titleEl.textContent = parsed.title;
                     if (parsed.html) {
                         const prefix = isClassified
                             ? '<p style="color:var(--orange);font-weight:700;letter-spacing:2px;">⬛ CLASSIFIED — ' + escapeHtml(typeLabel) + '</p>'
