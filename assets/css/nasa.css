@@ -1,52 +1,49 @@
-/* NASA Punk (航天器白底 + 模块化鲜色) 设计要点
-   1. 主基底 = 航天器舱体白 (#f5f7fa / #edf1f5)
-   2. 结构线 = 机身分段 / 舱门描边 / 面板缝隙 (浅中灰 #c9d3dd + 内部投影)
-   3. 模块化色块 = 航天器上的高可视标记色：NASA 蓝 / 安全橙 / 功能黄 / 舱外维护红 / 光学标注青
-   4. 几何分割 + 编号标签 + 现代无衬线排版，极简而不空洞
-   5. 光照/阴影轻度，避免赛博霓虹，突出“工程感 + 航天现代主义”
-   6. 暗色文字减少视觉噪点，强调留白
+/* NASA Industrial Punk — 洁净工业质感 × 现代极简 NASA 朋克
+   1. 主基底 = 阳极氧化铝面板灰 (#EBEBEB)
+   2. 核心点缀 = 国际橘 (#FF3C00) + 航空蓝 (#0032A0)
+   3. 几何：直角/极小圆角，无悬浮阴影，卡片镶嵌在面板中
+   4. 字体：标题 Helvetica/Inter 粗体加宽字间距，正文/数据 IBM Plex Mono 等宽
+   5. 工程坐标纸网格 + CRT 扫描线 + Canvas 神经元星座粒子
+   6. 机械展开交互 + 仪表盘式数据读取
 */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
 :root {
-    --bg: #f2f5f8;
-    /* 航天器外壳白 */
-    --bg-alt: #eef2f6;
-    --panel: #ffffff;
-    --panel-alt: #f7fafd;
-    --grid-line: #d8e0e7;
-    --divider: #c7d2dc;
-    --divider-bold: #aeb9c3;
-    --divider-soft: rgba(199, 210, 220, .58);
-    --divider-strong: rgba(174, 185, 195, .82);
-    --shadow: 0 2px 4px rgba(31, 45, 61, .06), 0 6px 18px -6px rgba(31, 45, 61, .12);
-    --radius: 18px;
-    --text: #17212a;
-    --text-dim: #55616c;
-    --text-faint: #8a949d;
-    --accent-nasa: #0b3d91;
-    /* 纯 NASA 蓝备用 */
-    --accent: #1d2c3a;
-    /* 工程深灰蓝：主强调基色 */
-    --accent-warm: #ff6f1d;
-    /* 航天安全橙 */
-    --accent-yellow: #ffc843;
-    --accent-red: #e1392d;
-    /* 舱外警示红 */
-    --accent-cyan: #0fa7c9;
-    /* 光学传感标 */
-    --code: #222f3a;
-    --focus-ring: #0b3d91;
-    --trans: 150ms cubic-bezier(.4, .2, .2, 1);
-    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans', 'Microsoft Yahei', sans-serif;
+    --bg: #EBEBEB;
+    --bg-alt: #E2E2E2;
+    --panel: #F0F0F0;
+    --panel-alt: #E8E8E8;
+    --panel-deep: #DEDEDE;
+    --grid-line: #D0D0D0;
+    --divider: #B8B8B8;
+    --divider-bold: #999;
+    --divider-soft: rgba(160, 160, 160, .45);
+    --divider-strong: rgba(120, 120, 120, .65);
+    --text: #1A1A1A;
+    --text-dim: #4A4A4A;
+    --text-faint: #777;
+    --orange: #FF3C00;
+    --blue: #0032A0;
+    --accent: #1A1A1A;
+    --accent-warm: #FF3C00;
+    --accent-red: #FF3C00;
+    --accent-cyan: #0032A0;
+    --accent-nasa: #0032A0;
+    --accent-yellow: #FFC843;
+    --code: #1A1A1A;
+    --focus-ring: #0032A0;
+    --radius: 2px;
+    --trans: 120ms cubic-bezier(.4, .2, .2, 1);
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     color-scheme: light;
 }
 
-html,
-body {
+/* ====== 全局排版 ====== */
+html, body {
     margin: 0;
-    /* 使用主题变量而不是固定 NASA 蓝，保证暗色模式可读性 */
     color: var(--text);
-    font-weight: 650;
-    letter-spacing: .8px;
+    font-weight: 500;
+    letter-spacing: .4px;
 }
 
 body {
@@ -55,282 +52,358 @@ body {
     background: var(--bg);
 }
 
+h1, h2, h3, h4 {
+    margin: 0;
+    font-family: 'Helvetica Neue', 'Inter', 'Arial', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ====== 背景：工程网格 + CRT 扫描线 + 噪点 ====== */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, 0) 55%),
-        linear-gradient(0deg, rgba(255, 255, 255, .85) 0%, rgba(255, 255, 255, 0) 45%),
-        linear-gradient(90deg, rgba(199, 210, 220, .28) 0%, rgba(199, 210, 220, 0) 15%, rgba(199, 210, 220, 0) 85%, rgba(199, 210, 220, .28) 100%);
-    opacity: .38;
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0, 0, 0, .03) 39px, rgba(0, 0, 0, .03) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0, 0, 0, .03) 39px, rgba(0, 0, 0, .03) 40px);
+    opacity: .6;
 }
 
-html[data-theme="dark"] body::before {
-    background:
-        linear-gradient(180deg, rgba(32, 35, 40, .88) 0%, rgba(32, 35, 40, 0) 55%),
-        linear-gradient(0deg, rgba(32, 35, 40, .88) 0%, rgba(32, 35, 40, 0) 42%),
-        linear-gradient(90deg, rgba(255, 255, 255, .08) 0%, rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, 0) 82%, rgba(255, 255, 255, .08) 100%);
-    opacity: .3;
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, .015) 2px,
+        rgba(0, 0, 0, .015) 4px
+    );
+    mix-blend-mode: multiply;
 }
 
-/* 全局排版 */
-h1,
-h2,
-h3,
-h4 {
-    margin: 0;
-    font-weight: 600;
-    letter-spacing: .5px;
+/* SVG 噪点滤镜 */
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
 }
 
+/* ====== 容器 ====== */
 .container {
-    width: min(1160px, 90%);
-    margin: 44px auto 72px;
-    padding: 40px 48px 60px;
-    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
-    border: 1px solid var(--divider);
-    border-radius: 18px;
-    box-shadow: 0 28px 80px -48px rgba(23, 33, 42, .32);
+    position: relative;
+    z-index: 10;
+    width: min(1160px, 92%);
+    margin: 32px auto 60px;
+    padding: 36px 44px 50px;
+    background: rgba(240, 240, 240, .78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(184, 184, 184, .5);
+    border-radius: 0;
     box-sizing: border-box;
 }
 
+/* ====== Header ====== */
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 12px 0 6px;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 8px 0 16px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 8px;
 }
 
-/* 顶部导航条：模块分段风格 */
-nav {
-    display: flex;
-    gap: 6px;
-    position: relative;
-}
-
-nav a {
-    position: relative;
-    display: inline-block;
-    padding: 10px 18px 11px;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: .6px;
-    font-weight: 500;
-    color: var(--text-dim);
-    background: linear-gradient(var(--panel), var(--panel-alt));
-    border: 1px solid var(--divider);
-    border-radius: 12px;
-    line-height: 1;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, .02);
-    transition: color var(--trans), background var(--trans), border-color var(--trans), transform var(--trans);
-}
-
-nav a:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
-nav a.active {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: linear-gradient(var(--panel-alt), var(--panel));
-}
-
-/* 语言切换扁平按钮 */
-.lang-switch {
-    display: flex;
-    gap: 6px;
-}
-
-.lang-switch button {
-    border: 1px solid var(--divider);
-    background: var(--panel);
-    padding: 8px 14px;
-    border-radius: 10px;
-    font-size: 11px;
-    letter-spacing: .8px;
-    cursor: pointer;
+.logo {
+    font-family: 'Helvetica Neue', 'Inter', 'Arial', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
     color: var(--text-faint);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* NASA Worm Logo */
+.nasa-worm {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nasa-worm svg {
+    height: 22px;
+    width: auto;
+}
+
+/* 任务信息 */
+.mission-info {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.mission-info .mission-id {
+    color: var(--orange);
     font-weight: 600;
 }
 
+.mission-info .mission-status {
+    color: #2a9d2a;
+    font-weight: 600;
+}
+
+/* 语言切换器 — 飞船控制台物理按钮 */
+.lang-switch {
+    display: flex;
+    gap: 0;
+}
+
+.lang-switch button {
+    border: 1px solid var(--divider-bold);
+    background: var(--bg-alt);
+    padding: 6px 14px;
+    border-radius: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    color: var(--text-faint);
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color var(--trans), background var(--trans), border-color var(--trans);
+}
+
+.lang-switch button + button {
+    border-left: none;
+}
+
 .lang-switch button.active {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--panel-alt);
+    color: #fff;
+    border-color: var(--orange);
+    background: var(--orange);
 }
 
-.lang-switch button:hover {
-    color: var(--accent);
+.lang-switch button:hover:not(.active) {
+    color: var(--text);
+    background: var(--panel);
 }
 
-/* 英雄区：大块留白 + 左侧信息 + 右侧功能块 */
+/* ====== 英雄区 ====== */
 .hero {
-    padding: 60px 0 40px;
+    padding: 50px 0 36px;
     display: grid;
-    gap: 50px;
+    gap: 40px;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     align-items: start;
 }
 
 .tagline {
-    font-size: 13px;
-    letter-spacing: 1.8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent-warm);
+    color: var(--orange);
     font-weight: 600;
-    margin-bottom: 16px;
-}
-
-/* 灰系暗色主题（非纯黑） */
-[data-theme="dark"] {
-    /* 低对比柔和灰系暗色，不走纯黑：更护眼 */
-    --bg: #2e3237;
-    --bg-alt: #32373d;
-    --panel: #3a4046;
-    --panel-alt: #40474e;
-    --divider: #4a525a;
-    --divider-bold: #5a646e;
-    --divider-soft: rgba(102, 112, 124, .55);
-    --divider-strong: rgba(122, 136, 148, .72);
-    --text: #e6eaed;
-    --text-dim: #b3bcc3;
-    --text-faint: #7d868e;
-    --accent: #ff7a29;
-    /* 主强调：柔和安全橙 */
-    --accent-warm: #ff9752;
-    --accent-cyan: #37c5de;
-    --accent-red: #ff6655;
-    --accent-yellow: #ffd26a;
-    --shadow: 0 2px 5px -1px rgba(0, 0, 0, .45), 0 10px 22px -10px rgba(0, 0, 0, .55);
-    color-scheme: dark;
-    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 120%);
+    margin-bottom: 14px;
 }
 
 .hero h1 {
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    line-height: 1.05;
-    color: var(--accent);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    color: var(--text);
+    letter-spacing: 3px;
 }
 
 .hero p {
     max-width: 54ch;
-    line-height: 1.6;
-    font-size: 16px;
+    line-height: 1.7;
+    font-size: 14px;
     color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
 }
 
-/* 面板：航天器分段 + 细分割线 + 轻内阴影 */
-.panel {
+/* ====== 大分节标题 ====== */
+.section {
+    margin: 60px 0 36px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
     position: relative;
-    background: var(--panel);
-    border: 1px solid var(--divider);
-    border-radius: 14px;
-    padding: 30px 32px 34px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
+    padding-left: 16px;
+    color: var(--text);
 }
 
-.panel::before {
+.section-header h2::before {
     content: "";
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, 0) 65%);
-    opacity: .55;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 4px;
+    background: var(--orange);
 }
 
-.panel h3 {
-    margin: 0 0 10px;
-    font-size: 15px;
-    letter-spacing: 1.2px;
-    font-weight: 600;
-    text-transform: uppercase;
+/* REF-ID 标签 */
+.ref-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
     color: var(--text-faint);
+    font-weight: 500;
+    white-space: nowrap;
 }
 
-/* 项目网格 */
+.section-header .bar {
+    flex: 1;
+    height: 1px;
+    background: var(--divider);
+}
+
+/* ====== 项目网格 ====== */
 .projects-grid {
     display: grid;
-    gap: 26px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    margin-top: 12px;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 10px;
 }
 
+/* 项目卡片 — 现代复古未来主义 */
 .project-card {
-    background: linear-gradient(180deg, var(--panel-alt), var(--panel));
-    border: 1px solid var(--divider);
-    border-radius: 12px;
-    padding: 24px 26px 26px;
+    background: rgba(255, 255, 255, .55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(184, 184, 184, .4);
+    border-radius: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    justify-content: flex-start;
-    min-height: 180px;
+    min-height: 200px;
     position: relative;
     overflow: hidden;
-    transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
     cursor: pointer;
-    box-shadow: 0 12px 24px -24px rgba(23, 33, 42, .32);
 }
 
 .project-card::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, 0) 70%);
-    opacity: .55;
-    transition: opacity var(--trans);
-}
-
-.project-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 18px 34px -24px rgba(23, 33, 42, .4);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--orange) 50%, transparent 50%);
+    opacity: 0;
+    transition: opacity 200ms ease;
 }
 
 .project-card:hover::before {
-    opacity: .75;
+    opacity: 1;
 }
 
-[data-theme="dark"] .project-card {
-    background: linear-gradient(165deg, rgba(66, 72, 79, .96) 0%, rgba(49, 54, 61, .94) 100%);
-    border-color: rgba(124, 136, 148, .58);
-    box-shadow: 0 20px 36px -26px rgba(4, 6, 9, .72);
+/* 标题区 — 轻盈的顶部条 */
+.project-card .card-nameplate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid rgba(184, 184, 184, .3);
+    gap: 12px;
+    background: transparent;
 }
 
-[data-theme="dark"] .project-card::before {
-    background: linear-gradient(180deg, rgba(255, 255, 255, .12) 0%, rgba(255, 255, 255, 0) 70%);
-    opacity: .22;
+.project-card .card-nameplate h4 {
+    margin: 0;
+    font-family: 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: var(--text);
+    text-transform: uppercase;
 }
 
-[data-theme="dark"] .project-card:hover::before {
-    opacity: .32;
+.project-card .card-nameplate .card-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    color: var(--orange);
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 3px 10px;
+    border: 1px solid rgba(255, 60, 0, .3);
+    border-radius: 0;
+    background: rgba(255, 60, 0, .04);
 }
 
-.project-card h4 {
-    margin: 0 0 12px;
-    font-size: 21px;
-    font-weight: 650;
-    letter-spacing: .3px;
-    color: var(--accent-warm);
+.project-card .card-body {
+    padding: 16px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .project-card p {
     margin: 0;
-    font-size: 13px;
-    color: var(--text-faint);
-    line-height: 1.55;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 400;
 }
 
+.project-card:hover {
+    border-color: rgba(255, 60, 0, .35);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, .1);
+}
+
+.project-card:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.project-card-active {
+    transform: translateY(-1px) scale(0.995);
+}
+
+/* 项目标签 — 轻盈现代风格 */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     margin-top: auto;
 }
 
@@ -338,48 +411,27 @@ nav a.active {
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .8px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border: 1px solid rgba(184, 184, 184, .4);
+    border-radius: 0;
+    color: var(--text-faint);
+    background: rgba(255, 255, 255, .3);
+    text-transform: uppercase;
+    transition: border-color 200ms ease, color 200ms ease;
 }
 
 .project-card:hover .project-tag {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: rgba(255, 60, 0, .3);
+    color: var(--orange);
 }
 
+/* 隐藏 GitHub 图标 */
 .project-github {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--divider);
-    background: var(--panel-alt);
-    transition: border-color var(--trans), transform var(--trans), color var(--trans);
-    color: var(--text-dim);
-}
-
-.project-github svg {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-}
-
-.project-github:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-}
-
-.project-card:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
-}
-
-.project-card-active {
-    transform: translateY(-2px) scale(0.99);
+    display: none !important;
 }
 
 .empty {
@@ -389,77 +441,657 @@ nav a.active {
 
 .empty-note {
     margin-top: 10px;
-    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--accent-warm);
+    letter-spacing: 2px;
+    color: var(--orange);
 }
 
-/* ===================== Badges ===================== */
+/* ====== 项目卡片展开 — NASA 文档 ====== */
+.project-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 400ms ease;
+}
+
+.project-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nasa-document {
+    position: relative;
+    width: min(820px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: #FAFAF5;
+    border: 1px solid var(--divider-bold);
+    border-radius: 0;
+    padding: 48px 56px 40px;
+    box-sizing: border-box;
+    transform: scale(.92) translateY(20px);
+    clip-path: inset(5% 5% 5% 5%);
+    transition: transform 600ms cubic-bezier(.22, .61, .36, 1),
+                clip-path 600ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.nasa-document::-webkit-scrollbar {
+    display: none;
+}
+
+.project-overlay.active .nasa-document {
+    transform: scale(1) translateY(0);
+    clip-path: inset(0 0 0 0);
+}
+
+/* NASA News Release Document — Masthead */
+
+/* Classified watermark on document */
+.nasa-doc-classified {
+    position: relative;
+}
+
+.nasa-doc-classified::before {
+    content: "CLASSIFIED";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-35deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: 16px;
+    color: rgba(183, 28, 28, .07);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 100;
+}
+
+[data-theme="dark"] .nasa-doc-classified::before {
+    color: rgba(183, 28, 28, .1);
+}
+
+.nasa-doc-masthead {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    margin-bottom: 2px;
+}
+
+.nasa-doc-logo svg {
+    height: 38px;
+    width: auto;
+}
+
+.masthead-label {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 38px;
+    font-style: italic;
+    font-weight: 400;
+    color: #1A1A1A;
+    line-height: 1;
+    transform: translateY(-2px);
+}
+
+.nasa-doc-org {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    line-height: 1.7;
+    color: #555;
+    letter-spacing: .3px;
+    margin-bottom: 16px;
+}
+
+.nasa-doc-rule {
+    height: 2px;
+    background: #1A1A1A;
+    margin-bottom: 20px;
+}
+
+/* Meta: Contact + Release info */
+.nasa-doc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.nasa-doc-meta .meta-left {
+    font-weight: 500;
+}
+
+.nasa-doc-meta .meta-right {
+    text-align: right;
+}
+
+.nasa-doc-meta .meta-for-release {
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Release number */
+.nasa-doc-release-no {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 28px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Title — underlined, all caps (per 1970s NASA release) */
+.nasa-doc-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-bottom: 28px;
+    color: #111;
+}
+
+/* NASA 文档正文 */
+.nasa-doc-body {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.85;
+    color: #222;
+    font-weight: 400;
+    max-width: 68ch;
+}
+
+.nasa-doc-body p {
+    margin: 0 0 18px;
+}
+
+.nasa-doc-body h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 28px 0 12px;
+    color: #111;
+}
+
+/* Signature — right-aligned per 1970s government document convention */
+.nasa-doc-signature {
+    margin-top: 48px;
+    margin-left: auto;
+    width: fit-content;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.nasa-doc-signature .sig-handwriting {
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 32px;
+    color: #1A1A1A;
+    margin: 8px 0 4px;
+    transform: rotate(-2deg);
+    display: inline-block;
+}
+
+.nasa-doc-signature .sig-line {
+    width: 200px;
+    height: 1px;
+    background: #1A1A1A;
+    margin: 4px 0 8px;
+}
+
+.nasa-doc-signature .sig-name {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nasa-doc-signature .sig-title {
+    color: #666;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* Document end mark */
+.nasa-doc-end {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-style: italic;
+    color: #666;
+    margin-top: 36px;
+    letter-spacing: 1px;
+}
+
+/* 关闭按钮 — 物理按钮 */
+.nasa-doc-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: 1px solid var(--divider-bold);
+    border-radius: 0;
+    padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: color var(--trans), border-color var(--trans), background var(--trans);
+}
+
+.nasa-doc-close:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+    background: rgba(255, 60, 0, .05);
+}
+
+/* ====== Badge Envelope Card — NASA Business-Card Style ====== */
+.badge-card-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+}
+
+.badge-card-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.badge-envelope {
+    position: relative;
+    width: min(520px, 92vw);
+    background: #FAFAF5;
+    border: 1px solid var(--divider-bold);
+    border-radius: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transform: scale(.94) translateY(12px);
+    transition: transform 400ms cubic-bezier(.22, .61, .36, 1);
+    overflow: hidden;
+}
+
+.badge-card-overlay.active .badge-envelope {
+    transform: scale(1) translateY(0);
+}
+
+/* Envelope top band */
+.envelope-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 28px 16px;
+    border-bottom: 2px solid #1A1A1A;
+}
+
+.envelope-sender {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.envelope-sender .sender-logo svg {
+    height: 20px;
+    width: auto;
+}
+
+.envelope-sender .sender-org {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    line-height: 1.6;
+    color: #555;
+    letter-spacing: .3px;
+}
+
+.envelope-stamp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    margin-right: 36px;
+}
+
+.envelope-stamp .stamp-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999;
+    text-align: right;
+}
+
+.envelope-stamp .stamp-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.envelope-stamp .stamp-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Main content area — the "letter" */
+.envelope-body {
+    padding: 24px 28px 28px;
+}
+
+.envelope-title {
+    font-family: 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    margin: 0 0 4px;
+}
+
+.envelope-kind {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* Proficiency gauge — for skills */
+.envelope-proficiency {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.proficiency-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.proficiency-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.proficiency-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    border: 1px solid rgba(184, 184, 184, .6);
+    background: transparent;
+    transition: background 200ms ease, border-color 200ms ease;
+}
+
+.proficiency-dots .dot.filled {
+    background: var(--orange);
+    border-color: var(--orange);
+}
+
+/* Cert info block */
+.envelope-cert-info {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+}
+
+.cert-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cert-info-label {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 600;
+}
+
+.cert-info-value {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cert-info-value.status-active {
+    color: #2a9d2a;
+}
+
+.cert-info-value.status-expired {
+    color: #cc3333;
+}
+
+.cert-info-value.status-retired {
+    color: var(--text-faint);
+}
+
+/* Comment */
+.envelope-comment {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* Divider */
+.envelope-divider {
+    height: 1px;
+    background: var(--divider);
+    margin-bottom: 16px;
+}
+
+/* Footer link */
+.envelope-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid rgba(184, 184, 184, .5);
+    transition: color 200ms ease, border-color 200ms ease;
+}
+
+.envelope-link:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+}
+
+.envelope-link .arrow {
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* Close button for envelope */
+.envelope-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: 1px solid rgba(184, 184, 184, .5);
+    border-radius: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-faint);
+    cursor: pointer;
+    transition: color 200ms ease, border-color 200ms ease;
+    z-index: 1;
+}
+
+.envelope-close:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+}
+
+/* Dark theme overrides for envelope */
+[data-theme="dark"] .badge-envelope {
+    background: #2A2A28;
+    border-color: #555;
+}
+
+[data-theme="dark"] .envelope-header {
+    border-bottom-color: #666;
+}
+
+[data-theme="dark"] .envelope-title {
+    color: #E8E8E8;
+}
+
+[data-theme="dark"] .envelope-comment {
+    color: #CCC;
+}
+
+[data-theme="dark"] .envelope-link {
+    border-color: #555;
+}
+
+/* ====== Badges ====== */
 .badges-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 12px;
     align-items: flex-start;
 }
 
 .badge {
     position: relative;
-    background: linear-gradient(180deg, var(--panel-alt), var(--panel));
-    border: 1px solid var(--divider);
-    padding: 10px 16px 11px;
-    font-size: 12px;
-    letter-spacing: .8px;
+    background: rgba(255, 255, 255, .55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(184, 184, 184, .4);
+    padding: 8px 14px 8px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .6px;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 0;
     color: var(--text-dim);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: border-color var(--trans), color var(--trans), transform var(--trans);
+    gap: 8px;
+    transition: border-color 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    text-decoration: none;
 }
 
 .badge:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
+    border-color: rgba(255, 60, 0, .35);
+    color: var(--orange);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px -4px rgba(0, 0, 0, .08);
+}
+
+/* LED 状态灯 — 技能徽章 */
+.badge.skill::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2a9d2a;
+    box-shadow: 0 0 4px #2a9d2a, 0 0 8px rgba(42, 157, 42, .4);
+    flex-shrink: 0;
+}
+
+/* 证书徽章 — 统一风格 + 金色芯片图标 */
+.badge.cert {
+    padding: 9px 16px 9px 14px;
+}
+
+.badge.cert::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 10px;
+    background: linear-gradient(135deg, #C4A853 0%, #D4B96E 40%, #B8962F 100%);
+    border-radius: 1px;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, .5);
+    flex-shrink: 0;
+}
+
+.badge.cert:hover {
+    border-color: rgba(255, 60, 0, .35);
+    color: var(--orange);
 }
 
 .badge-empty {
-    opacity: .7;
+    opacity: .5;
     font-style: italic;
 }
 
-[data-theme="dark"] .badge {
-    background: linear-gradient(180deg, var(--panel), var(--panel-alt));
-}
-
-/* 分组标题：与 roadmap/title 视觉呼应但更轻，保持层次 */
+/* 分组标题 */
 .badge-group-title {
     flex: 0 0 100%;
-    margin: 8px 0 4px;
-    font-size: 11px;
-    letter-spacing: 1.6px;
-    font-weight: 600;
+    margin: 12px 0 4px;
+    font-family: 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
     text-transform: uppercase;
     color: var(--text-faint);
     position: relative;
-    padding-left: 10px;
+    padding-left: 12px;
 }
 
 .badge-group-title::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 4px;
-    bottom: 4px;
+    top: 2px;
+    bottom: 2px;
     width: 3px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-cyan));
-    opacity: .75;
+    background: var(--orange);
 }
 
-/* 分组容器：内部再 wrap 以控制换行与间距 */
 .badge-group {
     display: flex;
     flex-wrap: wrap;
@@ -467,10 +1099,9 @@ nav a.active {
     margin: 2px 0 14px;
 }
 
-/* 图标统一尺寸，避免不同 SVG 自带 viewBox 拉伸差异 */
 .badge-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     display: block;
 }
 
@@ -478,228 +1109,393 @@ nav a.active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
-/* 暗色下的微调：保持对比与暖色协调 */
-[data-theme="dark"] .badge.cert {
-    border-color: var(--accent-cyan);
-}
-
-[data-theme="dark"] .badge-group-title::before {
-    opacity: .9;
-}
-
-/* ===================== Roadmap ===================== */
-.roadmap {
+/* ====== Archive Cabinet ====== */
+.archive-cabinet {
     padding: 6px 0 0;
-    /* no outer panel now */
 }
 
-.roadmap-columns {
-    display: grid;
-    gap: 44px 68px;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-}
-
-.roadmap-col {
+/* Single shelf row: stacked completed → expanded current */
+.archive-shelf {
     display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.roadmap-title {
-    margin: 4px 0 4px;
-    font-size: 15px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--text-faint);
+    align-items: flex-end;
+    gap: 0;
     position: relative;
-    padding-left: 12px;
 }
 
-.roadmap-title::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 4px;
-    bottom: 4px;
-    width: 4px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-cyan));
-    opacity: .9;
-}
-
-.roadmap-list {
-    list-style: none;
-    margin: 0;
+/* ====== File Card — A4 Portrait ====== */
+.file-card {
+    position: relative;
+    width: 200px;
+    height: 283px;
+    background: rgba(255, 255, 255, .65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(184, 184, 184, .4);
+    border-radius: 0;
     padding: 0;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 380ms cubic-bezier(.25, .1, .25, 1),
+                box-shadow 380ms ease,
+                border-color 250ms ease;
 }
 
-.roadmap-list li {
-    background: linear-gradient(180deg, var(--panel-alt), var(--panel));
-    border: 1px solid var(--divider);
-    border-radius: 10px;
-    padding: 16px 18px 18px;
-    position: relative;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
-    transition: border-color var(--trans), transform var(--trans), background var(--trans);
+/* ---- Expanded (current) cards: show full, spaced ---- */
+.file-card:not(.file-stacked) {
+    margin-left: 16px;
 }
 
-.roadmap-list li:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
+.file-card:not(.file-stacked):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 36px -8px rgba(0, 0, 0, .14);
+    border-color: rgba(255, 60, 0, .4);
 }
 
-.rm-head {
+/* ---- Stacked (completed) cards: overlap, show clipped face ---- */
+.file-card.file-stacked {
+    margin-left: -152px;
+    z-index: 1;
+}
+
+.file-card.file-stacked:first-child {
+    margin-left: 0;
+}
+
+/* Hover: pull card UP by 1/4 to simulate pulling from cabinet */
+.file-card.file-stacked:hover {
+    transform: translateY(-70px);
+    z-index: 20;
+    box-shadow: 0 16px 48px -8px rgba(0, 0, 0, .22);
+    border-color: rgba(255, 60, 0, .4);
+}
+
+/* ====== File Face — A4 internal layout ====== */
+.file-face {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px 16px 14px;
+    box-sizing: border-box;
+    gap: 0;
+}
+
+/* Classification stripe */
+.file-stripe {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: .3px;
-    color: var(--text);
-    margin: 0 0 6px;
-}
-
-.rm-version {
-    display: inline-block;
-    font-size: 11px;
-    padding: 3px 8px 4px;
-    line-height: 1;
-    border-radius: 22px;
-    background: var(--accent);
-    color: #fff;
-    letter-spacing: .8px;
-    font-weight: 600;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 0 0 1px rgba(255, 255, 255, .25) inset;
-}
-
-.rm-desc {
-    margin: 0 0 12px;
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--text-dim);
-}
-
-.rm-bar {
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(184, 184, 184, .3);
     position: relative;
-    height: 7px;
-    border-radius: 4px;
-    background: linear-gradient(180deg, var(--panel-alt), var(--panel));
-    border: 1px solid var(--divider);
+}
+
+.stripe-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.stripe-type.file-type-project { color: var(--orange); }
+.stripe-type.file-type-experiment { color: var(--blue); }
+.stripe-type.file-type-classified { color: #B71C1C; }
+
+.stripe-version {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--text-faint);
+    padding: 1px 6px;
+    background: rgba(0, 0, 0, .05);
+}
+
+/* Featured pin (orange tab sticking up) */
+.stripe-pin {
+    position: absolute;
+    top: -16px;
+    right: 4px;
+    width: 10px;
+    height: 22px;
+    background: var(--orange);
+    border-radius: 0 0 1px 1px;
+    opacity: .85;
+}
+
+/* Title */
+.file-title-block {
+    margin-bottom: 8px;
+}
+
+.file-title {
+    font-family: 'Helvetica Neue', 'Inter', 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-.rm-bar .fill {
-    position: relative;
-    display: block;
-    height: 100%;
-    border-radius: inherit;
-    /* 统一左侧起点 = accent-warm，增强识别一致性 */
-    background: linear-gradient(90deg, var(--accent-warm) 0%, var(--accent-cyan) 68%, var(--accent));
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, .25) inset, 0 0 0 1px rgba(0, 0, 0, .05);
-    transition: width .6s cubic-bezier(.55, .2, .2, .9);
+/* Description */
+.file-desc {
+    margin: 0 0 auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.rm-bar .fill.done {
-    background: linear-gradient(90deg, var(--accent-warm) 0%, var(--accent-cyan) 100%);
-}
-
-.rm-bar .fill.progress {
-    background:
-        repeating-linear-gradient(135deg, rgba(255, 255, 255, .18) 0 6px, rgba(255, 255, 255, 0) 6px 12px),
-        linear-gradient(90deg, var(--accent-warm) 0%, var(--accent-cyan) 65%, var(--accent));
-    animation: progressStripes 14s linear infinite;
-}
-
-@keyframes progressStripes {
-    0% {
-        background-position: 0 0, 0 0;
-    }
-
-    100% {
-        background-position: 240px 0, 0 0;
-    }
-}
-
-/* Dark theme adjustments (will also refine in cleanup task) */
-[data-theme="dark"] .roadmap-list li {
-    background: linear-gradient(180deg, var(--panel), var(--panel-alt));
-}
-
-[data-theme="dark"] .rm-bar {
-    background: var(--panel);
-    border-color: var(--divider-bold);
-}
-
-[data-theme="dark"] .rm-version {
-    background: var(--accent-warm);
-    color: #fff;
-}
-
-[data-theme="dark"] .rm-bar .fill.done {
-    background: linear-gradient(90deg, var(--accent-warm) 0%, var(--accent-cyan) 100%);
-}
-
-[data-theme="dark"] .rm-bar .fill.progress {
-    background:
-        repeating-linear-gradient(135deg, rgba(255, 255, 255, .1) 0 6px, rgba(255, 255, 255, 0) 6px 12px),
-        linear-gradient(90deg, var(--accent-warm) 0%, var(--accent-cyan) 65%, var(--accent));
-}
-
-/* 大分节标题（模块分割条 + 编号感） */
-.section {
-    margin: 70px 0 40px;
-}
-
-.section-header {
+/* Progress */
+.file-progress-wrap {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 22px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
-.section-header h2 {
-    margin: 0;
-    font-size: 26px;
-    font-weight: 650;
-    letter-spacing: .5px;
+.file-pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    min-width: 30px;
+}
+
+.file-bar {
+    flex: 1;
+    height: 4px;
+    border-radius: 0;
+    background: rgba(0, 0, 0, .06);
+    overflow: hidden;
+}
+
+.file-fill {
+    display: block;
+    height: 100%;
+    border-radius: 0;
+    transition: width .8s cubic-bezier(.25, .1, .25, 1);
+}
+
+.file-fill.done { background: var(--blue); }
+
+.file-fill.progress {
+    background: linear-gradient(90deg, var(--orange), rgba(255, 60, 0, .7));
     position: relative;
-    padding-left: 14px;
 }
 
-.section-header h2::before {
+.file-fill.progress::after {
     content: "";
     position: absolute;
-    left: 0;
-    top: 4px;
-    bottom: 4px;
-    width: 5px;
-    border-radius: 3px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-cyan));
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .3) 50%, transparent 100%);
+    animation: progressSweep 2.5s ease-in-out infinite;
 }
 
-.section-header .bar {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--divider) 0%, transparent 100%);
+@keyframes progressSweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
 }
 
-/* 时间线：工程式竖线 + 模块点 */
+/* Completed stamp */
+.file-stamp-block {
+    margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--blue);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stamp-check {
+    font-size: 13px;
+}
+
+/* Footer */
+.file-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(184, 184, 184, .2);
+    min-height: 22px;
+}
+
+.file-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .8px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 2px 8px;
+    border: 1px solid rgba(184, 184, 184, .4);
+    transition: color 200ms ease, border-color 200ms ease;
+}
+
+.file-link:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+}
+
+.file-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--text-faint);
+    font-weight: 500;
+}
+
+/* ====== Classified Card ====== */
+.file-classified {
+    background: rgba(245, 240, 235, .7);
+    border-color: rgba(183, 28, 28, .25);
+}
+
+.file-classified .file-stripe {
+    border-bottom-color: rgba(183, 28, 28, .2);
+}
+
+/* Redacted text */
+.file-desc.redacted {
+    position: relative;
+    color: transparent;
+    user-select: none;
+}
+
+.file-desc.redacted::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(40, 40, 40, .75) 0px,
+        rgba(40, 40, 40, .75) 2px,
+        transparent 2px,
+        transparent 6px
+    );
+    pointer-events: none;
+}
+
+/* Classified progress: redacted */
+.classified-progress .file-pct {
+    color: #B71C1C;
+    letter-spacing: 0;
+}
+
+.file-bar.redacted-bar {
+    position: relative;
+    background: none;
+    overflow: visible;
+}
+
+.file-bar.redacted-bar::before {
+    content: "";
+    position: absolute;
+    inset: -1px 0;
+    height: 6px;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(40, 40, 40, .7) 0px,
+        rgba(40, 40, 40, .7) 8px,
+        rgba(40, 40, 40, .35) 8px,
+        rgba(40, 40, 40, .35) 12px
+    );
+    pointer-events: none;
+}
+
+/* Classified: diagonal watermark */
+.file-classified::after {
+    content: "CLASSIFIED";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-35deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: rgba(183, 28, 28, .06);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.file-classified:hover {
+    border-color: rgba(183, 28, 28, .4) !important;
+}
+
+.file-classified.file-stacked:hover {
+    box-shadow: 0 16px 48px -8px rgba(183, 28, 28, .18);
+}
+
+/* Dark mode: archive */
+[data-theme="dark"] .file-card {
+    background: rgba(50, 50, 50, .6);
+    border-color: rgba(100, 100, 100, .4);
+}
+
+[data-theme="dark"] .file-card.file-stacked:hover,
+[data-theme="dark"] .file-card:not(.file-stacked):hover {
+    border-color: rgba(255, 60, 0, .5);
+}
+
+[data-theme="dark"] .file-classified {
+    background: rgba(60, 40, 40, .6);
+    border-color: rgba(183, 28, 28, .3);
+}
+
+[data-theme="dark"] .file-classified:hover {
+    border-color: rgba(183, 28, 28, .5) !important;
+}
+
+[data-theme="dark"] .file-bar.redacted-bar::before {
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(200, 200, 200, .5) 0px,
+        rgba(200, 200, 200, .5) 8px,
+        rgba(200, 200, 200, .25) 8px,
+        rgba(200, 200, 200, .25) 12px
+    );
+}
+
+[data-theme="dark"] .file-classified::after {
+    color: rgba(183, 28, 28, .08);
+}
+
+/* ====== 时间线 ====== */
 .timeline {
     list-style: none;
     margin: 0;
-    padding: 0 0 0 26px;
-    border-left: 2px solid var(--divider);
+    padding: 0 0 0 24px;
+    border-left: 1px solid var(--divider);
     display: flex;
     flex-direction: column;
-    gap: 34px;
+    gap: 30px;
 }
 
 .timeline li {
@@ -709,110 +1505,116 @@ nav a.active {
 .timeline li::before {
     content: "";
     position: absolute;
-    left: -11px;
+    left: -9px;
     top: 4px;
-    width: 14px;
-    height: 14px;
-    border-radius: 4px;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px var(--bg-alt), 0 2px 4px rgba(0, 0, 0, .15);
+    width: 12px;
+    height: 12px;
+    border-radius: 1px;
+    background: var(--orange);
 }
 
 .timeline h4 {
     margin: 0 0 6px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: .4px;
+    letter-spacing: 1px;
     color: var(--text);
 }
 
 .timeline p {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-dim);
     max-width: 60ch;
-    line-height: 1.55;
+    line-height: 1.6;
 }
 
-/* 联系卡 */
+/* ====== 联系方式 ====== */
 .contact {
     display: grid;
-    gap: 22px;
+    gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .contact-card {
-    background: linear-gradient(180deg, var(--panel), var(--panel-alt));
+    background: var(--bg-alt);
     border: 1px solid var(--divider);
-    border-radius: 16px;
-    padding: 26px 28px 30px;
+    border-radius: var(--radius);
+    padding: 22px 24px 26px;
     position: relative;
     overflow: hidden;
     transition: border-color var(--trans), transform var(--trans);
 }
 
 .contact-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
+    border-color: var(--orange);
+    transform: translateY(-2px);
 }
 
 .contact-card h3 {
-    margin: 0 0 10px;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: .5px;
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 .contact-card p {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-dim);
     line-height: 1.5;
 }
 
 .contact-card a {
-    color: var(--accent);
+    color: var(--text);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .contact-card a:hover {
-    color: var(--accent-warm);
+    color: var(--orange);
 }
 
-/* 页脚 */
+/* ====== Footer — 工程报告 ====== */
 footer {
-    margin: 80px 0 50px;
+    margin: 60px 0 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--divider);
     text-align: center;
-    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     color: var(--text-faint);
 }
 
 footer a {
-    color: var(--accent);
+    color: var(--text);
     text-decoration: none;
+    font-weight: 600;
 }
 
 footer a:hover {
-    color: var(--accent-warm);
+    color: var(--orange);
 }
 
-/* 返回顶部按钮 */
+/* ====== 返回顶部 ====== */
 #backToTop {
     position: fixed;
     right: 24px;
     bottom: 32px;
+    z-index: 100;
     background: var(--panel);
-    border: 1px solid var(--divider);
+    border: 1px solid var(--divider-bold);
     color: var(--text-dim);
-    padding: 12px 16px;
-    font-size: 12px;
-    border-radius: 14px;
+    padding: 10px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    border-radius: 0;
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
     transition: all var(--trans);
-    box-shadow: var(--shadow);
 }
 
 #backToTop.visible {
@@ -821,41 +1623,258 @@ footer a:hover {
 }
 
 #backToTop:hover {
-    color: var(--accent);
-    border-color: var(--accent);
+    color: var(--orange);
+    border-color: var(--orange);
 }
 
-/* 小元素 */
-.logo {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1.4px;
+/* ====== Canvas 背景容器 ====== */
+#canvas-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ====== 暗色主题 ====== */
+[data-theme="dark"] {
+    --bg: #2A2A2A;
+    --bg-alt: #252525;
+    --panel: #333;
+    --panel-alt: #2E2E2E;
+    --panel-deep: #222;
+    --divider: #4A4A4A;
+    --divider-bold: #5A5A5A;
+    --divider-soft: rgba(100, 100, 100, .5);
+    --divider-strong: rgba(140, 140, 140, .6);
+    --text: #E8E8E8;
+    --text-dim: #AAA;
+    --text-faint: #777;
+    --accent: #E8E8E8;
+    --accent-warm: #FF5722;
+    --blue: #5B8DEF;
+    color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+    background: var(--bg);
+}
+
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .badge {
+    background: rgba(50, 50, 50, .6);
+    border-color: rgba(100, 100, 100, .4);
+}
+
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .badge:hover {
+    border-color: rgba(255, 60, 0, .5);
+}
+
+[data-theme="dark"] .nasa-document {
+    background: #2A2A28;
+    color: #DDD;
+}
+
+[data-theme="dark"] .nasa-doc-body {
+    color: #CCC;
+}
+
+[data-theme="dark"] .masthead-label {
+    color: #DDD;
+}
+
+[data-theme="dark"] .nasa-doc-org {
+    color: var(--text-dim);
+}
+
+[data-theme="dark"] .nasa-doc-rule {
+    background: var(--text-dim);
+}
+
+[data-theme="dark"] .nasa-doc-meta,
+[data-theme="dark"] .nasa-doc-release-no {
+    color: var(--text-dim);
+}
+
+[data-theme="dark"] .nasa-doc-title {
+    color: var(--text);
+}
+
+[data-theme="dark"] .nasa-doc-body h3 {
+    color: var(--text);
+}
+
+[data-theme="dark"] .nasa-doc-signature {
+    color: var(--text-dim);
+}
+
+[data-theme="dark"] .nasa-doc-signature .sig-handwriting {
+    color: #DDD;
+}
+
+[data-theme="dark"] .nasa-doc-signature .sig-line {
+    background: var(--text-dim);
+}
+
+[data-theme="dark"] .nasa-doc-signature .sig-title {
     color: var(--text-faint);
-    text-transform: uppercase;
 }
 
-/* 响应式 */
-@media (max-width:780px) {
+[data-theme="dark"] .nasa-doc-end {
+    color: var(--text-faint);
+}
+
+[data-theme="dark"] .nasa-doc-body a {
+    color: var(--accent-warm);
+}
+
+[data-theme="dark"] .nasa-doc-body code {
+    background: rgba(255, 255, 255, .08);
+    color: #EEE;
+}
+
+[data-theme="dark"] .nasa-doc-logo svg {
+    filter: invert(1);
+}
+
+/* ====== 响应式 ====== */
+@media (max-width: 780px) {
     .container {
-        padding: 26px 22px 40px;
-        margin: 20px auto 48px;
-        border-radius: 16px;
+        padding: 24px 18px 36px;
+        margin: 16px auto 40px;
     }
 
     header {
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 12px;
     }
 
-    nav a {
-        padding: 10px 14px;
+    .mission-info {
+        flex-direction: row;
+        gap: 12px;
+        margin-left: 0;
+        flex-basis: 100%;
     }
 
     .hero {
-        padding: 40px 0 20px;
+        padding: 32px 0 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
+    }
+
+    .nasa-document {
+        padding: 28px 24px 28px;
+        width: 96vw;
+        max-height: 94vh;
+    }
+
+    .roadmap-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .archive-shelf {
+        flex-wrap: wrap;
+    }
+
+    .file-card {
+        width: 160px;
+        height: 227px;
+    }
+
+    .file-card.file-stacked {
+        margin-left: -112px;
     }
 
     .timeline {
-        gap: 28px;
+        gap: 24px;
     }
+}
+
+/* ====== 无障碍：减弱动效 ====== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    #canvas-bg,
+    .noise-overlay {
+        display: none !important;
+    }
+
+    .project-overlay .nasa-document {
+        transition: none !important;
+    }
+}
+
+/* 面板 & 导航兼容 */
+.panel {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--divider);
+    border-radius: var(--radius);
+    padding: 28px 30px 32px;
+    overflow: hidden;
+}
+
+.panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .3) 0%, rgba(255, 255, 255, 0) 65%);
+    opacity: .3;
+}
+
+.panel h3 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+nav {
+    display: flex;
+    gap: 0;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: var(--bg-alt);
+    border: 1px solid var(--divider);
+    border-radius: 0;
+    line-height: 1;
+    transition: color var(--trans), background var(--trans), border-color var(--trans);
+}
+
+nav a + a {
+    border-left: none;
+}
+
+nav a:hover {
+    color: var(--text);
+    background: var(--panel);
+}
+
+nav a.active {
+    color: var(--orange);
+    border-color: var(--orange);
+    background: var(--panel);
+}
+
+.badge-label {
+    white-space: nowrap;
 }

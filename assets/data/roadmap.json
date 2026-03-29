@@ -1,8 +1,11 @@
 {
+    "_template": "# 标题\n\n简介描述\n\n## Overview\n\n详细说明\n\n## Current Progress\n\n- 进展项1\n- 进展项2",
     "current": [
         {
             "id": "agent-usecases",
+            "type": "project",
             "version": "v0.2",
+            "content": "content/roadmap/agent-usecases.md",
             "title": {
                 "zh-CN": "Agent 用例落地",
                 "en-US": "Agent Use-Case Rollout",
@@ -14,11 +17,14 @@
                 "ja-JP": "マルチエージェント連携 (A2A) / MCP統合 / 実運用ワークフロー"
             },
             "percent": 35,
-            "status": "progress"
+            "status": "progress",
+            "featured": true
         },
         {
             "id": "vibe-workflow",
+            "type": "experiment",
             "version": "v0.3",
+            "content": "content/roadmap/vibe-workflow.md",
             "title": {
                 "zh-CN": "Vibe Coding 工作流",
                 "en-US": "Vibe Coding Workflow",
@@ -30,13 +36,34 @@
                 "ja-JP": "データ駆動プロンプト連結 / 自動レビュー / エージェント支援デプロイ"
             },
             "percent": 20,
+            "status": "progress",
+            "github": "https://github.com/cyberyimein"
+        },
+        {
+            "id": "corp-ai",
+            "type": "classified",
+            "version": "██",
+            "content": "content/roadmap/corp-ai.md",
+            "title": {
+                "zh-CN": "企业级 AI 平台建设",
+                "en-US": "Enterprise AI Platform",
+                "ja-JP": "エンタープライズAI基盤"
+            },
+            "desc": {
+                "zh-CN": "内部 AI 能力平台化 / 安全合规 / 业务系统集成",
+                "en-US": "Internal AI capability platformization / Security compliance / Business system integration",
+                "ja-JP": "社内AI基盤化 / セキュリティ準拠 / 業務システム連携"
+            },
+            "percent": null,
             "status": "progress"
         }
     ],
     "completed": [
         {
             "id": "v0.1",
+            "type": "project",
             "version": "v0.1",
+            "content": "content/roadmap/v0.1.md",
             "title": {
                 "zh-CN": "AI Agent 应用",
                 "en-US": "AI Agent Applications",
@@ -49,6 +76,44 @@
             },
             "percent": 100,
             "status": "done"
+        },
+        {
+            "id": "exp-rag",
+            "type": "experiment",
+            "version": "exp",
+            "content": "content/roadmap/exp-rag.md",
+            "title": {
+                "zh-CN": "RAG 检索增强实验",
+                "en-US": "RAG Retrieval Experiment",
+                "ja-JP": "RAG検索強化実験"
+            },
+            "desc": {
+                "zh-CN": "向量数据库 + LLM 检索增强生成的原型验证",
+                "en-US": "Vector DB + LLM retrieval-augmented generation prototype validation",
+                "ja-JP": "ベクトルDB + LLM検索拡張生成のプロトタイプ検証"
+            },
+            "percent": 100,
+            "status": "done",
+            "github": "https://github.com/cyberyimein"
+        },
+        {
+            "id": "exp-mcp",
+            "type": "experiment",
+            "version": "exp",
+            "content": "content/roadmap/exp-mcp.md",
+            "title": {
+                "zh-CN": "MCP 协议集成测试",
+                "en-US": "MCP Protocol Integration Test",
+                "ja-JP": "MCPプロトコル統合テスト"
+            },
+            "desc": {
+                "zh-CN": "Model Context Protocol 的工具调用与上下文管理验证",
+                "en-US": "Tool invocation and context management validation for Model Context Protocol",
+                "ja-JP": "Model Context Protocolのツール呼び出しとコンテキスト管理の検証"
+            },
+            "percent": 100,
+            "status": "done",
+            "featured": true
         }
     ]
 }

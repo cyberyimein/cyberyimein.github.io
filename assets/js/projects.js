@@ -1,11 +1,9 @@
-// 动态加载项目数据并渲染项目卡
-// 简单：本地 JSON + 按当前语言字段；若缺失则回退 en-US → zh-CN
+// 项目卡片 — 金属铭牌 + NASA 文档机械展开
 
 (async function () {
     const grid = document.querySelector('.projects-grid');
     if (!grid) return;
 
-    // 移除占位空卡
     const placeholder = grid.querySelector('.project-card.empty');
     if (placeholder) placeholder.remove();
 
@@ -18,9 +16,9 @@
     }
 
     function getFallbackChain() {
-    const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
-    const activeLang = (window.I18N && I18N.state && I18N.state.lang) || stored || 'en-US';
-    const chain = [activeLang, 'en-US', 'zh-CN'];
+        const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+        const activeLang = (window.I18N && I18N.state && I18N.state.lang) || stored || 'en-US';
+        const chain = [activeLang, 'en-US', 'zh-CN'];
         return chain.filter((lang, idx) => chain.indexOf(lang) === idx);
     }
 
@@ -35,29 +33,153 @@
         return values.find(Boolean) || '';
     }
 
-    function createCard(item) {
+    // 品牌 Logo SVG
+    const WORM_SVG = '<svg viewBox="0 0 380 60" xmlns="http://www.w3.org/2000/svg" aria-label="CyberYimein"><text x="0" y="48" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#FF3C00" style="text-transform:uppercase">CYBERYIMEIN</text></svg>';
+
+    // 创建 NASA 文档 overlay（只创建一次）
+    let overlay = document.querySelector('.project-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'project-overlay';
+        overlay.innerHTML = `
+            <div class="nasa-document">
+                <button class="nasa-doc-close">CLOSE [X]</button>
+                <div class="nasa-doc-masthead">
+                    <div class="nasa-doc-logo">${WORM_SVG}</div>
+                    <span class="masthead-label">News</span>
+                </div>
+                <div class="nasa-doc-org">
+                    CyberYimein · Engineering Division<br>
+                    AI Agent Research Center<br>
+                    Tokyo, Japan
+                </div>
+                <div class="nasa-doc-rule"></div>
+                <div class="nasa-doc-meta">
+                    <div class="meta-left">
+                        <div>CyberYimein</div>
+                        <div>Research Center, Tokyo, Japan</div>
+                    </div>
+                    <div class="meta-right">
+                        <div class="meta-for-release">For Release</div>
+                        <div>${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    </div>
+                </div>
+                <div class="nasa-doc-release-no"></div>
+                <div class="nasa-doc-title"></div>
+                <div class="nasa-doc-body"></div>
+                <div class="nasa-doc-signature">
+                    <div class="sig-handwriting">CyberYimein</div>
+                    <div class="sig-line"></div>
+                    <div class="sig-name">CyberYimein</div>
+                    <div class="sig-title">AI Agent Engineer<br>CyberYimein Engineering Division</div>
+                </div>
+                <div class="nasa-doc-end">-end-</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        // 关闭文档
+        const closeBtn = overlay.querySelector('.nasa-doc-close');
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeDocument();
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeDocument();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeDocument();
+            }
+        });
+    }
+
+    function openDocument(item) {
+        const name = pick(item.name);
+        const desc = pick(item.description || item.desc || '');
+        const tags = (item.tags || []).map(t => typeof t === 'string' ? t : pick(t)).join(' / ');
+        const tech = (item.tech || []).join(', ');
+        const idx = data.indexOf(item);
+
+        // Release number
+        overlay.querySelector('.nasa-doc-release-no').textContent =
+            'RELEASE NO:  CYBER-' + new Date().getFullYear().toString().slice(-2) + '-' + String(idx + 1).padStart(3, '0');
+
+        // Fallback title from JSON (only if no md content)
+        const titleEl = overlay.querySelector('.nasa-doc-title');
+        if (titleEl) titleEl.textContent = item.content ? '' : name;
+
+        // Update masthead label to match type
+        const mastheadLabel = overlay.querySelector('.masthead-label');
+        if (mastheadLabel) mastheadLabel.textContent = 'Projects';
+
+        // Body — try markdown first, fallback to inline
+        const body = overlay.querySelector('.nasa-doc-body');
+        const fallbackHtml = `
+            <p>${escapeHtml(desc)}</p>
+            ${tech ? `<p><strong>TECHNICAL SPECIFICATIONS:</strong> ${escapeHtml(tech)}</p>` : ''}
+            ${tags ? `<p><strong>CLASSIFICATION TAGS:</strong> ${escapeHtml(tags)}</p>` : ''}
+            <p><strong>STATUS:</strong> ${escapeHtml(item.status || 'OPERATIONAL').toUpperCase()}</p>
+            ${item.createdAt ? `<p><strong>DATE OF COMMISSION:</strong> ${escapeHtml(item.createdAt)}</p>` : ''}
+        `;
+        body.innerHTML = fallbackHtml;
+
+        if (item.content && window.MD) {
+            MD.fetch(item.content).then(md => {
+                if (!md) return;
+                const parsed = MD.parse(md);
+                if (parsed.title && titleEl) titleEl.textContent = parsed.title;
+                if (parsed.html) body.innerHTML = parsed.html;
+            });
+        }
+
+        // 触发展开动画
+        requestAnimationFrame(() => {
+            const doc = overlay.querySelector('.nasa-document');
+            if (doc) doc.classList.remove('nasa-doc-classified');
+            overlay.classList.add('active');
+        });
+    }
+
+    function closeDocument() {
+        overlay.classList.remove('active');
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    function createCard(item, index) {
         const card = document.createElement('div');
         card.className = 'project-card';
         card.tabIndex = 0;
-        card.addEventListener('click', () => {
-            card.classList.add('project-card-active');
-            setTimeout(() => card.classList.remove('project-card-active'), 180);
-        });
-        card.addEventListener('keypress', (evt) => {
-            if (evt.key === 'Enter' || evt.key === ' ') {
-                evt.preventDefault();
-                card.click();
-            }
-        });
+
+        // 金属铭牌
+        const nameplate = document.createElement('div');
+        nameplate.className = 'card-nameplate';
 
         const title = document.createElement('h4');
         title.textContent = pick(item.name);
-        card.appendChild(title);
+        nameplate.appendChild(title);
 
-    const desc = document.createElement('p');
-    const descSource = item.description || '';
-    desc.textContent = pick(descSource);
-        card.appendChild(desc);
+        const status = document.createElement('span');
+        status.className = 'card-status';
+        status.textContent = 'STATUS: OPERATIONAL';
+        nameplate.appendChild(status);
+
+        card.appendChild(nameplate);
+
+        // 卡片正文
+        const body = document.createElement('div');
+        body.className = 'card-body';
+
+        const desc = document.createElement('p');
+        desc.textContent = pick(item.description || '');
+        body.appendChild(desc);
 
         if (item.tags && item.tags.length) {
             const tagBar = document.createElement('div');
@@ -70,19 +192,26 @@
                 span.textContent = label;
                 tagBar.appendChild(span);
             });
-            card.appendChild(tagBar);
+            body.appendChild(tagBar);
         }
 
-        if (item.repo) {
-            const repoLink = document.createElement('a');
-            repoLink.className = 'project-github';
-            repoLink.href = item.repo;
-            repoLink.target = '_blank';
-            repoLink.rel = 'noopener';
-            repoLink.setAttribute('aria-label', `GitHub: ${pick(item.name)}`);
-            repoLink.innerHTML = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 2-.27 7.5 7.5 0 0 1 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>`;
-            card.appendChild(repoLink);
-        }
+        card.appendChild(body);
+
+        // 点击展开为 NASA 文档
+        card.addEventListener('click', () => {
+            card.classList.add('project-card-active');
+            setTimeout(() => {
+                card.classList.remove('project-card-active');
+                openDocument(item);
+            }, 150);
+        });
+
+        card.addEventListener('keypress', (evt) => {
+            if (evt.key === 'Enter' || evt.key === ' ') {
+                evt.preventDefault();
+                card.click();
+            }
+        });
 
         return card;
     }
@@ -93,16 +222,15 @@
             renderEmpty();
             return;
         }
-        const containerFrag = document.createDocumentFragment();
-        data.forEach(item => {
-            containerFrag.appendChild(createCard(item));
+        const frag = document.createDocumentFragment();
+        data.forEach((item, i) => {
+            frag.appendChild(createCard(item, i));
         });
-        grid.appendChild(containerFrag);
+        grid.appendChild(frag);
     }
 
     renderProjects();
 
-    // 语言切换后重新渲染（简单监听 i18n apply）
     document.addEventListener('languageChanged', () => {
         renderProjects();
     });
@@ -110,16 +238,23 @@
     function renderEmpty() {
         const card = document.createElement('div');
         card.className = 'project-card empty';
+        const nameplate = document.createElement('div');
+        nameplate.className = 'card-nameplate';
         const h4 = document.createElement('h4');
-        h4.textContent = I18N ? I18N.t('projects.empty.title') : 'Coming Soon';
+        h4.textContent = window.I18N ? I18N.t('projects.empty.title') : 'Coming Soon';
+        nameplate.appendChild(h4);
+        card.appendChild(nameplate);
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
         const p = document.createElement('p');
-        p.textContent = I18N ? I18N.t('projects.empty.desc') : 'Projects will appear here.';
+        p.textContent = window.I18N ? I18N.t('projects.empty.desc') : 'Projects will appear here.';
+        body.appendChild(p);
         const note = document.createElement('div');
         note.className = 'empty-note';
         note.textContent = 'placeholder';
-        card.appendChild(h4);
-        card.appendChild(p);
-        card.appendChild(note);
+        body.appendChild(note);
+        card.appendChild(body);
         grid.appendChild(card);
     }
 })();

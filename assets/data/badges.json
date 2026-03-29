@@ -10,57 +10,81 @@
             "items": [
                 {
                     "id": "ts",
-                    "label": {
-                        "en-US": "TypeScript"
-                    },
+                    "label": { "en-US": "TypeScript" },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#3178c6'/><text x='32' y='40' font-size='20' text-anchor='middle' fill='#fff'>TS</text></svg>",
                     "kind": "skill",
-                    "url": "https://www.typescriptlang.org/"
+                    "url": "https://www.typescriptlang.org/",
+                    "proficiency": 3,
+                    "comment": {
+                        "zh-CN": "类型系统让大型项目更安全可靠，是我的主力开发语言之一。",
+                        "en-US": "Type system makes large projects safer. One of my primary languages.",
+                        "ja-JP": "型システムで大規模プロジェクトが安全に。主力言語の一つ。"
+                    }
                 },
                 {
                     "id": "python",
-                    "label": {
-                        "en-US": "Python"
-                    },
+                    "label": { "en-US": "Python" },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#3776ab'/><text x='32' y='40' font-size='18' text-anchor='middle' fill='#ffd343'>Py</text></svg>",
                     "kind": "skill",
-                    "url": "https://www.python.org/"
+                    "url": "https://www.python.org/",
+                    "proficiency": 4,
+                    "comment": {
+                        "zh-CN": "AI/ML 领域的通用语言，日常用于 Agent 开发和自动化脚本。",
+                        "en-US": "The lingua franca of AI/ML. Used daily for agent dev and automation.",
+                        "ja-JP": "AI/MLの共通語。エージェント開発と自動化に毎日使用。"
+                    }
                 },
                 {
                     "id": "nlp",
-                    "label": {
-                        "en-US": "NLP"
-                    },
+                    "label": { "en-US": "NLP" },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#6b5b95'/><circle cx='32' cy='28' r='10' fill='#fff'/></svg>",
                     "kind": "skill",
-                    "url": "https://en.wikipedia.org/wiki/Natural_language_processing"
+                    "url": "https://en.wikipedia.org/wiki/Natural_language_processing",
+                    "proficiency": 3,
+                    "comment": {
+                        "zh-CN": "从传统 NLP 到 LLM 时代，理解语言处理的底层逻辑至关重要。",
+                        "en-US": "From classical NLP to the LLM era — understanding the fundamentals matters.",
+                        "ja-JP": "古典的NLPからLLM時代へ。基礎の理解が重要。"
+                    }
                 },
                 {
                     "id": "llm",
-                    "label": {
-                        "en-US": "LLM"
-                    },
+                    "label": { "en-US": "LLM" },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#00aaff'/><path d='M16 40h32v4H16z' fill='#00334d'/></svg>",
                     "kind": "skill",
-                    "url": "https://en.wikipedia.org/wiki/Large_language_model"
+                    "url": "https://en.wikipedia.org/wiki/Large_language_model",
+                    "proficiency": 4,
+                    "comment": {
+                        "zh-CN": "核心研究方向。prompt engineering、fine-tuning、RAG 均有实践经验。",
+                        "en-US": "Core research area. Hands-on with prompt engineering, fine-tuning, and RAG.",
+                        "ja-JP": "中核研究分野。プロンプトエンジニアリング、ファインチューニング、RAGの実務経験あり。"
+                    }
                 },
                 {
                     "id": "ai-agent",
-                    "label": {
-                        "en-US": "AI Agent"
-                    },
+                    "label": { "en-US": "AI Agent" },
                     "icon": "<svg viewBox='0 0 80 64' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='80' height='64' rx='10' fill='#00b894'/><rect x='48' y='8' width='32' height='48' rx='8' fill='#ff7f50' opacity='0.9'/><circle cx='24' cy='24' r='8' fill='#fff'/></svg>",
                     "kind": "skill",
-                    "url": "https://en.wikipedia.org/wiki/Intelligent_agent"
+                    "url": "https://en.wikipedia.org/wiki/Intelligent_agent",
+                    "proficiency": 4,
+                    "comment": {
+                        "zh-CN": "多智能体协作系统的设计与实现是我目前最核心的技能。",
+                        "en-US": "Designing and building multi-agent collaboration systems is my core expertise.",
+                        "ja-JP": "マルチエージェント協調システムの設計と実装が最も中核的なスキル。"
+                    }
                 },
                 {
                     "id": "vibe-coding",
-                    "label": {
-                        "en-US": "Vibe Coding"
-                    },
+                    "label": { "en-US": "Vibe Coding" },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8e44ad'/><text x='32' y='36' font-size='12' text-anchor='middle' fill='#fff'>Vibe</text><text x='32' y='48' font-size='12' text-anchor='middle' fill='#fff'>Coding</text></svg>",
                     "kind": "skill",
-                    "url": "https://en.wikipedia.org/wiki/Vibe_coding"
+                    "url": "https://en.wikipedia.org/wiki/Vibe_coding",
+                    "proficiency": 5,
+                    "comment": {
+                        "zh-CN": "用 AI 辅助的直觉驱动开发方式，这个网站就是 Vibe Coding 的产物。",
+                        "en-US": "Intuition-driven dev with AI assistance. This very site is a Vibe Coding product.",
+                        "ja-JP": "AIアシスタントによる直感駆動開発。このサイト自体がVibe Codingの産物。"
+                    }
                 }
             ]
         },
@@ -75,35 +99,56 @@
                 {
                     "id": "java-silver",
                     "label": {
-                        "zh-CN": "Java 银牌",
+                        "zh-CN": "Java Silver",
                         "en-US": "Java Silver",
-                        "ja-JP": "Java シルバー"
+                        "ja-JP": "Java Silver"
                     },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#2c3e50'/><path d='M32 10c-6 0-10 4-10 9s4 9 10 9 10-4 10-9-4-9-10-9zm0 28c-9 0-16 5-16 11v3h32v-3c0-6-7-11-16-11z' fill='#f89820'/></svg>",
                     "kind": "cert",
-                    "url": "https://catalog-education.oracle.com/ords/certview/sharebadge?id=C70CB34EB0ECC0AA6DDA2C83D85F1C96E767FE4FD386C08EE8E9FE9A4101A63C#"
+                    "url": "https://education.oracle.com/java-se-11-programmer-i/pexam_1Z0-815",
+                    "obtainedDate": "2024-03",
+                    "status": "active",
+                    "comment": {
+                        "zh-CN": "Java 基础认证，帮助我系统地理解了 OOP 和 JVM 生态。",
+                        "en-US": "Java fundamentals cert. Helped me systematically understand OOP and the JVM ecosystem.",
+                        "ja-JP": "Java基礎認定。OOPとJVMエコシステムを体系的に理解する助けになった。"
+                    }
                 },
                 {
                     "id": "az-900",
                     "label": {
-                        "zh-CN": "Azure 基础 (AZ-900)",
-                        "en-US": "Microsoft Azure Fundamentals (AZ-900)",
-                        "ja-JP": "Azure 基礎 (AZ-900)"
+                        "zh-CN": "Azure Fundamentals (AZ-900)",
+                        "en-US": "Azure Fundamentals (AZ-900)",
+                        "ja-JP": "Azure Fundamentals (AZ-900)"
                     },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#072b59'/><path d='M12 20h40v24H12z' fill='#0078d4'/></svg>",
                     "kind": "cert",
-                    "url": "https://learn.microsoft.com/zh-cn/users/cyberpasta-0637/credentials/19a6ad768905c66d?ref=https%3A%2F%2Fwww.linkedin.com%2F"
+                    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+                    "obtainedDate": "2024-06",
+                    "status": "active",
+                    "comment": {
+                        "zh-CN": "Azure 云的入门认证，涵盖了云计算的核心概念和 Azure 服务全景。",
+                        "en-US": "Entry-level Azure cert covering core cloud concepts and the Azure service landscape.",
+                        "ja-JP": "Azureクラウドの入門認定。クラウドの基本概念とAzureサービス全体をカバー。"
+                    }
                 },
                 {
                     "id": "ai-102",
                     "label": {
-                        "zh-CN": "Azure AI 工程师 (AI-102)",
+                        "zh-CN": "Azure AI Engineer (AI-102)",
                         "en-US": "Azure AI Engineer (AI-102)",
-                        "ja-JP": "Azure AI エンジニア (AI-102)"
+                        "ja-JP": "Azure AI Engineer (AI-102)"
                     },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#0f1724'/><circle cx='32' cy='30' r='10' fill='#00bcd4'/></svg>",
                     "kind": "cert",
-                    "url": "https://learn.microsoft.com/zh-cn/users/68546526/credentials/FBB5EC4E8338B131?ref=https%3A%2F%2Fwww.linkedin.com%2F"
+                    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-engineer/",
+                    "obtainedDate": "2024-09",
+                    "status": "active",
+                    "comment": {
+                        "zh-CN": "Azure AI 服务的专业认证。深入了解了认知服务、搜索、Bot 框架等。",
+                        "en-US": "Professional Azure AI cert. Deep dive into Cognitive Services, Search, Bot Framework, etc.",
+                        "ja-JP": "Azure AIサービスの専門認定。認知サービス、検索、Botフレームワーク等を深く理解。"
+                    }
                 }
             ]
         }

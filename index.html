@@ -37,20 +37,35 @@
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="apple-touch-icon" href="./assets/icon-192.png" />
     <link rel="manifest" href="./manifest.webmanifest" />
-    <meta name="theme-color" content="#f2f5f8" />
-    <!-- 主题：NASA Punk 航天白版本 -->
+    <meta name="theme-color" content="#EBEBEB" />
+    <!-- 主题：NASA Industrial Punk -->
     <link rel="stylesheet" href="./assets/css/nasa.css" />
     <!-- 如需回退深色霓虹版本，改为： ./assets/css/style.css -->
 </head>
 
 <body>
+    <!-- Canvas 背景：神经元/星座粒子系统 -->
+    <canvas id="canvas-bg"></canvas>
+    <!-- 噪点滤镜叠加 -->
+    <div class="noise-overlay"></div>
+
     <div class="container">
         <header>
+            <!-- CyberYimein Logo -->
+            <div class="nasa-worm">
+                <svg viewBox="0 0 380 60" xmlns="http://www.w3.org/2000/svg" aria-label="CyberYimein">
+                    <text x="0" y="48" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#FF3C00" style="text-transform:uppercase">CYBERYIMEIN</text>
+                </svg>
+            </div>
             <div class="logo" data-i18n="hero.tagline">构建 · 探索 · 学习</div>
             <div class="lang-switch">
                 <button data-lang="zh-CN" class="active">ZH</button>
                 <button data-lang="en-US">EN</button>
                 <button data-lang="ja-JP">JP</button>
+            </div>
+            <div class="mission-info">
+                <span class="mission-id">MISSION: CYBERYIMEIN-26</span>
+                <span class="mission-status">STATUS: OPERATIONAL</span>
             </div>
         </header>
 
@@ -66,6 +81,7 @@
         <section id="projects" class="section">
             <div class="section-header">
                 <h2 data-i18n="projects.title">项目</h2>
+                <span class="ref-id">[REF-ID: CYBER-A01]</span>
                 <div class="bar"></div>
             </div>
             <div class="projects-grid">
@@ -80,6 +96,7 @@
         <section id="badges" class="section">
             <div class="section-header">
                 <h2 data-i18n="badges.title">资格徽章</h2>
+                <span class="ref-id">[REF-ID: Badge-DB]</span>
                 <div class="bar"></div>
             </div>
             <div class="badges-grid"></div>
@@ -88,35 +105,26 @@
         <section id="roadmap" class="section">
             <div class="section-header">
                 <h2 data-i18n="roadmap.title">Roadmap</h2>
+                <span class="ref-id">[REF-ID: Roadmap-GS]</span>
                 <div class="bar"></div>
             </div>
-            <div class="roadmap">
-                <div class="roadmap-columns">
-                    <div class="roadmap-col">
-                        <h3 class="roadmap-title" data-i18n="roadmap.current">Current Focus</h3>
-                        <ul class="roadmap-list" id="roadmap-current"></ul>
-                    </div>
-                    <div class="roadmap-col">
-                        <h3 class="roadmap-title" data-i18n="roadmap.completed">Completed</h3>
-                        <ul class="roadmap-list" id="roadmap-completed"></ul>
-                    </div>
-                </div>
-            </div>
+            <div class="archive-cabinet" id="archive-cabinet"></div>
         </section>
 
         <section id="contact" class="section" style="margin-top:40px;">
             <div class="section-header">
                 <h2 data-i18n="contact.title">联系我</h2>
+                <span class="ref-id">[REF-ID: Comms-LK]</span>
                 <div class="bar"></div>
             </div>
-            <p style="margin:0;font-size:14px;color:#55616c;line-height:1.6;">
-                <strong>Email:</strong> <a href="mailto:example@example.com"
-                    style="color:var(--accent);text-decoration:none;">example@example.com</a>
-                <span style="margin:0 10px;color:#c7d2dc;">|</span>
-                <strong>GitHub:</strong> <a href="https://github.com/cyberyimein" target="_blank"
-                    style="color:var(--accent);text-decoration:none;">@cyberyimein</a>
-                <span style="margin:0 10px;color:#c7d2dc;">|</span>
-                <strong>More:</strong> <span data-i18n="contact.placeholder">更多方式即将补充……</span>
+            <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-dim);line-height:1.8;">
+                <strong style="font-weight:700;">Email:</strong> <a href="mailto:example@example.com"
+                    style="color:var(--text);text-decoration:none;font-weight:700;">example@example.com</a>
+                <span style="margin:0 12px;color:var(--divider);">|</span>
+                <strong style="font-weight:700;">GitHub:</strong> <a href="https://github.com/cyberyimein" target="_blank"
+                    style="color:var(--text);text-decoration:none;font-weight:700;">@cyberyimein</a>
+                <span style="margin:0 12px;color:var(--divider);">|</span>
+                <strong style="font-weight:700;">More:</strong> <span data-i18n="contact.placeholder">更多方式即将补充……</span>
             </p>
         </section>
 
@@ -128,9 +136,12 @@
     </div>
     <button id="backToTop" aria-label="Back to top">▲</button>
     <script src="./assets/js/i18n.js"></script>
+    <script src="./assets/js/md.js"></script>
     <script src="./assets/js/badges.js"></script>
     <script src="./assets/js/projects.js"></script>
     <script src="./assets/js/roadmap.js"></script>
+    <script src="./assets/js/dashboard-fx.js"></script>
+    <script src="./assets/js/canvas-bg.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
 

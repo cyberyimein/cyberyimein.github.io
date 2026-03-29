@@ -27,15 +27,17 @@
         if (header) {
             btn = document.createElement('button');
             btn.id = 'themeToggle';
-            btn.style.marginLeft = '8px';
-            btn.style.border = '1px solid var(--divider)';
-            btn.style.background = 'var(--panel)';
-            btn.style.padding = '8px 14px';
-            btn.style.borderRadius = '10px';
-            btn.style.fontSize = '11px';
+            btn.style.marginLeft = '12px';
+            btn.style.border = '1px solid var(--divider-bold)';
+            btn.style.background = 'var(--bg-alt)';
+            btn.style.padding = '6px 14px';
+            btn.style.borderRadius = '0';
+            btn.style.fontSize = '10px';
             btn.style.cursor = 'pointer';
-            btn.style.letterSpacing = '.8px';
+            btn.style.letterSpacing = '1.5px';
             btn.style.fontWeight = '600';
+            btn.style.fontFamily = "'IBM Plex Mono', monospace";
+            btn.style.textTransform = 'uppercase';
             header.appendChild(btn);
         }
     }
