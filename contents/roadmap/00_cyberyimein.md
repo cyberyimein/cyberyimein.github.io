@@ -1,18 +1,11 @@
-# Kabumemo
+# This blog
 
-一个 vibecoding 的尝试：完全未手写代码，由指导 GPT-5/Codex 生成的个人股票交易记录网站，目标是在最低成本下满足个性化系统需求。
+这个博客也是Vibe Coding的产物，完全由copilot cli生成。作为一个软件工程师,自己编写博客架构也曾是我的爱好,如今coding agent终结了这一切,我只需要写提示词了。
 
-## Technical Specifications
+## Markdown Preview Samples
 
-GPT, Static Site, JSON
+ `inline code`、**bold text**、*italic text*、~~strikethrough~~、[link](https://example.com)、> blockquote、- [ ] task
 
-## Classification Tags
-
-Vibe Coding / TypeScript / Python
-
-## Background
-
-This project demonstrates continued advancement in autonomous agent systems and reflects the division's commitment to engineering excellence and innovation in artificial intelligence applications.
 
 ### h3
 
@@ -28,13 +21,7 @@ This project demonstrates continued advancement in autonomous agent systems and 
 1. Ordered list item 1
 2. Ordered list item 2
 
-## Markdown Preview Samples
 
-这里有一些用于观察页面渲染效果的 Markdown 示例，包括 `inline code`、链接、代码块、表格、引用和分隔线。
-
-### Inline Formatting
-
-你可以查看 **bold text**、`const profit = income - cost`，以及一个链接：[Kabumemo Repo](https://example.com/kabumemo)。
 
 ### Code Block
 

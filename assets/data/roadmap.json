@@ -1,118 +1,82 @@
 {
     "_template": "# 标题\n\n简介描述\n\n## Overview\n\n详细说明\n\n## Current Progress\n\n- 进展项1\n- 进展项2",
     "current": [
-        {
-            "id": "agent-usecases",
-            "type": "project",
-            "version": "v0.2",
-            "content": "content/roadmap/agent-usecases.md",
-            "title": {
-                "zh-CN": "Agent 用例落地",
-                "en-US": "Agent Use-Case Rollout",
-                "ja-JP": "エージェント活用展開"
-            },
-            "desc": {
-                "zh-CN": "多 Agent 联携 (A2A) / MCP 集成 / 实战流程",
-                "en-US": "Multi-agent coordination (A2A) / MCP integration / Applied workflows",
-                "ja-JP": "マルチエージェント連携 (A2A) / MCP統合 / 実運用ワークフロー"
-            },
-            "percent": 35,
-            "status": "progress",
-            "featured": true
-        },
-        {
-            "id": "vibe-workflow",
-            "type": "experiment",
-            "version": "v0.3",
-            "content": "content/roadmap/vibe-workflow.md",
-            "title": {
-                "zh-CN": "Vibe Coding 工作流",
-                "en-US": "Vibe Coding Workflow",
-                "ja-JP": "Vibe Coding ワークフロー"
-            },
-            "desc": {
-                "zh-CN": "数据驱动提示链 / 自动化评审 / Agent 辅助部署",
-                "en-US": "Data-driven prompt chains / Automated reviews / Agent-assisted deployment",
-                "ja-JP": "データ駆動プロンプト連結 / 自動レビュー / エージェント支援デプロイ"
-            },
-            "percent": 20,
-            "status": "progress",
-            "github": "https://github.com/cyberyimein"
-        },
-        {
-            "id": "corp-ai",
-            "type": "classified",
-            "version": "██",
-            "content": "content/roadmap/corp-ai.md",
-            "title": {
-                "zh-CN": "企业级 AI 平台建设",
-                "en-US": "Enterprise AI Platform",
-                "ja-JP": "エンタープライズAI基盤"
-            },
-            "desc": {
-                "zh-CN": "内部 AI 能力平台化 / 安全合规 / 业务系统集成",
-                "en-US": "Internal AI capability platformization / Security compliance / Business system integration",
-                "ja-JP": "社内AI基盤化 / セキュリティ準拠 / 業務システム連携"
-            },
-            "percent": null,
-            "status": "progress"
-        }
+
+
     ],
     "completed": [
         {
-            "id": "v0.1",
-            "type": "project",
-            "version": "v0.1",
-            "content": "content/roadmap/v0.1.md",
+            "id": "RM-E01",
+            "type": "experiment",
+            "version": "v1.0",
+            "content": "contents/roadmap/00_cyberyimein.md",
             "title": {
-                "zh-CN": "AI Agent 应用",
-                "en-US": "AI Agent Applications",
-                "ja-JP": "AI エージェント活用"
+                "zh-CN": "这个博客",
+                "en-US": "This Blog",
+                "ja-JP": "このブログ"
             },
             "desc": {
-                "zh-CN": "Azure AI Foundry / OpenAI SDK / Prompt Engineering",
-                "en-US": "Azure AI Foundry / OpenAI SDK / Prompt Engineering",
-                "ja-JP": "Azure AI Foundry / OpenAI SDK / プロンプトエンジニアリング"
+                "zh-CN": "完全用vibe coding构建的个人博客实验.",
+                "en-US": "A personal blog built entirely with vibe coding.",
+                "ja-JP": "完全にvibe codingで構築された個人ブログの実験。"
             },
             "percent": 100,
             "status": "done"
         },
-        {
-            "id": "exp-rag",
-            "type": "experiment",
-            "version": "exp",
-            "content": "content/roadmap/exp-rag.md",
+                {
+            "id": "CORP-C01",
+            "type": "classified",
+            "version": "██",
+            "content": "contents/roadmap/01_classified01.md",
             "title": {
-                "zh-CN": "RAG 检索增强实验",
-                "en-US": "RAG Retrieval Experiment",
-                "ja-JP": "RAG検索強化実験"
+                "zh-CN": "基于Azure AI Foundry 的agent应用",
+                "en-US": "Agent Applications on Azure AI Foundry",
+                "ja-JP": "Azure AI Foundry でのエージェントアプリリーション"
             },
             "desc": {
-                "zh-CN": "向量数据库 + LLM 检索增强生成的原型验证",
-                "en-US": "Vector DB + LLM retrieval-augmented generation prototype validation",
-                "ja-JP": "ベクトルDB + LLM検索拡張生成のプロトタイプ検証"
+                "zh-CN": "基于Azure AI Foundry 的agent应用, 实践了多Agent协作, MCP调用, RAG检索等机能.",
+                "en-US": "Agent applications built on Azure AI Foundry, showcasing multi-agent collaboration, MCP calls, and RAG retrieval.",
+                "ja-JP": "Azure AI Foundry を基盤としたエージェントアプリケーションで、マルチエージェント協力、MCP呼び出し、RAG検索などを実践した。"
             },
-            "percent": 100,
-            "status": "done",
-            "github": "https://github.com/cyberyimein"
+            "percent": null,
+            "status": "done"
         },
         {
-            "id": "exp-mcp",
+            "id": "RM-E02",
             "type": "experiment",
-            "version": "exp",
-            "content": "content/roadmap/exp-mcp.md",
+            "version": "v1.0",
+            "content": "contents/roadmap/02_hanamicli.md",
             "title": {
-                "zh-CN": "MCP 协议集成测试",
-                "en-US": "MCP Protocol Integration Test",
-                "ja-JP": "MCPプロトコル統合テスト"
+                "zh-CN": "花见CLI",
+                "en-US": "Hanami CLI",
+                "ja-JP": "花見CLI"
             },
             "desc": {
-                "zh-CN": "Model Context Protocol 的工具调用与上下文管理验证",
-                "en-US": "Tool invocation and context management validation for Model Context Protocol",
-                "ja-JP": "Model Context Protocolのツール呼び出しとコンテキスト管理の検証"
+                "zh-CN": "一个樱花前线网络爬虫,具备CLI和SKILL功能,使本地Agent能获取樱花前线信息.",
+                "en-US": "A cherry blossom front network crawler with CLI and SKILL capabilities, enabling local Agents to access cherry blossom front information.",
+                "ja-JP": "桜前線ネットワーククローラーで、CLIおよびSKILL機能を備え、ローカルエージェントが桜前線情報にアクセスできるようにする。"
             },
             "percent": 100,
-            "status": "done",
+            "status": "done"
+        },       
+        {
+            "id": "RM-P01",
+            "type": "project",
+            "version": "v0.1",
+            "content": "contents/projects/kabumemo.md",
+            "title": {
+                "zh-CN": "KABUMEMO",
+                "en-US": "KABUMEMO",
+                "ja-JP": "KABUMEMO"
+            },
+            "desc": {
+                "zh-CN": "完全用vibe coding构建的个人股票交易记录网站.同步使用最新的Agent技术来验证Vibe Coding的技术发展.",
+                "en-US": "A personal stock trading record website built entirely with vibe coding, simultaneously using the latest Agent technology to validate the development of Vibe Coding.",
+                "ja-JP": "完全にvibe codingで構築された個人株取引記録サイト。最新のエージェント技術を使用してVibe Codingの技術開発を検証する。"
+            },
+            "percent": 70,
+            "status": "progress",
+            "github": "https://github.com/cyberyimein/kabumemo",
             "featured": true
         }
     ]

@@ -1,7 +1,7 @@
 {
     "hero.tagline": "创造 · 探索 · AI",
-    "hero.title.html": "ALOHA，我是 <span style=\"white-space:nowrap\">CyberYimein</span>",
-    "hero.subtitle.html": "专注构建 <strong>AI Agent</strong> 与 <strong>LLM 驱动自动化</strong>，加速想法从原型到上线。",
+    "hero.title.html": "ALOHA",
+    "hero.subtitle.html": "我是Cyberyimein, 一名AI Agent工程师. <br>2025年夏季开始基本不写代码的Vibe Coder. <br>这个网站是我的个人空间，记录了我在这个AI将会吞噬整个行业的“大爆炸”中,我的学习历程.",
     "projects.title": "项目",
     "projects.empty.title": "即将到来",
     "projects.empty.desc": "这里会展示精选项目，敬请期待。",
@@ -16,6 +16,8 @@
     "contact.email.title": "邮件",
     "contact.email.desc": "发送邮件与我取得联系。",
     "contact.placeholder": "更多方式即将补充……",
+    "overlay.translate.button": "翻译",
+    "overlay.translate.hint": "请使用浏览器右键菜单翻译这篇文章。",
     "footer.copyright": "版权所有",
     "footer.powered": "构建"
 }

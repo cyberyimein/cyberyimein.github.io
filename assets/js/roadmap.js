@@ -26,6 +26,42 @@
         return d.innerHTML;
     }
 
+    function getActiveUiLang() {
+        const activeBtn = document.querySelector('.lang-switch button.active');
+        const btnLang = activeBtn && activeBtn.getAttribute('data-lang');
+        const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+        return btnLang || stored || state.lang || 'en-US';
+    }
+
+    function getOverlayCopy() {
+        const lang = getActiveUiLang();
+        const copy = {
+            'zh-CN': {
+                translate: '翻译',
+                hint: '请使用浏览器右键菜单翻译这篇文章。'
+            },
+            'en-US': {
+                translate: 'Translate',
+                hint: 'Use your browser right-click menu to translate this article.'
+            },
+            'ja-JP': {
+                translate: '翻訳',
+                hint: 'ブラウザの右クリックメニューから翻訳してください。'
+            }
+        };
+
+        return copy[lang] || copy['en-US'];
+    }
+
+    function syncOverlayLanguage(overlay) {
+        if (!overlay) return;
+        const copy = getOverlayCopy();
+        const translateBtn = overlay.querySelector('.nasa-doc-translate');
+        const hint = overlay.querySelector('.nasa-doc-translate-hint');
+        if (translateBtn) translateBtn.textContent = copy.translate;
+        if (hint) hint.textContent = copy.hint;
+    }
+
     /* ========== A4 portrait file card ========== */
     function createFileCard(item, isCompleted) {
         const card = document.createElement('div');
@@ -157,6 +193,7 @@
     function openArchiveDoc(item) {
         let overlay = document.querySelector('.project-overlay');
         if (!overlay) return;
+        syncOverlayLanguage(overlay);
 
         const name = resolveLang(item.title);
         const desc = resolveLang(item.desc);
@@ -275,6 +312,7 @@
     document.addEventListener('languageChanged', (evt) => {
         const next = (evt && evt.detail && evt.detail.lang) || (window.I18N && I18N.state && I18N.state.lang);
         if (next) state.lang = next;
+        syncOverlayLanguage(document.querySelector('.project-overlay'));
         if (state.data) render();
     });
 })();

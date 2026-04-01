@@ -16,9 +16,9 @@
                     "url": "https://www.typescriptlang.org/",
                     "proficiency": 3,
                     "comment": {
-                        "zh-CN": "类型系统让大型项目更安全可靠，是我的主力开发语言之一。",
-                        "en-US": "Type system makes large projects safer. One of my primary languages.",
-                        "ja-JP": "型システムで大規模プロジェクトが安全に。主力言語の一つ。"
+                        "zh-CN": "我的主力开发语言之一。相比与JS,TS的类型系统让AI写的代码更可靠.",
+                        "en-US": "One of my primary languages. Compared to JS, TS's type system makes AI-generated code more reliable.",
+                        "ja-JP": "私の主要な開発言語の一つです。JSと比べて、TSの型システムはAI生成コードの信頼性を高めます。"
                     }
                 },
                 {
@@ -29,9 +29,9 @@
                     "url": "https://www.python.org/",
                     "proficiency": 4,
                     "comment": {
-                        "zh-CN": "AI/ML 领域的通用语言，日常用于 Agent 开发和自动化脚本。",
-                        "en-US": "The lingua franca of AI/ML. Used daily for agent dev and automation.",
-                        "ja-JP": "AI/MLの共通語。エージェント開発と自動化に毎日使用。"
+                        "zh-CN": "从FFN时代开始就是我的第一语言。丰富的库和简洁的语法让它在AI开发中无可替代。如今搭配Pydantic,让AI写的python更可靠.",
+                        "en-US": "My first language since the FFN era. Its rich libraries and concise syntax make it indispensable for AI development. Now with Pydantic, AI-generated Python is more reliable.",
+                        "ja-JP": "FFN時代からの私の第一言語です。豊富なライブラリと簡潔な構文は、AI開発に不可欠です。現在はPydanticと組み合わせて、AI生成のPythonコードの信頼性を高めています。"
                     }
                 },
                 {
@@ -42,9 +42,9 @@
                     "url": "https://en.wikipedia.org/wiki/Natural_language_processing",
                     "proficiency": 3,
                     "comment": {
-                        "zh-CN": "从传统 NLP 到 LLM 时代，理解语言处理的底层逻辑至关重要。",
-                        "en-US": "From classical NLP to the LLM era — understanding the fundamentals matters.",
-                        "ja-JP": "古典的NLPからLLM時代へ。基礎の理解が重要。"
+                        "zh-CN": "虽然我的硕士研究是NLP相关,但是chatGPT的出现让我连调参侠都不是了.",
+                        "en-US": "My Master's is in NLP, but thanks to ChatGPT, I've lost my status as a mere parameter-tuning dude.",
+                        "ja-JP": "私の修士研究はNLP関連ですが、ChatGPTのおかげで、単なるパラメータ調整者の地位を失いました。"
                     }
                 },
                 {
@@ -55,9 +55,9 @@
                     "url": "https://en.wikipedia.org/wiki/Large_language_model",
                     "proficiency": 4,
                     "comment": {
-                        "zh-CN": "核心研究方向。prompt engineering、fine-tuning、RAG 均有实践经验。",
-                        "en-US": "Core research area. Hands-on with prompt engineering, fine-tuning, and RAG.",
-                        "ja-JP": "中核研究分野。プロンプトエンジニアリング、ファインチューニング、RAGの実務経験あり。"
+                        "zh-CN": "硕士研究方向。prompt engineering、fine-tuning、RAG 均有实践经验。",
+                        "en-US": "My Master's focus. Hands-on with prompt engineering, fine-tuning, and RAG.",
+                        "ja-JP": "私の修士の研究テーマ。プロンプトエンジニアリング、ファインチューニング、RAGの経験あり。"
                     }
                 },
                 {
@@ -68,9 +68,9 @@
                     "url": "https://en.wikipedia.org/wiki/Intelligent_agent",
                     "proficiency": 4,
                     "comment": {
-                        "zh-CN": "多智能体协作系统的设计与实现是我目前最核心的技能。",
-                        "en-US": "Designing and building multi-agent collaboration systems is my core expertise.",
-                        "ja-JP": "マルチエージェント協調システムの設計と実装が最も中核的なスキル。"
+                        "zh-CN": "使用智能体的系统设计与实现是我目前最核心的技能。",
+                        "en-US": "Designing and implementing systems with agents is my current core skill.",
+                        "ja-JP": "エージェントを使用したシステムの設計と実装は、私の現在のコアスキルです。"
                     }
                 },
                 {

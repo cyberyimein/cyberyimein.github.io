@@ -151,7 +151,6 @@ header {
 
 /* 任务信息 */
 .mission-info {
-    margin-left: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -178,6 +177,8 @@ header {
 .lang-switch {
     display: flex;
     gap: 0;
+    margin-left: auto;
+    align-items: center;
 }
 
 .lang-switch button {
@@ -920,29 +921,70 @@ header {
     user-select: none;
 }
 
-/* 关闭按钮 — 物理按钮 */
-.nasa-doc-close {
+/* 文档操作按钮 */
+.nasa-doc-actions {
     position: absolute;
     top: 16px;
     right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+}
+
+.nasa-doc-close,
+.nasa-doc-translate {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
     background: transparent;
     border: 1px solid var(--divider-bold);
     border-radius: 0;
     padding: 6px 14px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
+    line-height: 1;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     font-weight: 600;
+    white-space: nowrap;
     color: var(--text-dim);
     cursor: pointer;
     transition: color var(--trans), border-color var(--trans), background var(--trans);
 }
 
-.nasa-doc-close:hover {
+.nasa-doc-close:hover,
+.nasa-doc-translate:hover {
     color: var(--orange);
     border-color: var(--orange);
     background: rgba(255, 60, 0, .05);
+}
+
+.nasa-doc-translate-hint {
+    position: absolute;
+    top: 52px;
+    right: 16px;
+    max-width: min(360px, calc(100% - 32px));
+    padding: 8px 10px;
+    border: 1px solid rgba(184, 184, 184, .45);
+    background: rgba(240, 240, 240, .92);
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    letter-spacing: .6px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity var(--trans), transform var(--trans);
+    z-index: 2;
+}
+
+.nasa-doc-translate-hint.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ====== Badge Envelope Card — NASA Business-Card Style ====== */
@@ -2048,10 +2090,6 @@ footer a:hover {
         padding: 28px 24px 28px;
         width: 96vw;
         max-height: 94vh;
-    }
-
-    .roadmap-dashboard {
-        grid-template-columns: 1fr;
     }
 
     .archive-shelf {

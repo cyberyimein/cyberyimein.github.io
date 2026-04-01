@@ -62,7 +62,7 @@
                     <div class="envelope-sender">
                         <div class="sender-logo">${WORM_SVG}</div>
                         <div class="sender-org">
-                            CyberYimein · Engineering Division<br>
+                            CyberYimein · Bug Manufacturing Unit<br>
                             Tokyo, Japan
                         </div>
                     </div>

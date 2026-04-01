@@ -36,28 +36,85 @@
     // 品牌 Logo SVG
     const WORM_SVG = '<svg viewBox="0 0 380 60" xmlns="http://www.w3.org/2000/svg" aria-label="CyberYimein"><text x="0" y="48" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#FF3C00" style="text-transform:uppercase">CYBERYIMEIN</text></svg>';
 
+    function getActiveUiLang() {
+        const activeBtn = document.querySelector('.lang-switch button.active');
+        const btnLang = activeBtn && activeBtn.getAttribute('data-lang');
+        const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+        return btnLang || stored || 'en-US';
+    }
+
+    function getOverlayCopy() {
+        const lang = getActiveUiLang();
+        const copy = {
+            'zh-CN': {
+                translate: '翻译',
+                hint: '请使用浏览器右键菜单翻译这篇文章。'
+            },
+            'en-US': {
+                translate: 'Translate',
+                hint: 'Use your browser right-click menu to translate this article.'
+            },
+            'ja-JP': {
+                translate: '翻訳',
+                hint: 'ブラウザの右クリックメニューから翻訳してください。'
+            }
+        };
+
+        return copy[lang] || copy['en-US'];
+    }
+
+    function syncOverlayLanguage() {
+        if (!overlay) return;
+        const copy = getOverlayCopy();
+        const translateBtn = overlay.querySelector('.nasa-doc-translate');
+        const hint = overlay.querySelector('.nasa-doc-translate-hint');
+        const closeBtn = overlay.querySelector('.nasa-doc-close');
+        if (translateBtn) translateBtn.textContent = copy.translate;
+        if (hint) hint.textContent = copy.hint;
+        if (closeBtn) closeBtn.textContent = 'CLOSE [X]';
+    }
+
+    function toggleTranslateHint(forceVisible) {
+        if (!overlay) return;
+        const hint = overlay.querySelector('.nasa-doc-translate-hint');
+        const translateBtn = overlay.querySelector('.nasa-doc-translate');
+        if (!hint || !translateBtn) return;
+
+        const visible = typeof forceVisible === 'boolean'
+            ? forceVisible
+            : !hint.classList.contains('visible');
+
+        hint.classList.toggle('visible', visible);
+        translateBtn.setAttribute('aria-expanded', visible ? 'true' : 'false');
+    }
+
     // 创建 NASA 文档 overlay（只创建一次）
     let overlay = document.querySelector('.project-overlay');
     if (!overlay) {
+        const copy = getOverlayCopy();
         overlay = document.createElement('div');
         overlay.className = 'project-overlay';
         overlay.innerHTML = `
             <div class="nasa-document">
-                <button class="nasa-doc-close">CLOSE [X]</button>
+                <div class="nasa-doc-actions">
+                    <button class="nasa-doc-translate" type="button" aria-expanded="false">${copy.translate}</button>
+                    <button class="nasa-doc-close" type="button">CLOSE [X]</button>
+                </div>
+                <div class="nasa-doc-translate-hint" aria-live="polite"></div>
                 <div class="nasa-doc-masthead">
                     <div class="nasa-doc-logo">${WORM_SVG}</div>
                     <span class="masthead-label">News</span>
                 </div>
                 <div class="nasa-doc-org">
-                    CyberYimein · Engineering Division<br>
-                    AI Agent Research Center<br>
+                    CyberYimein · Bug Manufacturing Unit<br>
+                    Unpaid Prompt Engineering Lab<br>
                     Tokyo, Japan
                 </div>
                 <div class="nasa-doc-rule"></div>
                 <div class="nasa-doc-meta">
                     <div class="meta-row"><span>CyberYimein</span></div>
                     <div class="meta-row">
-                        <span>Research Center, Tokyo, Japan</span>
+                        <span>Vibe Room Floor 4, Tokyo, Japan</span>
                         <span class="meta-for-release">For Release</span>
                     </div>
                     <div class="meta-row">
@@ -70,14 +127,24 @@
                 <div class="nasa-doc-signature">
                     <div class="sig-handwriting">CyberYimein</div>
                     <div class="sig-line"></div>
-                    <div class="sig-name">CyberYimein</div>
-                    <div class="sig-title">AI Agent Engineer<br>CyberYimein Engineering Division</div>
+                    <div class="sig-title">AI Agent Engineer<br>Bug Manufacturing Unit</div>
                 </div>
                 <div class="nasa-doc-end">-end-</div>
                 <div class="nasa-doc-telemetry"></div>
             </div>
         `;
         document.body.appendChild(overlay);
+
+        const translateBtn = overlay.querySelector('.nasa-doc-translate');
+        const hint = overlay.querySelector('.nasa-doc-translate-hint');
+        if (hint) hint.textContent = copy.hint;
+
+        translateBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleTranslateHint();
+        });
+
+        syncOverlayLanguage();
 
         // 关闭文档
         const closeBtn = overlay.querySelector('.nasa-doc-close');
@@ -98,6 +165,8 @@
     }
 
     function openDocument(item) {
+        syncOverlayLanguage();
+        toggleTranslateHint(false);
         const name = pick(item.name);
         const desc = pick(item.description || item.desc || '');
         const tags = (item.tags || []).map(t => typeof t === 'string' ? t : pick(t)).join(' / ');
@@ -144,6 +213,7 @@
     }
 
     function closeDocument() {
+        toggleTranslateHint(false);
         overlay.classList.remove('active');
     }
 
@@ -232,6 +302,7 @@
     renderProjects();
 
     document.addEventListener('languageChanged', () => {
+        syncOverlayLanguage();
         renderProjects();
     });
 

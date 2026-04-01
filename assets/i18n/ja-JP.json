@@ -16,6 +16,8 @@
     "contact.email.title": "メール",
     "contact.email.desc": "メールで連絡してください。",
     "contact.placeholder": "他のチャンネルは追加予定…",
+    "overlay.translate.button": "翻訳",
+    "overlay.translate.hint": "この文章はブラウザの右クリックメニューから翻訳してください。",
     "footer.powered": "構築",
     "footer.copyright": "無断転載禁止"
 }
