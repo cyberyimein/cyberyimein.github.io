@@ -16,8 +16,6 @@
     "contact.email.title": "Email",
     "contact.email.desc": "Drop me a message via email.",
     "contact.placeholder": "More channels coming soon...",
-    "overlay.translate.button": "Translate",
-    "overlay.translate.hint": "Use your browser right-click menu to translate this article.",
     "footer.copyright": "All rights reserved",
     "footer.powered": "Powered"
 }

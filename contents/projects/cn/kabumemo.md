@@ -12,6 +12,4 @@ Vibe Coding / TypeScript / Python
 
 ## Background
 
-This project demonstrates continued advancement in autonomous agent systems and reflects the division's commitment to engineering excellence and innovation in artificial intelligence applications.
-
-
+这个项目展示了自主代理系统的持续演进，也体现了团队在人工智能应用上的工程追求与创新实践。

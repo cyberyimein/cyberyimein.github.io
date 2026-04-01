@@ -16,8 +16,6 @@
     "contact.email.title": "邮件",
     "contact.email.desc": "发送邮件与我取得联系。",
     "contact.placeholder": "更多方式即将补充……",
-    "overlay.translate.button": "翻译",
-    "overlay.translate.hint": "请使用浏览器右键菜单翻译这篇文章。",
     "footer.copyright": "版权所有",
     "footer.powered": "构建"
 }

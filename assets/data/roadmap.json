@@ -9,7 +9,11 @@
             "id": "RM-E01",
             "type": "experiment",
             "version": "v1.0",
-            "content": "contents/roadmap/00_cyberyimein.md",
+            "content": {
+                "cn": "contents/roadmap/cn/00_cyberyimein.md",
+                "en": "contents/roadmap/en/00_cyberyimein.md",
+                "jp": "contents/roadmap/jp/00_cyberyimein.md"
+            },
             "title": {
                 "zh-CN": "这个博客",
                 "en-US": "This Blog",
@@ -27,7 +31,11 @@
             "id": "CORP-C01",
             "type": "classified",
             "version": "██",
-            "content": "contents/roadmap/01_classified01.md",
+            "content": {
+                "cn": "contents/roadmap/cn/01_classified01.md",
+                "en": "contents/roadmap/en/01_classified01.md",
+                "jp": "contents/roadmap/jp/01_classified01.md"
+            },
             "title": {
                 "zh-CN": "基于Azure AI Foundry 的agent应用",
                 "en-US": "Agent Applications on Azure AI Foundry",
@@ -45,7 +53,11 @@
             "id": "RM-E02",
             "type": "experiment",
             "version": "v1.0",
-            "content": "contents/roadmap/02_hanamicli.md",
+            "content": {
+                "cn": "contents/roadmap/cn/02_hanamicli.md",
+                "en": "contents/roadmap/en/02_hanamicli.md",
+                "jp": "contents/roadmap/jp/02_hanamicli.md"
+            },
             "title": {
                 "zh-CN": "花见CLI",
                 "en-US": "Hanami CLI",
@@ -63,7 +75,11 @@
             "id": "RM-P01",
             "type": "project",
             "version": "v0.1",
-            "content": "contents/projects/kabumemo.md",
+            "content": {
+                "cn": "contents/projects/cn/kabumemo.md",
+                "en": "contents/projects/en/kabumemo.md",
+                "jp": "contents/projects/jp/kabumemo.md"
+            },
             "title": {
                 "zh-CN": "KABUMEMO",
                 "en-US": "KABUMEMO",

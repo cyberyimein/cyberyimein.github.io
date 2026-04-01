@@ -2,7 +2,11 @@
 	{
 		"_template": "# 项目名称\n\n项目简介\n\n## Technical Specifications\n\n技术栈\n\n## Classification Tags\n\n标签1 / 标签2\n\n## Background\n\n详细描述...",
 		"id": "kabumemo",
-		"content": "contents/projects/kabumemo.md",
+		"content": {
+			"cn": "contents/projects/cn/kabumemo.md",
+			"en": "contents/projects/en/kabumemo.md",
+			"jp": "contents/projects/jp/kabumemo.md"
+		},
 		"name": {
 			"zh-CN": "Kabumemo",
 			"en-US": "Kabumemo",

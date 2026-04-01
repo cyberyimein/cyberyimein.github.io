@@ -1,27 +1,24 @@
-# This blog
+# This Blog
 
-这个博客也是Vibe Coding的产物，完全由copilot cli生成。作为一个软件工程师,自己编写博客架构也曾是我的爱好,如今coding agent终结了这一切,我只需要写提示词了。
+This blog is also a product of vibe coding and was generated entirely with Copilot CLI. As a software engineer, building a blog architecture by hand used to be one of my hobbies. Now coding agents have brought that era to an end, and all I need to write are prompts.
 
 ## Markdown Preview Samples
 
- `inline code`、**bold text**、*italic text*、~~strikethrough~~、[link](https://example.com)、> blockquote、- [ ] task
+`inline code`, **bold text**, *italic text*, ~~strikethrough~~, [link](https://example.com), > blockquote, - [ ] task
 
+### Heading Level 3
 
-### h3
+#### Heading Level 4
 
-#### h4
+##### Heading Level 5
 
-##### h5
-
-###### h6
+###### Heading Level 6
 
 - Unordered list item 1
 - Unordered list item 2
 
 1. Ordered list item 1
 2. Ordered list item 2
-
-
 
 ### Code Block
 
