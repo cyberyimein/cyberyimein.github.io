@@ -1,52 +1,56 @@
-# 🌌 ALOHA, I'm CyberYimein
+# CyberYimein
 
-> Create · Explore · AI — building AI agents and LLM-driven automation from prototype to production.
+> Web version / 网页版 / ウェブ版：<br>
+> [https://cyberyimein.github.io/](https://cyberyimein.github.io/)
 
-The code in this repo powers my personal site (also published via GitHub Pages). If you're reading this on GitHub, you're already looking at the live content in Markdown form.
+Create · Explore · AI
 
-## 🚀 Projects
+ALOHA, I'm CyberYimein, an AI Agent engineer and a Vibe Coder who has been writing very little code by hand since the summer of 2025.
 
-| Project      | Summary                                                                                                                                                                           | Tags                              | Links                                           |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------- |
-| **Kabumemo** | An experiment in vibecoding: a personal stock trade logging site built entirely by guiding GPT (no hand-written code), exploring how to meet custom system needs at minimal cost. | Vibe Coding · TypeScript · Python | [Repo](https://github.com/cyberyimein/kabumemo) |
+This repository contains the source for my personal homepage. It presents a public overview of my work around AI Agents, LLM automation, Vibe Coding, and personal project experiments.
 
-_More showcases will be added as they graduate from prototypes._
+## Projects
 
-## 🧭 Roadmap
+| Project | Summary | Tags | Links |
+| --- | --- | --- | --- |
+| Kabumemo | An experiment in vibe coding: a personal stock trade logging site built entirely by guiding GPT, with no hand-written code, to explore how custom system needs can be met at minimal cost. | Vibe Coding / TypeScript / Python | [Repo](https://github.com/cyberyimein/kabumemo) |
+| TeaForge | A SKILL and CLI toolkit for Agent AI. TeaForge enables agents to generate descriptive documentation together with test code, making human verification and management easier. | Agent AI / SKILL / CLI | [Repo](https://github.com/cyberyimein/teaforge) |
 
-### Current focus
+## Roadmap
 
-- **Agent Use-Case Rollout** — Multi-agent coordination (A2A), MCP integration, and workflows that make agents useful beyond demos. _(progress ~35%)_
-- **Vibe Coding Workflow** — Data-driven prompt chains, automated reviews, and agent-assisted deployment pipelines. _(progress ~20%)_
+### Current Focus
+
+- KABUMEMO (70%): A personal stock trading record website built entirely with vibe coding, while also using the latest agent techniques to validate the evolution of Vibe Coding.
+- TEAFORGE (30%): A SKILL and CLI toolkit for Agent AI, aimed at generating test code and explanatory documentation together to reduce the cost of human-agent collaboration.
 
 ### Completed
 
-- **AI Agent Applications** — Azure AI Foundry, OpenAI SDK, and prompt-engineering playbooks ready for reuse.
+- This Blog: A personal blog experiment built entirely with vibe coding.
+- Agent Applications on Azure AI Foundry: Implemented multi-agent collaboration, MCP calls, and RAG retrieval in practice.
+- Fruit Spy: A web app for monitoring a personal Mac mini server and managing the containers behind my website.
+- Hanami CLI: A cherry blossom front crawler with CLI and SKILL capabilities, allowing local agents to access seasonal data directly.
 
-## 🛠 Skill Stack
+## Skill Stack
 
-- TypeScript · Python · NLP · LLM · AI Agent · Vibe Coding
+- TypeScript
+- Python
+- NLP
+- LLM
+- AI Agent
+- Vibe Coding
 
-## 🎓 Certifications
+## Certifications
 
 - Oracle Java Silver
 - Microsoft Azure Fundamentals (AZ-900)
 - Azure AI Engineer (AI-102)
 
-## 🧩 How I build
-
-- Ship fast with agents-in-the-loop to explore unconventional solutions.
-- Balance vibecoding experiments with production-grade guardrails.
-- Automate repetitive review/deploy steps so humans focus on direction.
-
-## 📬 Contact
+## Contact
 
 - GitHub: [@cyberyimein](https://github.com/cyberyimein)
-- Email: [example@example.com](mailto:example@example.com)
-- More channels coming soon
+- Email: [cyberyimein@outlook.com](mailto:cyberyimein@outlook.com)
+- More channels will be added over time
 
-## ⚖️ License
+## Notes
 
-MIT License.
-
-> This repository hosts the source of my personal homepage—not a generic boilerplate. Forking is fine, but expect minimal template support.
+This repository hosts the source code for my personal homepage rather than a generic template project. The README is intentionally limited to homepage-level information and does not expand into full article or project detail pages.
