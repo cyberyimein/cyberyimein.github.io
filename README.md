@@ -1,7 +1,7 @@
 # CyberYimein
 
 > Web version / 网页版 / ウェブ版：<br>
-> [https://cyberyimein.github.io/](https://cyberyimein.github.io/)
+> [https://cyberyimein.github.io/cyberyimein/](https://cyberyimein.github.io/cyberyimein/)
 
 Create · Explore · AI
 
