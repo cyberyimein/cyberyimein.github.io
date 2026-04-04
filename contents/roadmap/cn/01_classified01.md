@@ -1,4 +1,4 @@
-# 基于Azure AI Foundry 的agent
+# 基于Azure AI Foundry的Agent
 
 基于 Azure AI Foundry，实践了多 Agent 协作、MCP 调用、RAG 检索等机能。
 

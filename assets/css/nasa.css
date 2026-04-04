@@ -33,9 +33,20 @@
     --code: #1A1A1A;
     --focus-ring: #0032A0;
     --radius: 2px;
+    --panel-blur: 6px;
+    --card-blur: 4px;
+    --noise-opacity: .026;
     --trans: 120ms cubic-bezier(.4, .2, .2, 1);
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     color-scheme: light;
+}
+
+@media (min-resolution: 2dppx), (min-width: 1600px) {
+    :root {
+        --panel-blur: 4px;
+        --card-blur: 2px;
+        --noise-opacity: .016;
+    }
 }
 
 /* ====== 全局排版 ====== */
@@ -95,10 +106,10 @@ body::after {
     inset: 0;
     pointer-events: none;
     z-index: 2;
-    opacity: .035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000'%3E%3Crect x='4' y='6' width='1' height='1' opacity='.18'/%3E%3Crect x='12' y='38' width='1' height='1' opacity='.12'/%3E%3Crect x='18' y='70' width='1' height='1' opacity='.16'/%3E%3Crect x='27' y='24' width='1' height='1' opacity='.14'/%3E%3Crect x='34' y='54' width='1' height='1' opacity='.2'/%3E%3Crect x='40' y='11' width='1' height='1' opacity='.1'/%3E%3Crect x='46' y='86' width='1' height='1' opacity='.17'/%3E%3Crect x='55' y='28' width='1' height='1' opacity='.14'/%3E%3Crect x='62' y='62' width='1' height='1' opacity='.16'/%3E%3Crect x='71' y='14' width='1' height='1' opacity='.11'/%3E%3Crect x='78' y='42' width='1' height='1' opacity='.18'/%3E%3Crect x='83' y='74' width='1' height='1' opacity='.13'/%3E%3Crect x='90' y='20' width='1' height='1' opacity='.15'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: repeat;
-    background-size: 256px 256px;
+    background-size: 96px 96px;
 }
 
 /* ====== 容器 ====== */
@@ -109,8 +120,8 @@ body::after {
     margin: 32px auto 60px;
     padding: 36px 44px 50px;
     background: rgba(240, 240, 240, .78);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(var(--panel-blur));
+    -webkit-backdrop-filter: blur(var(--panel-blur));
     border: 1px solid rgba(184, 184, 184, .5);
     border-radius: 0;
     box-sizing: border-box;
@@ -296,27 +307,57 @@ header {
 
 /* ====== 项目网格 ====== */
 .projects-grid {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    --project-card-width: 360px;
+    --project-card-height: 254px;
+    --project-gap: 24px;
+    --project-stack-overlap: 258px;
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    overflow-y: visible;
     margin-top: 10px;
+    min-height: var(--project-card-height);
+    padding-top: 16px;
+    position: relative;
 }
 
 /* 项目卡片 — 现代复古未来主义 */
 .project-card {
+    width: var(--project-card-width);
+    flex: 0 0 var(--project-card-width);
+    height: var(--project-card-height);
     background: rgba(255, 255, 255, .55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(var(--card-blur));
+    -webkit-backdrop-filter: blur(var(--card-blur));
     border: 1px solid rgba(184, 184, 184, .4);
     border-radius: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
+    min-height: var(--project-card-height);
     position: relative;
     overflow: hidden;
     transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
     cursor: pointer;
+}
+
+.project-card.project-card-expanded {
+    margin-left: var(--project-gap);
+}
+
+.project-card.project-card-expanded:first-child,
+.project-card.project-card-stack-start:first-child {
+    margin-left: 0;
+}
+
+.project-card.project-card-stacked {
+    margin-left: calc(-1 * var(--project-stack-overlap));
+}
+
+.project-card.project-card-stack-start {
+    margin-left: var(--project-gap);
 }
 
 .project-card::before {
@@ -340,6 +381,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    overflow: visible;
     padding: 14px 20px 12px;
     border-bottom: 1px solid rgba(184, 184, 184, .3);
     gap: 12px;
@@ -389,6 +432,11 @@ header {
     border-color: rgba(255, 60, 0, .35);
     transform: translateY(-3px);
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, .1);
+}
+
+.project-card.project-card-stacked:hover {
+    transform: translateY(-42px);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, .18);
 }
 
 .project-card:focus-visible {
@@ -922,15 +970,21 @@ header {
 }
 
 /* 关闭按钮 — 物理按钮 */
-.nasa-doc-close {
+.nasa-doc-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: inline-flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.nasa-doc-action {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 30px;
-    position: absolute;
-    top: 16px;
-    right: 16px;
     background: transparent;
     border: 1px solid var(--divider-bold);
     border-radius: 0;
@@ -944,13 +998,22 @@ header {
     white-space: nowrap;
     color: var(--text-dim);
     cursor: pointer;
+    text-decoration: none;
     transition: color var(--trans), border-color var(--trans), background var(--trans);
 }
 
-.nasa-doc-close:hover {
+.nasa-doc-action:hover {
     color: var(--orange);
     border-color: var(--orange);
     background: rgba(255, 60, 0, .05);
+}
+
+.nasa-doc-github[hidden] {
+    display: none;
+}
+
+.nasa-doc-github {
+    text-transform: none;
 }
 
 /* ====== Badge Envelope Card — NASA Business-Card Style ====== */
@@ -1254,8 +1317,8 @@ header {
 .badge {
     position: relative;
     background: rgba(255, 255, 255, .55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(var(--card-blur));
+    -webkit-backdrop-filter: blur(var(--card-blur));
     border: 1px solid rgba(184, 184, 184, .4);
     padding: 8px 14px 8px 12px;
     font-family: 'IBM Plex Mono', monospace;
@@ -1344,6 +1407,7 @@ header {
     align-items: flex-end;
     gap: 0;
     position: relative;
+    padding-top: 16px;
 }
 
 /* ====== File Card — A4 Portrait ====== */
@@ -1352,8 +1416,8 @@ header {
     width: 200px;
     height: 283px;
     background: rgba(255, 255, 255, .65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(var(--card-blur));
+    -webkit-backdrop-filter: blur(var(--card-blur));
     border: 1px solid rgba(184, 184, 184, .4);
     border-radius: 0;
     padding: 0;
@@ -1368,17 +1432,6 @@ header {
 }
 
 /* ---- Expanded (current) cards: show full, spaced ---- */
-.file-card:not(.file-stacked) {
-    margin-left: 16px;
-}
-
-.file-card:not(.file-stacked):hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 36px -8px rgba(0, 0, 0, .14);
-    border-color: rgba(255, 60, 0, .4);
-}
-
-/* ---- Stacked (completed) cards: overlap, show clipped face ---- */
 .file-card.file-stacked {
     margin-left: -152px;
     z-index: 1;
@@ -1413,6 +1466,7 @@ header {
     justify-content: space-between;
     margin-bottom: 12px;
     padding-bottom: 8px;
+    padding-right: 30px;
     border-bottom: 1px solid rgba(184, 184, 184, .3);
     position: relative;
 }
@@ -1437,15 +1491,16 @@ header {
     color: var(--text-faint);
     padding: 1px 6px;
     background: rgba(0, 0, 0, .05);
+    margin-left: 8px;
 }
 
 /* Featured pin (orange tab sticking up) */
 .stripe-pin {
     position: absolute;
     top: -16px;
-    right: 4px;
-    width: 10px;
-    height: 22px;
+    right: 8px;
+    width: 16px;
+    height: 24px;
     background: var(--orange);
     border-radius: 0 0 1px 1px;
     opacity: .85;
@@ -1528,7 +1583,12 @@ header {
     position: absolute;
     inset: 0;
     background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .3) 50%, transparent 100%);
-    animation: progressSweep 2.5s ease-in-out infinite;
+    opacity: .65;
+}
+
+.file-card:hover .file-fill.progress::after,
+.file-card:focus-visible .file-fill.progress::after {
+    animation: progressSweep 2.8s ease-in-out 1;
 }
 
 @keyframes progressSweep {
@@ -1679,8 +1739,7 @@ header {
     border-color: rgba(100, 100, 100, .4);
 }
 
-[data-theme="dark"] .file-card.file-stacked:hover,
-[data-theme="dark"] .file-card:not(.file-stacked):hover {
+[data-theme="dark"] .file-card.file-stacked:hover {
     border-color: rgba(255, 60, 0, .5);
 }
 
@@ -1853,6 +1912,7 @@ footer a:hover {
     inset: 0;
     z-index: 0;
     pointer-events: none;
+    contain: strict;
 }
 
 /* ====== 暗色主题 ====== */
@@ -2063,6 +2123,13 @@ footer a:hover {
         row-gap: 18px;
     }
 
+    .projects-grid {
+        --project-card-width: 300px;
+        --project-card-height: 212px;
+        --project-gap: 18px;
+        --project-stack-overlap: 214px;
+    }
+
     .file-card {
         width: 160px;
         height: 227px;
@@ -2159,9 +2226,13 @@ footer a:hover {
         letter-spacing: 8px;
     }
 
-    .nasa-doc-close {
+    .nasa-doc-actions {
         top: 8px;
         right: 8px;
+        gap: 6px;
+    }
+
+    .nasa-doc-action {
         padding: 5px 10px;
         font-size: 9px;
     }
@@ -2171,6 +2242,14 @@ footer a:hover {
         row-gap: 14px;
     }
 
+    .projects-grid {
+        --project-card-width: 240px;
+        --project-card-height: 170px;
+        --project-gap: 14px;
+        --project-stack-overlap: 170px;
+        padding-top: 12px;
+    }
+
     .file-card {
         width: 140px;
         height: 198px;
@@ -2178,10 +2257,6 @@ footer a:hover {
 
     .file-card.file-stacked {
         margin-left: -96px;
-    }
-
-    .file-card:not(.file-stacked) {
-        margin-left: 10px;
     }
 
     .file-face {

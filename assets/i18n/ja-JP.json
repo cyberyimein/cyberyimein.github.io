@@ -1,7 +1,7 @@
 {
     "hero.tagline": "創造 · 探索 · AI",
-    "hero.title.html": "ALOHA、私は <span style=\"white-space:nowrap\">CyberYimein</span>",
-    "hero.subtitle.html": "<strong>AIエージェント</strong> と <strong>LLM駆動の自動化</strong> に注力し、アイデアからプロトタイプ〜本番までを加速。",
+    "hero.title.html": "ALOHA",
+    "hero.subtitle.html": "私は Cyberyimein、AI Agent エンジニアです。<br>2025年の夏から、基本的にコードを書かない Vibe Coder になりました。<br>このサイトは、AI が業界全体を飲み込もうとしているこの「ビッグバン」の中での、私の学習の歩みを記録する個人空間です。",
     "projects.title": "プロジェクト",
     "projects.empty.title": "近日公開",
     "projects.empty.desc": "ここに注目プロジェクトを掲載します。",

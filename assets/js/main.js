@@ -5,7 +5,7 @@
     window.addEventListener('scroll', () => {
         if (window.scrollY > 380) backBtn.classList.add('visible');
         else backBtn.classList.remove('visible');
-    });
+    }, { passive: true });
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     // dynamic year

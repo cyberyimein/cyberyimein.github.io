@@ -37,7 +37,50 @@
 			}
 		],
 		"tech": ["GPT", "Static Site", "JSON"],
+		"featured": false,
 		"status": "active",
 		"createdAt": "2025-09-29"
+	},
+	{
+		"_template": "# 项目名称\n\n项目简介\n\n## Technical Specifications\n\n技术栈\n\n## Classification Tags\n\n标签1 / 标签2\n\n## Background\n\n详细描述...",
+		"id": "teaforge",
+		"content": {
+			"cn": "contents/projects/cn/teaforge.md",
+			"en": "contents/projects/en/teaforge.md",
+			"jp": "contents/projects/jp/teaforge.md"
+		},
+		"name": {
+			"zh-CN": "TeaForge",
+			"en-US": "TeaForge",
+			"ja-JP": "TeaForge"
+		},
+		"description": {
+			"zh-CN": "一个为Agent AI提供的SKILL与CLI工具程序.有了TeaForge,Agent AI在生产测试代码同时也生产相应的描述性文档, 便于人类确认和向上管理.",
+			"en-US": "A SKILL and CLI tool program for Agent AI. With TeaForge, Agent AI generates descriptive documentation along with test code, facilitating human verification and upward management.",
+			"ja-JP": "Agent AI のための SKILL と CLI ツールプログラム。TeaForge を使用すると、Agent AI はテストコードとともに説明的なドキュメントを生成し、人間の確認と上位管理を容易にします。"
+		},
+		"repo": "https://github.com/cyberyimein/teaforge",
+		"url": "https://github.com/cyberyimein/teaforge",
+		"tags": [
+			{
+				"zh-CN": "Agent AI",
+				"en-US": "Agent AI",
+				"ja-JP": "Agent AI"
+			},
+			{
+				"zh-CN": "SKILL",
+				"en-US": "SKILL",
+				"ja-JP": "SKILL"
+			},
+			{
+				"zh-CN": "CLI",
+				"en-US": "CLI",
+				"ja-JP": "CLI"
+			}
+		],
+		"tech": ["AI", "SKILL", "CLI"],
+		"featured": false,
+		"status": "active",
+		"createdAt": "2026-03-03"
 	}
 ]

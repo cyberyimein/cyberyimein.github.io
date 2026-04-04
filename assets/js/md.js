@@ -172,7 +172,7 @@
     async function fetchContent(path) {
         if (!path) return null;
         try {
-            const res = await fetch('./' + path + '?cb=' + Date.now());
+            const res = await fetch('./' + path);
             if (!res.ok) return null;
             return await res.text();
         } catch (e) {

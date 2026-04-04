@@ -16,7 +16,7 @@ const I18N = (function () {
         const target = lang || detect();
         state.lang = target;
         try {
-            const res = await fetch(`./assets/i18n/${target}.json?cache-bust=${Date.now()}`);
+            const res = await fetch(`./assets/i18n/${target}.json`);
             if (!res.ok) throw new Error('i18n load fail');
             state.dict = await res.json();
         } catch (e) {

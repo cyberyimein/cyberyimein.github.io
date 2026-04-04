@@ -1,0 +1,3 @@
+# HanamiCLI
+
+This is a seemingly simple crawler project. Its core function is to scrape the forecasted cherry blossom blooming date from a weather forecast website and synchronously update it to a simple display webpage. But its real purpose is not "flower viewing," but the exploration of the boundary of an Agent's ability to call tools. I designed a complete SKILL and CLI architecture for it. In essence, I want to use it as a comparison experiment: to verify whether, in the current AI ecosystem, the ability of an Agent to directly call traditional tools is already strong enough to replace the MCP (Model Context Protocol) protocol. At present, this experiment has been tested successfully in my local OpenClaw environment, proving the feasibility of this design approach.

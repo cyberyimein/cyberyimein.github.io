@@ -43,11 +43,28 @@
         return Object.values(content).find(Boolean) || '';
     }
 
+    function isDone(item) {
+        return String(item && item.status || '').toLowerCase() === 'done';
+    }
+
+    function getStatusLabel(item) {
+        return isDone(item) ? 'COMPLETED' : 'IN PROGRESS';
+    }
+
+    function getRoadmapItems() {
+        if (!state.data) return [];
+        if (Array.isArray(state.data.items)) return state.data.items;
+
+        const currentItems = Array.isArray(state.data.current) ? state.data.current : [];
+        const completedItems = Array.isArray(state.data.completed) ? state.data.completed : [];
+        return [...currentItems, ...completedItems];
+    }
+
     /* ========== A4 portrait file card ========== */
-    function createFileCard(item, isCompleted) {
+    function createFileCard(item) {
         const card = document.createElement('div');
-        card.className = 'file-card';
-        if (isCompleted) card.classList.add('file-stacked');
+        const done = isDone(item);
+        card.className = 'file-card file-stacked';
         if (item.featured) card.classList.add('file-featured');
 
         const type = item.type || 'project';
@@ -98,7 +115,7 @@
         face.appendChild(desc);
 
         // Mid section: progress or completion
-        if (!isCompleted && item.percent != null && !isClassified) {
+        if (!done && item.percent != null && !isClassified) {
             const progressWrap = document.createElement('div');
             progressWrap.className = 'file-progress-wrap';
 
@@ -118,7 +135,7 @@
             face.appendChild(progressWrap);
         }
 
-        if (isCompleted && !isClassified) {
+        if (done && !isClassified) {
             const stamp = document.createElement('div');
             stamp.className = 'file-stamp-block';
             stamp.innerHTML = '<span class="stamp-check">✓</span> COMPLETED';
@@ -126,7 +143,7 @@
         }
 
         // Classified: redacted progress
-        if (isClassified && !isCompleted) {
+        if (isClassified && !done) {
             const pWrap = document.createElement('div');
             pWrap.className = 'file-progress-wrap classified-progress';
             const pctLabel = document.createElement('span');
@@ -181,6 +198,7 @@
         const isClassified = type === 'classified';
         const typeLabel = (TYPE_LABELS[type] || TYPE_LABELS.project)[state.lang] || type.toUpperCase();
         const contentPath = resolveContentPath(item.content);
+        const githubUrl = !isClassified && item.github ? item.github : '';
 
         const releaseEl = overlay.querySelector('.nasa-doc-release-no');
         if (releaseEl) {
@@ -198,6 +216,17 @@
             if (isClassified) mastheadLabel.textContent = 'Classified';
             else if (type === 'experiment') mastheadLabel.textContent = 'Experiment';
             else mastheadLabel.textContent = 'Projects';
+        }
+
+        const githubBtn = overlay.querySelector('.nasa-doc-github');
+        if (githubBtn) {
+            if (githubUrl) {
+                githubBtn.href = githubUrl;
+                githubBtn.hidden = false;
+            } else {
+                githubBtn.removeAttribute('href');
+                githubBtn.hidden = true;
+            }
         }
 
         const body = overlay.querySelector('.nasa-doc-body');
@@ -218,7 +247,7 @@
                     <p><strong>TYPE:</strong> ${escapeHtml(typeLabel)}</p>
                     <p>${escapeHtml(desc)}</p>
                     <p><strong>VERSION:</strong> ${escapeHtml(item.version || '—')}</p>
-                    <p><strong>STATUS:</strong> ${escapeHtml(item.status === 'done' ? 'COMPLETED' : 'IN PROGRESS')}</p>
+                    <p><strong>STATUS:</strong> ${escapeHtml(getStatusLabel(item))}</p>
                     ${item.percent != null ? `<p><strong>PROGRESS:</strong> ${item.percent}%</p>` : ''}
                     ${item.github ? `<p><strong>REPOSITORY:</strong> <a href="${escapeHtml(item.github)}" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:none;font-weight:700;">${escapeHtml(item.github)}</a></p>` : ''}
                 `;
@@ -255,18 +284,11 @@
         cabinet.innerHTML = '';
         if (!state.data) return;
 
-        // Single row: completed (stacked) → current (expanded at right)
         const shelf = document.createElement('div');
         shelf.className = 'archive-shelf';
 
-        const completedItems = state.data.completed || [];
-        completedItems.forEach(item => {
-            shelf.appendChild(createFileCard(item, true));
-        });
-
-        const currentItems = state.data.current || [];
-        currentItems.forEach(item => {
-            shelf.appendChild(createFileCard(item, false));
+        getRoadmapItems().forEach(item => {
+            shelf.appendChild(createFileCard(item));
         });
 
         cabinet.appendChild(shelf);
@@ -274,7 +296,7 @@
 
     async function load() {
         try {
-            const res = await fetch(FILE + '?cb=' + Date.now());
+            const res = await fetch(FILE);
             if (!res.ok) throw new Error(res.status);
             state.data = await res.json();
             render();

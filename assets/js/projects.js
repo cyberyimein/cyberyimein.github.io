@@ -3,13 +3,14 @@
 (async function () {
     const grid = document.querySelector('.projects-grid');
     if (!grid) return;
+    let resizeFrame = 0;
 
     const placeholder = grid.querySelector('.project-card.empty');
     if (placeholder) placeholder.remove();
 
     let data = [];
     try {
-        const res = await fetch('./assets/data/projects.json?cb=' + Date.now());
+        const res = await fetch('./assets/data/projects.json');
         data = await res.json();
     } catch (e) {
         console.warn('[projects] load failed', e);
@@ -51,6 +52,72 @@
         return values.find(Boolean) || '';
     }
 
+    function parsePx(value, fallback) {
+        const next = parseFloat(value);
+        return Number.isFinite(next) ? next : fallback;
+    }
+
+    function getLayoutMetrics() {
+        const styles = getComputedStyle(grid);
+        return {
+            cardWidth: parsePx(styles.getPropertyValue('--project-card-width'), 280),
+            gap: parsePx(styles.getPropertyValue('--project-gap'), 24),
+            stackOverlap: parsePx(styles.getPropertyValue('--project-stack-overlap'), 194)
+        };
+    }
+
+    function calculateExpandedCount(totalItems) {
+        if (totalItems <= 1) return totalItems;
+
+        const availableWidth = grid.clientWidth;
+        if (!availableWidth) return totalItems;
+
+        const { cardWidth, gap, stackOverlap } = getLayoutMetrics();
+        const stackedReveal = Math.max(40, cardWidth - stackOverlap);
+
+        for (let expanded = totalItems; expanded >= 0; expanded -= 1) {
+            const stacked = totalItems - expanded;
+            let requiredWidth = 0;
+
+            if (expanded > 0) {
+                requiredWidth += expanded * cardWidth + Math.max(0, expanded - 1) * gap;
+            }
+
+            if (stacked > 0) {
+                if (requiredWidth > 0) requiredWidth += gap;
+                requiredWidth += cardWidth + Math.max(0, stacked - 1) * stackedReveal;
+            }
+
+            if (requiredWidth <= availableWidth) return expanded;
+        }
+
+        return 0;
+    }
+
+    function applyProjectLayout() {
+        const cards = Array.from(grid.querySelectorAll('.project-card:not(.empty)'));
+        if (!cards.length) {
+            grid.classList.remove('has-stacked-projects');
+            return;
+        }
+
+        const expandedCount = calculateExpandedCount(cards.length);
+        grid.classList.toggle('has-stacked-projects', expandedCount < cards.length);
+
+        cards.forEach((card, index) => {
+            const isStacked = index >= expandedCount;
+            card.classList.toggle('project-card-expanded', !isStacked);
+            card.classList.toggle('project-card-stacked', isStacked);
+            card.classList.toggle('project-card-stack-start', isStacked && index === expandedCount);
+            card.style.zIndex = String(isStacked ? index + 1 : cards.length - index);
+        });
+    }
+
+    function scheduleProjectLayout() {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(applyProjectLayout);
+    }
+
     // 品牌 Logo SVG
     const WORM_SVG = '<svg viewBox="0 0 380 60" xmlns="http://www.w3.org/2000/svg" aria-label="CyberYimein"><text x="0" y="48" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#FF3C00" style="text-transform:uppercase">CYBERYIMEIN</text></svg>';
 
@@ -61,7 +128,10 @@
         overlay.className = 'project-overlay';
         overlay.innerHTML = `
             <div class="nasa-document">
-                <button class="nasa-doc-close" type="button">CLOSE [X]</button>
+                <div class="nasa-doc-actions">
+                    <a class="nasa-doc-github nasa-doc-action" href="#" target="_blank" rel="noopener noreferrer" hidden>GitHub →</a>
+                    <button class="nasa-doc-close nasa-doc-action" type="button">CLOSE [X]</button>
+                </div>
                 <div class="nasa-doc-masthead">
                     <div class="nasa-doc-logo">${WORM_SVG}</div>
                     <span class="masthead-label">News</span>
@@ -121,6 +191,7 @@
         const tech = (item.tech || []).join(', ');
         const idx = data.indexOf(item);
         const contentPath = pickContentPath(item.content);
+        const githubUrl = item.repo || item.url || '';
 
         // Release number
         overlay.querySelector('.nasa-doc-release-no').textContent =
@@ -133,6 +204,17 @@
         // Update masthead label to match type
         const mastheadLabel = overlay.querySelector('.masthead-label');
         if (mastheadLabel) mastheadLabel.textContent = 'Projects';
+
+        const githubBtn = overlay.querySelector('.nasa-doc-github');
+        if (githubBtn) {
+            if (githubUrl) {
+                githubBtn.href = githubUrl;
+                githubBtn.hidden = false;
+            } else {
+                githubBtn.removeAttribute('href');
+                githubBtn.hidden = true;
+            }
+        }
 
         // Body — try markdown first, fallback to inline
         const body = overlay.querySelector('.nasa-doc-body');
@@ -171,14 +253,21 @@
         return div.innerHTML;
     }
 
-    function createCard(item, index) {
+    function createCard(item) {
         const card = document.createElement('div');
         card.className = 'project-card';
+        if (item.featured) card.classList.add('project-card-featured');
         card.tabIndex = 0;
 
         // 金属铭牌
         const nameplate = document.createElement('div');
         nameplate.className = 'card-nameplate';
+
+        if (item.featured) {
+            const pin = document.createElement('span');
+            pin.className = 'stripe-pin';
+            nameplate.appendChild(pin);
+        }
 
         const title = document.createElement('h4');
         title.textContent = pick(item.name);
@@ -241,13 +330,23 @@
             return;
         }
         const frag = document.createDocumentFragment();
-        data.forEach((item, i) => {
-            frag.appendChild(createCard(item, i));
+        data.forEach((item) => {
+            frag.appendChild(createCard(item));
         });
         grid.appendChild(frag);
+        scheduleProjectLayout();
     }
 
     renderProjects();
+
+    if (typeof ResizeObserver !== 'undefined') {
+        const observer = new ResizeObserver(() => {
+            scheduleProjectLayout();
+        });
+        observer.observe(grid);
+    } else {
+        window.addEventListener('resize', scheduleProjectLayout);
+    }
 
     document.addEventListener('languageChanged', () => {
         renderProjects();
@@ -274,5 +373,6 @@
         body.appendChild(note);
         card.appendChild(body);
         grid.appendChild(card);
+        grid.classList.remove('has-stacked-projects');
     }
 })();

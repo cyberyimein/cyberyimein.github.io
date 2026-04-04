@@ -186,7 +186,7 @@
     async function load() {
         if (cache) return cache;
         try {
-            const res = await fetch('./assets/data/badges.json?cb=' + Date.now());
+            const res = await fetch('./assets/data/badges.json');
             cache = await res.json();
         } catch (e) {
             console.warn('[badges] load failed', e);
