@@ -82,5 +82,47 @@
 		"featured": false,
 		"status": "active",
 		"createdAt": "2026-03-03"
+	},
+	{
+		"_template": "# 项目名称\n\n项目简介\n\n## Technical Specifications\n\n技术栈\n\n## Classification Tags\n\n标签1 / 标签2\n\n## Background\n\n详细描述...",
+		"id": "simscommu",
+		"content": {
+			"cn": "contents/projects/cn/simscommu.md",
+			"en": "contents/projects/en/simscommu.md",
+			"jp": "contents/projects/jp/simscommu.md"
+		},
+		"name": {
+			"zh-CN": "SimsCommu",
+			"en-US": "SimsCommu",
+			"ja-JP": "SimsCommu"
+		},
+		"description": {
+			"zh-CN": "一个口语练习项目，用来验证 STT、TTT、TTS 三段式架构与多 Agent 练习流程。",
+			"en-US": "A speaking practice project used to validate a three-stage STT, TTT, and TTS architecture together with a multi-agent practice flow.",
+			"ja-JP": "会話練習プロジェクトであり、STT・TTT・TTS の三段構成とマルチエージェントの練習フローを検証する。"
+		},
+		"repo": "https://github.com/cyberyimein/SimsCommu",
+		"url": "https://github.com/cyberyimein/SimsCommu",
+		"tags": [
+			{
+				"zh-CN": "Multi-Agent",
+				"en-US": "Multi-Agent",
+				"ja-JP": "Multi-Agent"
+			},
+			{
+				"zh-CN": "Speech AI",
+				"en-US": "Speech AI",
+				"ja-JP": "Speech AI"
+			},
+			{
+				"zh-CN": "Roleplay",
+				"en-US": "Roleplay",
+				"ja-JP": "Roleplay"
+			}
+		],
+		"tech": ["React", "Fastify", "OpenRouter"],
+		"featured": false,
+		"status": "active",
+		"createdAt": "2026-04-13"
 	}
 ]

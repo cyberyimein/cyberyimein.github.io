@@ -137,6 +137,29 @@
             "status": "progress",
             "github": "https://github.com/cyberyimein/teaforge",
             "featured": true
+        },
+        {
+            "id": "RM-P03",
+            "type": "project",
+            "version": "v0.2",
+            "content": {
+                "cn": "contents/projects/cn/simscommu.md",
+                "en": "contents/projects/en/simscommu.md",
+                "jp": "contents/projects/jp/simscommu.md"
+            },
+            "title": {
+                "zh-CN": "SIMSCOMMU",
+                "en-US": "SIMSCOMMU",
+                "ja-JP": "SIMSCOMMU"
+            },
+            "desc": {
+                "zh-CN": "一个口语练习项目，用来验证 STT、TTT、TTS 三段式架构与多 Agent 主持机制。",
+                "en-US": "A speaking practice project used to validate a three-stage STT, TTT, and TTS architecture together with a multi-agent moderator mechanism.",
+                "ja-JP": "会話練習プロジェクトであり、STT・TTT・TTS の三段構成とマルチエージェントの進行メカニズムを検証する。"
+            },
+            "percent": 35,
+            "status": "progress",
+            "github": "https://github.com/cyberyimein/SimsCommu"
         }
     ]
 }
