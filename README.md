@@ -15,6 +15,7 @@ This repository contains the source for my personal homepage. It presents a publ
 | --- | --- | --- | --- |
 | Kabumemo | An experiment in vibe coding: a personal stock trade logging site built entirely by guiding GPT, with no hand-written code, to explore how custom system needs can be met at minimal cost. | Vibe Coding / TypeScript / Python | [Repo](https://github.com/cyberyimein/kabumemo) |
 | TeaForge | A SKILL and CLI toolkit for Agent AI. TeaForge enables agents to generate descriptive documentation together with test code, making human verification and management easier. | Agent AI / SKILL / CLI | [Repo](https://github.com/cyberyimein/teaforge) |
+| SimsCommu | A multi-agent speaking practice web app built to validate a three-stage STT, TTT, and TTS architecture, with voice-first interaction and role-based conversation flow. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
 
 ## Roadmap
 

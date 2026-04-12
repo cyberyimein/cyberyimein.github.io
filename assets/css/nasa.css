@@ -311,6 +311,7 @@ header {
     --project-card-height: 254px;
     --project-gap: 24px;
     --project-stack-overlap: 258px;
+    --project-hover-lift: 16px;
     display: flex;
     align-items: flex-end;
     gap: 0;
@@ -321,6 +322,7 @@ header {
     min-height: var(--project-card-height);
     padding-top: 16px;
     position: relative;
+    z-index: 1;
 }
 
 /* 项目卡片 — 现代复古未来主义 */
@@ -348,6 +350,7 @@ header {
 }
 
 .project-card.project-card-expanded:first-child,
+.project-card.project-card-stacked:first-child,
 .project-card.project-card-stack-start:first-child {
     margin-left: 0;
 }
@@ -432,11 +435,17 @@ header {
     border-color: rgba(255, 60, 0, .35);
     transform: translateY(-3px);
     box-shadow: 0 8px 32px -8px rgba(0, 0, 0, .1);
+    z-index: 999 !important;
 }
 
 .project-card.project-card-stacked:hover {
-    transform: translateY(-42px);
+    transform: translateY(calc(-1 * var(--project-hover-lift)));
     box-shadow: 0 16px 40px -10px rgba(0, 0, 0, .18);
+}
+
+.project-card:focus-visible,
+.project-card:focus-within {
+    z-index: 999 !important;
 }
 
 .project-card:focus-visible {
@@ -2128,6 +2137,7 @@ footer a:hover {
         --project-card-height: 212px;
         --project-gap: 18px;
         --project-stack-overlap: 214px;
+        --project-hover-lift: 14px;
     }
 
     .file-card {
@@ -2247,6 +2257,7 @@ footer a:hover {
         --project-card-height: 170px;
         --project-gap: 14px;
         --project-stack-overlap: 170px;
+        --project-hover-lift: 12px;
         padding-top: 12px;
     }
 

@@ -102,14 +102,15 @@
         }
 
         const expandedCount = calculateExpandedCount(cards.length);
+        const stackedCount = cards.length - expandedCount;
         grid.classList.toggle('has-stacked-projects', expandedCount < cards.length);
 
         cards.forEach((card, index) => {
-            const isStacked = index >= expandedCount;
+            const isStacked = index < stackedCount;
             card.classList.toggle('project-card-expanded', !isStacked);
             card.classList.toggle('project-card-stacked', isStacked);
-            card.classList.toggle('project-card-stack-start', isStacked && index === expandedCount);
-            card.style.zIndex = String(isStacked ? index + 1 : cards.length - index);
+            card.classList.toggle('project-card-stack-start', isStacked && index === 0);
+            card.style.zIndex = String(isStacked ? index + 1 : cards.length + index + 1);
         });
     }
 
