@@ -38,18 +38,19 @@ This repository contains the source for my personal homepage. It presents a publ
 - NLP
 - LLM
 - AI Agent
-- Vibe Coding
+- Agentic Coding
 
 ## Certifications
 
 - Oracle Java Silver
 - Microsoft Azure Fundamentals (AZ-900)
-- Azure AI Engineer (AI-102)
+- Azure AI Engineer (AI-102, Retired)
+- Azure AI Apps and Agents Developer Associate (AI-103)
 
 ## Contact
 
 - GitHub: [@cyberyimein](https://github.com/cyberyimein)
-- Email: [cyberyimein@outlook.com](mailto:cyberyimein@outlook.com)
+- Email: [cyberyimein[at]outlook.com](mailto:cyberyimein@outlook.com)
 - More channels will be added over time
 
 ## Notes

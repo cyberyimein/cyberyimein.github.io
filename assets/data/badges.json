@@ -74,16 +74,16 @@
                     }
                 },
                 {
-                    "id": "vibe-coding",
-                    "label": { "en-US": "Vibe Coding" },
-                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8e44ad'/><text x='32' y='36' font-size='12' text-anchor='middle' fill='#fff'>Vibe</text><text x='32' y='48' font-size='12' text-anchor='middle' fill='#fff'>Coding</text></svg>",
+                    "id": "agentic-coding",
+                    "label": { "en-US": "Agentic Coding" },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8e44ad'/><text x='32' y='31' font-size='10' text-anchor='middle' fill='#fff'>Agentic</text><text x='32' y='45' font-size='10' text-anchor='middle' fill='#fff'>Coding</text></svg>",
                     "kind": "skill",
-                    "url": "https://en.wikipedia.org/wiki/Vibe_coding",
+                    "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview",
                     "proficiency": 5,
                     "comment": {
-                        "zh-CN": "用 AI 辅助的直觉驱动开发方式，这个网站就是 Vibe Coding 的产物。",
-                        "en-US": "Intuition-driven dev with AI assistance. This very site is a Vibe Coding product.",
-                        "ja-JP": "AIアシスタントによる直感駆動開発。このサイト自体がVibe Codingの産物。"
+                        "zh-CN": "以智能体为中心的开发方式，强调多步推理、工具调用与自动化执行。这个网站也在朝这个方向持续演进。",
+                        "en-US": "An agent-centered way of building software, focused on multi-step reasoning, tool use, and automated execution. This site is evolving in that direction too.",
+                        "ja-JP": "エージェント中心の開発スタイルで、複数ステップの推論、ツール利用、自動実行を重視しています。このサイトもその方向へ進化しています。"
                     }
                 }
             ]
@@ -143,11 +143,29 @@
                     "kind": "cert",
                     "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-engineer/",
                     "obtainedDate": "2024-09",
-                    "status": "active",
+                    "status": "retired",
                     "comment": {
                         "zh-CN": "Azure AI 服务的专业认证。深入了解了认知服务、搜索、Bot 框架等。",
                         "en-US": "Professional Azure AI cert. Deep dive into Cognitive Services, Search, Bot Framework, etc.",
                         "ja-JP": "Azure AIサービスの専門認定。認知サービス、検索、Botフレームワーク等を深く理解。"
+                    }
+                },
+                {
+                    "id": "ai-103",
+                    "label": {
+                        "zh-CN": "Azure AI Apps and Agents Developer Associate (AI-103)",
+                        "en-US": "Azure AI Apps and Agents Developer Associate (AI-103)",
+                        "ja-JP": "Azure AI Apps and Agents Developer Associate (AI-103)"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#0b1220'/><path d='M18 18h28v28H18z' fill='#2563eb'/><path d='M24 24h16v16H24z' fill='#7dd3fc'/></svg>",
+                    "kind": "cert",
+                    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/",
+                    "obtainedDate": "2026-7",
+                    "status": "active",
+                    "comment": {
+                        "zh-CN": "聚焦 Azure AI、Microsoft Foundry、生成式 AI 与 agentic solutions 的开发者认证。",
+                        "en-US": "A developer certification focused on Azure AI, Microsoft Foundry, generative AI, and agentic solutions.",
+                        "ja-JP": "Azure AI、Microsoft Foundry、生成AI、agentic solutions に重点を置く開発者向け認定です。"
                     }
                 }
             ]
