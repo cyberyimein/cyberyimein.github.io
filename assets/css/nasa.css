@@ -415,6 +415,28 @@ header {
     background: rgba(255, 60, 0, .04);
 }
 
+.project-card.project-status-aborted {
+    border-color: rgba(183, 28, 28, .3);
+    background-image: repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 12px,
+        rgba(183, 28, 28, .025) 12px,
+        rgba(183, 28, 28, .025) 24px
+    );
+}
+
+.project-card.project-status-aborted::before {
+    opacity: 1;
+    background: repeating-linear-gradient(90deg, #B71C1C 0 10px, transparent 10px 16px);
+}
+
+.project-card.project-status-aborted .card-nameplate .card-status {
+    color: #B71C1C;
+    border-color: rgba(183, 28, 28, .4);
+    background: rgba(183, 28, 28, .05);
+}
+
 .project-card .card-body {
     padding: 16px 20px 20px;
     flex: 1;
@@ -1623,6 +1645,37 @@ header {
     font-size: 13px;
 }
 
+/* Suspended project — retained in the archive, but no longer progressing. */
+.file-aborted {
+    border-color: rgba(183, 28, 28, .32);
+    background-image: repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 12px,
+        rgba(183, 28, 28, .035) 12px,
+        rgba(183, 28, 28, .035) 24px
+    );
+}
+
+.file-aborted .file-stripe {
+    border-bottom-color: rgba(183, 28, 28, .25);
+}
+
+.file-aborted .stripe-type,
+.file-aborted-stamp {
+    color: #B71C1C;
+}
+
+.file-aborted-stamp {
+    align-items: flex-start;
+    line-height: 1.4;
+}
+
+.file-aborted.file-stacked:hover {
+    border-color: rgba(183, 28, 28, .55);
+    box-shadow: 0 16px 48px -8px rgba(183, 28, 28, .16);
+}
+
 /* Footer */
 .file-footer {
     display: flex;
@@ -1755,6 +1808,11 @@ header {
 [data-theme="dark"] .file-classified {
     background: rgba(60, 40, 40, .6);
     border-color: rgba(183, 28, 28, .3);
+}
+
+[data-theme="dark"] .file-aborted {
+    background-color: rgba(60, 40, 40, .45);
+    border-color: rgba(220, 80, 80, .35);
 }
 
 [data-theme="dark"] .file-classified:hover {

@@ -47,8 +47,18 @@
         return String(item && item.status || '').toLowerCase() === 'done';
     }
 
+    function isAborted(item) {
+        return String(item && item.status || '').toLowerCase() === 'aborted';
+    }
+
     function getStatusLabel(item) {
-        return isDone(item) ? 'COMPLETED' : 'IN PROGRESS';
+        if (isDone(item)) return 'COMPLETED';
+        if (isAborted(item)) {
+            if (state.lang.startsWith('zh')) return '已中止 · 等待重启';
+            if (state.lang.startsWith('ja')) return '中止 · 再始動待ち';
+            return 'SUSPENDED · AWAITING RESTART';
+        }
+        return 'IN PROGRESS';
     }
 
     function getRoadmapItems() {
@@ -64,7 +74,9 @@
     function createFileCard(item) {
         const card = document.createElement('div');
         const done = isDone(item);
+        const aborted = isAborted(item);
         card.className = 'file-card file-stacked';
+        if (aborted) card.classList.add('file-aborted');
         if (item.featured) card.classList.add('file-featured');
 
         const type = item.type || 'project';
@@ -115,7 +127,7 @@
         face.appendChild(desc);
 
         // Mid section: progress or completion
-        if (!done && item.percent != null && !isClassified) {
+        if (!done && !aborted && item.percent != null && !isClassified) {
             const progressWrap = document.createElement('div');
             progressWrap.className = 'file-progress-wrap';
 
@@ -139,6 +151,13 @@
             const stamp = document.createElement('div');
             stamp.className = 'file-stamp-block';
             stamp.innerHTML = '<span class="stamp-check">✓</span> COMPLETED';
+            face.appendChild(stamp);
+        }
+
+        if (aborted && !isClassified) {
+            const stamp = document.createElement('div');
+            stamp.className = 'file-stamp-block file-aborted-stamp';
+            stamp.innerHTML = '<span class="stamp-check">Ⅱ</span> ' + escapeHtml(getStatusLabel(item));
             face.appendChild(stamp);
         }
 
@@ -248,6 +267,7 @@
                     <p>${escapeHtml(desc)}</p>
                     <p><strong>VERSION:</strong> ${escapeHtml(item.version || '—')}</p>
                     <p><strong>STATUS:</strong> ${escapeHtml(getStatusLabel(item))}</p>
+                    ${item.statusReason ? `<p><strong>STATUS NOTE:</strong> ${escapeHtml(resolveLang(item.statusReason))}</p>` : ''}
                     ${item.percent != null ? `<p><strong>PROGRESS:</strong> ${item.percent}%</p>` : ''}
                     ${item.github ? `<p><strong>REPOSITORY:</strong> <a href="${escapeHtml(item.github)}" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:none;font-weight:700;">${escapeHtml(item.github)}</a></p>` : ''}
                 `;

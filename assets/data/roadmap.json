@@ -158,8 +158,37 @@
                 "ja-JP": "会話練習プロジェクトであり、STT・TTT・TTS の三段構成とマルチエージェントの進行メカニズムを検証する。"
             },
             "percent": 35,
-            "status": "progress",
+            "status": "aborted",
+            "statusReason": {
+                "zh-CN": "Live 双工模型是更好的实现方式；项目中止，等待重启。",
+                "en-US": "A live duplex model is the better approach; suspended pending restart.",
+                "ja-JP": "Live 双方向モデルの方が適しているため中止し、再始動を待っています。"
+            },
             "github": "https://github.com/cyberyimein/SimsCommu"
+        },
+        {
+            "id": "RM-P04",
+            "type": "project",
+            "version": "v0.1",
+            "content": {
+                "cn": "contents/projects/cn/anomalo.md",
+                "en": "contents/projects/en/anomalo.md",
+                "jp": "contents/projects/jp/anomalo.md"
+            },
+            "title": {
+                "zh-CN": "ANOMALO",
+                "en-US": "ANOMALO",
+                "ja-JP": "ANOMALO"
+            },
+            "desc": {
+                "zh-CN": "整合 Agent Harness、StackChan 实体交互与个人股票研究的事件驱动 AI 工程实验室。",
+                "en-US": "An event-driven AI engineering lab combining an agent harness, StackChan embodiment, and personal stock research.",
+                "ja-JP": "Agent Harness、StackChan の身体性、個人株式リサーチを統合するイベント駆動型 AI エンジニアリングラボ。"
+            },
+            "percent": 60,
+            "status": "progress",
+            "github": "https://github.com/cyberyimein/Anomalo",
+            "featured": true
         }
     ]
 }

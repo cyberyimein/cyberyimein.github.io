@@ -34,6 +34,20 @@
         return values.find(Boolean) || '';
     }
 
+    const STATUS_LABELS = {
+        active: { 'zh-CN': '运行中', 'en-US': 'OPERATIONAL', 'ja-JP': '稼働中' },
+        aborted: { 'zh-CN': '已中止', 'en-US': 'SUSPENDED', 'ja-JP': '中止' }
+    };
+
+    function getStatus(item) {
+        return String(item && item.status || 'active').toLowerCase();
+    }
+
+    function getStatusLabel(item) {
+        const status = getStatus(item);
+        return pick(STATUS_LABELS[status]) || status.toUpperCase();
+    }
+
     function getContentChain() {
         const primary = getFallbackChain()[0] || 'en-US';
         if (primary.startsWith('zh')) return ['cn', 'en', 'jp'];
@@ -223,7 +237,8 @@
             <p>${escapeHtml(desc)}</p>
             ${tech ? `<p><strong>TECHNICAL SPECIFICATIONS:</strong> ${escapeHtml(tech)}</p>` : ''}
             ${tags ? `<p><strong>CLASSIFICATION TAGS:</strong> ${escapeHtml(tags)}</p>` : ''}
-            <p><strong>STATUS:</strong> ${escapeHtml(item.status || 'OPERATIONAL').toUpperCase()}</p>
+            <p><strong>STATUS:</strong> ${escapeHtml(getStatusLabel(item))}</p>
+            ${item.statusReason ? `<p><strong>STATUS NOTE:</strong> ${escapeHtml(pick(item.statusReason))}</p>` : ''}
             ${item.createdAt ? `<p><strong>DATE OF COMMISSION:</strong> ${escapeHtml(item.createdAt)}</p>` : ''}
         `;
         body.innerHTML = fallbackHtml;
@@ -257,6 +272,8 @@
     function createCard(item) {
         const card = document.createElement('div');
         card.className = 'project-card';
+        const itemStatus = getStatus(item);
+        card.classList.add('project-status-' + itemStatus);
         if (item.featured) card.classList.add('project-card-featured');
         card.tabIndex = 0;
 
@@ -276,7 +293,7 @@
 
         const status = document.createElement('span');
         status.className = 'card-status';
-        status.textContent = 'STATUS: OPERATIONAL';
+        status.textContent = 'STATUS: ' + getStatusLabel(item);
         nameplate.appendChild(status);
 
         card.appendChild(nameplate);

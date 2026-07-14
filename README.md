@@ -1,7 +1,7 @@
 # CyberYimein
 
 > Web version / 网页版 / ウェブ版：<br>
-> [https://cyberyimein.github.io/cyberyimein/](https://cyberyimein.github.io/cyberyimein/)
+> [https://www.yimeinforge.com](https://www.yimeinforge.com)
 
 Create · Explore · AI
 
@@ -15,7 +15,8 @@ This repository contains the source for my personal homepage. It presents a publ
 | --- | --- | --- | --- |
 | Kabumemo | An experiment in vibe coding: a personal stock trade logging site built entirely by guiding GPT, with no hand-written code, to explore how custom system needs can be met at minimal cost. | Vibe Coding / TypeScript / Python | [Repo](https://github.com/cyberyimein/kabumemo) |
 | TeaForge | A SKILL and CLI toolkit for Agent AI. TeaForge enables agents to generate descriptive documentation together with test code, making human verification and management easier. | Agent AI / SKILL / CLI | [Repo](https://github.com/cyberyimein/teaforge) |
-| SimsCommu | A multi-agent speaking practice web app built to validate a three-stage STT, TTT, and TTS architecture, with voice-first interaction and role-based conversation flow. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
+| SimsCommu | **Suspended · Awaiting restart.** A multi-agent speaking practice experiment that validated a three-stage STT, TTT, and TTS architecture. Development was stopped because a live duplex model is a better foundation for real-time voice interaction; a future restart will use that approach. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
+| Anomalo | An event-driven personal AI engineering lab combining an agent harness, StackChan robot control, voice interaction, and auditable stock research in one runtime. | Agent Harness / Embodied AI / Stock Research | [Repo](https://github.com/cyberyimein/Anomalo) |
 
 ## Roadmap
 
@@ -23,6 +24,11 @@ This repository contains the source for my personal homepage. It presents a publ
 
 - KABUMEMO (70%): A personal stock trading record website built entirely with vibe coding, while also using the latest agent techniques to validate the evolution of Vibe Coding.
 - TEAFORGE (30%): A SKILL and CLI toolkit for Agent AI, aimed at generating test code and explanatory documentation together to reduce the cost of human-agent collaboration.
+- ANOMALO (60%): An event-driven FastAPI and Vue agent host for testing tools, skills, MCP, memory, voice interaction, StackChan embodiment, and AI-assisted personal stock research.
+
+### Suspended
+
+- SIMSCOMMU (35%): Suspended pending restart. A live duplex model is a better approach than extending the existing serial STT -> TTT -> TTS pipeline; any future version will restart from the duplex architecture.
 
 ### Completed
 
