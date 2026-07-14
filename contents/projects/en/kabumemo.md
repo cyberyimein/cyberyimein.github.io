@@ -1,25 +1,29 @@
-# Kabumemo: A 100% Vibecoding AI Development Experiment
+# Kabumemo: From a Weekend CRUD App to a Long-Running AI Development Experiment
 
-Kabumemo is a personal stock trading record website built purely by AI. In this project, I tried to challenge "zero handwritten code" and completed the development entirely by guiding GitHub Copilot Agent through instructions. This is not only a functional personal project, but also a benchmark test used to verify the capability gap between Copilot Agent and Claude Code (CC).
+Kabumemo began as a personal trading journal to replace Notion. I was tired of bending my data into the shape of a general-purpose tool, so I handed the steering wheel to GPT-5 Codex and used vibe coding to build a system around my own workflow.
 
-## Background
+The first version really was a weekend CRUD project. Since then, whenever agent capabilities have taken a meaningful step forward, I have asked a newer agent to refactor it. Kabumemo is now both a tool I use and a continuous experiment in whether AI agents can maintain, extend, and deploy real software over time.
 
-This project was initiated in the early days after Claude Code was released. At that time, GitHub Copilot Agent was still in testing, and the industry still had doubts about its ability to "build fully automatically." Through this project, I wanted to verify a core hypothesis: for completely personalized system requirements, do current AI Agents already have the ability to independently complete the whole process from architectural design to full-stack implementation? At the same time, this can also serve as a long-term sample for me to observe the iterative evolution of Copilot Agent.
+## After the Refactor
 
-## Implementation
+Kabumemo is no longer a static page. It is a complete Vue 3 and TypeScript frontend backed by FastAPI. The interface is organized around trades, positions, funds, and tax. It records buys and sells, calculates holdings and realized profit by currency and funding group, and manages pending tax settlements.
 
-In terms of technology choices, although the project functions are not complex, I deliberately introduced strong typing constraints to verify AI performance in a strict development environment:
+The funds workflow supports multiple JPY and USD groups, effective-dated capital additions, yearly performance comparisons, and exchange-rate conversion. Selected trades can be reconciled as a round trip to calculate gross and net profit, tax impact, and annualized return. Position history adds one year of prices with buy and sell markers on the chart.
 
-- Full-stack type guards: The frontend uses TypeScript instead of JavaScript, and the backend Python forcibly enables Pydantic. Through the type system and data validation models, I can control the quality of AI-generated code more precisely and reduce logic hallucinations.
+JSON remains the inspectable and recoverable source of truth, while every write is mirrored into SQLite. Import, parity-check, and broker-CSV rebuild scripts give this personal application an auditable recovery path.
 
-- Agent benchmark testing: Whenever Copilot Agent releases a major update, I refactor the project once. By comparing the code generation efficiency and bug rate of different versions, I quantify the improvement in AI capability.
+## The AI Development Experiment
 
-- Zero handwritten intervention: Throughout the whole process, I am only responsible for proposing requirements and reviewing the logic. All code changes, environment configuration, and debugging are completed by the Agent.
+The project still follows one rule: I define requirements and review the result; the agent writes and changes the code. TypeScript, Pydantic models, pytest, and Vue type checking form the quality boundary. I am now less interested in one-shot code generation than in whether an agent can understand an existing domain model and carry out cross-stack refactors without damaging real data.
 
-## Future Work
+## Deployment
 
-At present, I am building my own personal Local Agent, and Kabumemo will be integrated into it as an important module:
+The production build compiles the Vue frontend and lets FastAPI serve both the application and its API. It now runs in Apple Container on my Mac mini. Persistent data is mounted from the host, so containers and images can be replaced without taking the journal with them.
 
-* CLI mode expansion: Add a command-line tool to the system so that the Agent can use it directly.
+## Technical Specifications
 
-* Automated entry: Hand over the entry of trading records to the local Agent, realizing a fully automated flow from data fetching to storage.
+Vue 3 / TypeScript / Vite / FastAPI / Pydantic / JSON / SQLite / ECharts / pytest / Apple Container
+
+## Next
+
+Planned work includes bulk import and export, better filtering, backup and restore tools, and broader multi-currency tests. The longer-term direction is to let a local agent read Kabumemo under explicit authorization and auditability, rather than handing real trading data to an opaque automation flow.

@@ -63,11 +63,23 @@
 
     function getRoadmapItems() {
         if (!state.data) return [];
-        if (Array.isArray(state.data.items)) return state.data.items;
+        let items;
+        if (Array.isArray(state.data.items)) {
+            items = state.data.items;
+        } else {
+            const currentItems = Array.isArray(state.data.current) ? state.data.current : [];
+            const completedItems = Array.isArray(state.data.completed) ? state.data.completed : [];
+            items = [...currentItems, ...completedItems];
+        }
 
-        const currentItems = Array.isArray(state.data.current) ? state.data.current : [];
-        const completedItems = Array.isArray(state.data.completed) ? state.data.completed : [];
-        return [...currentItems, ...completedItems];
+        return items
+            .map((item, index) => ({ item, index }))
+            .sort((a, b) => {
+                const aAborted = isAborted(a.item) ? 0 : 1;
+                const bAborted = isAborted(b.item) ? 0 : 1;
+                return aAborted - bAborted || a.index - b.index;
+            })
+            .map(entry => entry.item);
     }
 
     /* ========== A4 portrait file card ========== */

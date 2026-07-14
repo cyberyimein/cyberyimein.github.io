@@ -48,6 +48,17 @@
         return pick(STATUS_LABELS[status]) || status.toUpperCase();
     }
 
+    function orderForStack(items) {
+        return items
+            .map((item, index) => ({ item, index }))
+            .sort((a, b) => {
+                const aAborted = getStatus(a.item) === 'aborted' ? 0 : 1;
+                const bAborted = getStatus(b.item) === 'aborted' ? 0 : 1;
+                return aAborted - bAborted || a.index - b.index;
+            })
+            .map(entry => entry.item);
+    }
+
     function getContentChain() {
         const primary = getFallbackChain()[0] || 'en-US';
         if (primary.startsWith('zh')) return ['cn', 'en', 'jp'];
@@ -348,7 +359,7 @@
             return;
         }
         const frag = document.createDocumentFragment();
-        data.forEach((item) => {
+        orderForStack(data).forEach((item) => {
             frag.appendChild(createCard(item));
         });
         grid.appendChild(frag);

@@ -13,9 +13,9 @@
 			"ja-JP": "Kabumemo"
 		},
 		"description": {
-			"zh-CN": "一个 vibecoding 的尝试：完全未手写代码，由指导 GPT-5/Codex 生成的个人股票交易记录网站，目标是在最低成本下满足个性化系统需求。",
-			"en-US": "An experiment in vibecoding: a personal stock trade logging site built entirely by guiding GPT (no hand-written code), exploring how to meet custom system needs at minimal cost.",
-			"ja-JP": "Vibecoding の試み：GPT を指示してコードを書かせ、手書きなしで構築した個人用株式取引記録サイト。最小コストでカスタム需要を満たす実験。"
+			"zh-CN": "一个由 AI Agent 持续重构的个人股票交易日志，现已支持交易、持仓、资金、税务、收益分析及 JSON/SQLite 双存储。",
+			"en-US": "An AI-agent-built personal trading journal covering trades, positions, funds, tax, yield analytics, and mirrored JSON/SQLite storage.",
+			"ja-JP": "AI Agent が継続的にリファクタリングする個人株式取引ジャーナル。取引、保有、資金、税務、利回り分析、JSON/SQLite 二重保存に対応。"
 		},
 		"repo": "https://github.com/cyberyimein/kabumemo",
 		"url": "https://github.com/cyberyimein/kabumemo",
@@ -36,7 +36,7 @@
 				"ja-JP": "Python"
 			}
 		],
-		"tech": ["GPT", "Static Site", "JSON"],
+		"tech": ["Vue 3", "TypeScript", "FastAPI", "SQLite"],
 		"featured": false,
 		"status": "active",
 		"createdAt": "2025-09-29"

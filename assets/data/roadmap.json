@@ -50,9 +50,9 @@
             "type": "experiment",
             "version": "v1.0",
             "content": {
-                "cn": "contents/roadmap/cn/02_fruitSpy.md",
-                "en": "contents/roadmap/en/02_fruitSpy.md",
-                "jp": "contents/roadmap/jp/02_fruitSpy.md"
+                "cn": "contents/roadmap/cn/02_fruitspy.md",
+                "en": "contents/roadmap/en/02_fruitspy.md",
+                "jp": "contents/roadmap/jp/02_fruitspy.md"
             },
             "title": {
                 "zh-CN": "水果间谍",
@@ -60,9 +60,9 @@
                 "ja-JP": "フルーツスパイ"
             },
             "desc": {
-                "zh-CN": "个人macmini服务器的状态监控,容器管理个人网站.",
-                "en-US": "Monitoring the status of a personal Mac Mini server and managing containers for a personal website.",
-                "ja-JP": "個人のMac Miniサーバーの状態を監視し、個人のウェブサイトのコンテナを管理するウェブアプリケーション。"
+                "zh-CN": "原生运行于 Mac mini 的主机与 Apple Container 控制台，同时为 Anomalo 提供隔离的 Python Tool 执行中继。",
+                "en-US": "A native Mac mini and Apple Container dashboard that also relays isolated Python Tool execution for Anomalo.",
+                "ja-JP": "Mac mini と Apple Container を監視・管理し、Anomalo に隔離 Python Tool 実行を中継するネイティブダッシュボード。"
             },
             "percent": 100,
             "status": "done",
@@ -105,9 +105,9 @@
                 "ja-JP": "KABUMEMO"
             },
             "desc": {
-                "zh-CN": "完全用vibe coding构建的个人股票交易记录网站.同步使用最新的Agent技术来验证Vibe Coding的技术发展.",
-                "en-US": "A personal stock trading record website built entirely with vibe coding, simultaneously using the latest Agent technology to validate the development of Vibe Coding.",
-                "ja-JP": "完全にvibe codingで構築された個人株取引記録サイト。最新のエージェント技術を使用してVibe Codingの技術開発を検証する。"
+                "zh-CN": "由 AI Agent 持续重构的个人股票交易日志，覆盖交易、持仓、资金、税务、收益分析与双存储。",
+                "en-US": "An AI-agent-built trading journal covering trades, positions, funds, tax, yield analytics, and mirrored storage.",
+                "ja-JP": "AI Agent が継続的に再構築する、取引・保有・資金・税務・利回り分析・二重保存対応の株式ジャーナル。"
             },
             "percent": 70,
             "status": "progress",
