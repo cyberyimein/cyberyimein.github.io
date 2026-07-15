@@ -14,7 +14,7 @@ This repository contains the source for my personal homepage. It presents a publ
 | Project | Summary | Tags | Links |
 | --- | --- | --- | --- |
 | Kabumemo | An AI-agent-built personal trading journal with trades, positions, funding groups, tax settlement, yield analytics, and mirrored JSON/SQLite storage, deployed through Apple Container. | Vibe Coding / Vue 3 / FastAPI / SQLite | [Repo](https://github.com/cyberyimein/kabumemo) |
-| TeaForge | A SKILL and CLI toolkit for Agent AI. TeaForge enables agents to generate descriptive documentation together with test code, making human verification and management easier. | Agent AI / SKILL / CLI | [Repo](https://github.com/cyberyimein/teaforge) |
+| TeaForge | **Completed at v0.2.0.** An agent-native CLI that converts pytest, Jest, Angular, and Playwright evidence into auditable PCL, C0/C1 coverage reports, Mermaid diagrams, and PDF. | Testing / PCL / Coverage / Agent Skill | [Repo](https://github.com/cyberyimein/TeaForge) |
 | SimsCommu | **Suspended · Awaiting restart.** A multi-agent speaking practice experiment that validated a three-stage STT, TTT, and TTS architecture. Development was stopped because a live duplex model is a better foundation for real-time voice interaction; a future restart will use that approach. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
 | Anomalo | An event-driven personal AI engineering lab combining an agent harness, StackChan robot control, voice interaction, and auditable stock research in one runtime. | Agent Harness / Embodied AI / Stock Research | [Repo](https://github.com/cyberyimein/Anomalo) |
 
@@ -23,7 +23,6 @@ This repository contains the source for my personal homepage. It presents a publ
 ### Current Focus
 
 - KABUMEMO (70%): An AI-agent-built trading journal now covering trades, positions, funds, tax, yield analytics, dual storage, and Apple Container deployment.
-- TEAFORGE (30%): A SKILL and CLI toolkit for Agent AI, aimed at generating test code and explanatory documentation together to reduce the cost of human-agent collaboration.
 - ANOMALO (60%): An event-driven FastAPI and Vue agent host for testing tools, skills, MCP, memory, voice interaction, StackChan embodiment, and AI-assisted personal stock research.
 
 ### Suspended
@@ -36,6 +35,7 @@ This repository contains the source for my personal homepage. It presents a publ
 - Agent Applications on Azure AI Foundry: Implemented multi-agent collaboration, MCP calls, and RAG retrieval in practice.
 - Fruit Spy: A native Mac mini and Apple Container dashboard with host metrics, package inspection, logs and controls, plus an isolated Python Tool relay for Anomalo.
 - Hanami CLI: A cherry blossom front crawler with CLI and SKILL capabilities, allowing local agents to access seasonal data directly.
+- TeaForge: A completed v0.2.0 CLI and Agent Skill for producing auditable test specifications, coverage evidence, diagrams, and PDFs across Python and JavaScript test frameworks.
 
 ## Skill Stack
 

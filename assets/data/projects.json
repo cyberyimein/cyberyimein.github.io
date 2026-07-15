@@ -55,9 +55,9 @@
 			"ja-JP": "TeaForge"
 		},
 		"description": {
-			"zh-CN": "一个为Agent AI提供的SKILL与CLI工具程序.有了TeaForge,Agent AI在生产测试代码同时也生产相应的描述性文档, 便于人类确认和向上管理.",
-			"en-US": "A SKILL and CLI tool program for Agent AI. With TeaForge, Agent AI generates descriptive documentation along with test code, facilitating human verification and upward management.",
-			"ja-JP": "Agent AI のための SKILL と CLI ツールプログラム。TeaForge を使用すると、Agent AI はテストコードとともに説明的なドキュメントを生成し、人間の確認と上位管理を容易にします。"
+			"zh-CN": "将 pytest、Jest、Angular 与 Playwright 测试证据转换为可审计 PCL、C0/C1 覆盖率、Mermaid 图和 PDF 的 Agent 原生 CLI。",
+			"en-US": "An agent-native CLI that turns pytest, Jest, Angular, and Playwright evidence into auditable PCL, C0/C1 coverage, Mermaid diagrams, and PDF.",
+			"ja-JP": "pytest、Jest、Angular、Playwright の証拠を、監査可能な PCL、C0/C1 カバレッジ、Mermaid 図、PDF に変換する Agent ネイティブ CLI。"
 		},
 		"repo": "https://github.com/cyberyimein/teaforge",
 		"url": "https://github.com/cyberyimein/teaforge",
@@ -78,9 +78,9 @@
 				"ja-JP": "CLI"
 			}
 		],
-		"tech": ["AI", "SKILL", "CLI"],
+		"tech": ["Python", "Typer", "Tree-sitter", "Jinja2"],
 		"featured": false,
-		"status": "active",
+		"status": "completed",
 		"createdAt": "2026-03-03"
 	},
 	{

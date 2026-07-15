@@ -1,34 +1,35 @@
-# TeaForge: Building a Trusted Testing and Documentation Loop for the Agent AI Era
+# TeaForge: Forging Automated Tests into Auditable Engineering Evidence
 
-Today, as Agent AI becomes deeply involved in development, engineers' productivity has been released like never before. However, what comes with it is an invisible challenge: the loss of control. When AI instantly generates a large amount of code, if engineers lack intuitive means to verify the logic, they will fall into the dilemma of "not daring to change it and finding it hard to confirm."
+When AI agents can generate large amounts of code and tests in minutes, the human bottleneck moves from writing to verification. A row of green tests does not explain what was tested, what values were expected and observed, which branches ran, whether failures were hidden, or whether another engineer can audit the result.
 
-TeaForge emerged for this reason. It is not just a tool, but also a set of SKILLs and a CLI for Agent AI. Its core mission is to generate human-readable descriptive documents at the same time AI produces test code, ensuring that every decision made by AI is "traceable with evidence."
+TeaForge turns executable tests into reviewable engineering evidence. It is an installable Python CLI with an Agent Skill, giving engineers and coding agents the same commands and boundaries for producing Japanese-style PCL documents, coverage reports, flowcharts, sequence diagrams, and PDFs.
 
-## Background
+## From Demo to v0.2.0
 
-As code generation is gradually led by AI, the role of engineers is changing from "writers" to "reviewers." Due to the lack of intuitive documentation, it is difficult for humans to quickly confirm the logical closed loop of AI-generated code. We need a tool that requires AI to provide "human-explainable" logical evidence while completing coding tasks, thereby reducing communication cost and improving project controllability.
+TeaForge began as an experiment that generated test checklists from pytest. The completed v0.2.0 supports pytest, Jest and TypeScript, Angular/Jest, and Playwright, mapping each test to a proven Test Subject. For JavaScript and TypeScript, packaged Tree-sitter grammars produce structural evidence instead of relying on fragile regular expressions.
 
-## Implementation
+Jest supports static, runtime, and automatic evidence modes. Runtime mode invokes the target project's already-installed, locked Jest and captures matcher, expected value, observed actual value, pass/fail state, `.not`, Promise, and thrown-error behavior. TeaForge never uses `npx` to download a runner and does not disguise test failures as tool success; an evidence-bearing failed test run has its own exit code.
 
-TeaForge solves the trust problem of AI-generated code through the following three dimensions:
+## PCL and Coverage
 
-##### 1. Automated test checklist that complies with industry standards
+PCL documents are grouped by test subject and emitted as adjacent, versioned JSON and HTML artifacts. Large matrices split into fixed 25-column sheets without changing the stable subject identity or schema version.
 
-TeaForge can automatically extract test logic based on pytest and jest, and generate test checklists (PCL) that comply with Japanese software engineering standards. This structured checklist allows developers to see at a glance whether the test cases written by AI cover the testing standards, making upward management and compliance confirmation easy and efficient.
+Coverage generation reads Python coverage or Jest/Istanbul data, produces file-level C0/C1 metrics, and can enforce minimum thresholds. Reports may include typed Mermaid flowchart and sequence-diagram pages and can be exported to PDF with optional WeasyPrint support. A metric with no measurable statements or branches is reported as N/A instead of being turned into a flattering percentage.
 
-##### 2. Logic visualization: Mermaid flowcharts
+## Boundaries Designed for Agents
 
-Just reading lines of code is not enough. TeaForge guides AI to generate corresponding flowcharts with Mermaid syntax. Developers can quickly validate the logic chain through a graphical interface and combine it with test coverage reports to ensure that every branch path has been verified.
+`teaforge doctor` checks target projects, runners, renderers, and packaged resources in human-readable or JSON form. External processes use exact paths, one workflow deadline, bounded diagnostics, and process-tree cleanup after a timeout. Artifacts use same-directory temporary files and atomic replacement so interrupted writes do not destroy the last valid report.
 
-##### 3. Agent-Native CLI design
+Runtime evidence redacts common credential keys and patterns and enforces value, record, and file-size limits. TeaForge prefers an explicit failure when it cannot prove source identity, diagram type, or an environmental capability over producing a plausible but unauditable document.
 
-TeaForge's command-line tool is optimized specifically for Agent interaction: its natural-language receipts in --help output and after execution failures allow Agents to understand the cause of errors more accurately and perform "self-thinking" and correction.
+## Cross-Platform Quality Gates
 
-## Future Work
+CI covers Linux and Windows, Python 3.11 through 3.14, and Node 20 and 22. It enforces Ruff, an 80% branch-coverage baseline, wheel and sdist builds, real pytest coverage from an isolated install, Jest smoke tests, Mermaid validation, and PDF checks. Architecture decisions live in ADRs, while the shared domain language is maintained in CONTEXT.md.
 
-At present, TeaForge has preliminarily solved the documentation problem at the unit testing stage. In the next stage, we will further explore:
+## Technical Specifications
 
-- Report level improvement: Generate higher-level management and decision-making reports for the project as a whole.
+Python 3.11+ / Typer / pytest / Jest / Angular / Playwright / Tree-sitter / coverage.py / Istanbul / Mermaid / Jinja2 / WeasyPrint
 
-- Scenario boundary expansion: Extend this model of "production is proof" from unit testing to more complex integration testing scenarios.
+## Project Status: Completed
 
+TeaForge v0.2.0 completes its original objective: reliably converting multi-framework test evidence into auditable, versioned engineering artifacts that humans and agents can use together. Organization-level reporting and broader integration-test strategies remain possible future directions, but the current product boundary is complete.

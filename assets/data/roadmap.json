@@ -117,7 +117,7 @@
         {
             "id": "RM-P02",
             "type": "project",
-            "version": "v0.3",
+            "version": "v0.2",
             "content": {
                 "cn": "contents/projects/cn/teaforge.md",
                 "en": "contents/projects/en/teaforge.md",
@@ -129,12 +129,12 @@
                 "ja-JP": "TEAFORGE"
             },
             "desc": {
-                "zh-CN": "完全用vibe coding构建的个人股票交易记录网站.同步使用最新的Agent技术来验证Vibe Coding的技术发展.",
-                "en-US": "A personal stock trading record website built entirely with vibe coding, simultaneously using the latest Agent technology to validate the development of Vibe Coding.",
-                "ja-JP": "完全にvibe codingで構築された個人株取引記録サイト。最新のエージェント技術を使用してVibe Codingの技術開発を検証する。"
+                "zh-CN": "把多框架测试证据转换为可审计 PCL、覆盖率报告、Mermaid 图与 PDF 的 Agent 原生 CLI。",
+                "en-US": "An agent-native CLI that converts multi-framework test evidence into auditable PCL, coverage reports, Mermaid diagrams, and PDF.",
+                "ja-JP": "複数フレームワークのテスト証拠を、監査可能な PCL、カバレッジレポート、Mermaid 図、PDF に変換する Agent ネイティブ CLI。"
             },
-            "percent": 30,
-            "status": "progress",
+            "percent": 100,
+            "status": "done",
             "github": "https://github.com/cyberyimein/teaforge",
             "featured": true
         },

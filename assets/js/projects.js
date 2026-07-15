@@ -36,6 +36,7 @@
 
     const STATUS_LABELS = {
         active: { 'zh-CN': '运行中', 'en-US': 'OPERATIONAL', 'ja-JP': '稼働中' },
+        completed: { 'zh-CN': '已完成', 'en-US': 'COMPLETED', 'ja-JP': '完了' },
         aborted: { 'zh-CN': '已中止', 'en-US': 'SUSPENDED', 'ja-JP': '中止' }
     };
 

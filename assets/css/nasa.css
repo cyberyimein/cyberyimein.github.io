@@ -437,6 +437,21 @@ header {
     background: rgba(183, 28, 28, .05);
 }
 
+.project-card.project-status-completed {
+    border-color: rgba(0, 102, 179, .28);
+}
+
+.project-card.project-status-completed::before {
+    opacity: 1;
+    background: var(--blue);
+}
+
+.project-card.project-status-completed .card-nameplate .card-status {
+    color: var(--blue);
+    border-color: rgba(0, 102, 179, .35);
+    background: rgba(0, 102, 179, .05);
+}
+
 .project-card .card-body {
     padding: 16px 20px 20px;
     flex: 1;
