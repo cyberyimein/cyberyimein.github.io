@@ -17,6 +17,7 @@ This repository contains the source for my personal homepage. It presents a publ
 | TeaForge | **Completed at v0.2.0.** An agent-native CLI that converts pytest, Jest, Angular, and Playwright evidence into auditable PCL, C0/C1 coverage reports, Mermaid diagrams, and PDF. | Testing / PCL / Coverage / Agent Skill | [Repo](https://github.com/cyberyimein/TeaForge) |
 | SimsCommu | **Suspended · Awaiting restart.** A multi-agent speaking practice experiment that validated a three-stage STT, TTT, and TTS architecture. Development was stopped because a live duplex model is a better foundation for real-time voice interaction; a future restart will use that approach. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
 | Anomalo | An event-driven personal AI engineering lab combining an agent harness, StackChan robot control, voice interaction, and auditable stock research in one runtime. | Agent Harness / Embodied AI / Stock Research | [Repo](https://github.com/cyberyimein/Anomalo) |
+| BuddyNeko | A community M5Stack CoreS3 StackChan buddy design with cat sprites, touch approval, camera sensing, audio transport, and host-agent control. | Agent Embodiment / StackChan / Embedded AI | [Repo](https://github.com/cyberyimein/buddy-neko) |
 
 ## Roadmap
 
@@ -24,6 +25,7 @@ This repository contains the source for my personal homepage. It presents a publ
 
 - KABUMEMO (70%): An AI-agent-built trading journal now covering trades, positions, funds, tax, yield analytics, dual storage, and Apple Container deployment.
 - ANOMALO (60%): An event-driven FastAPI and Vue agent host for testing tools, skills, MCP, memory, voice interaction, StackChan embodiment, and AI-assisted personal stock research.
+- BUDDYNEKO (v0.7.0): A CoreS3 StackChan firmware experiment that gives host agents a cat-shaped physical interface for state, touch, audio, sensing, and motion.
 
 ### Suspended
 

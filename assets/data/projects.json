@@ -170,5 +170,46 @@
 		"featured": true,
 		"status": "active",
 		"createdAt": "2026-07-15"
+	},
+	{
+		"id": "buddy-neko",
+		"content": {
+			"cn": "contents/projects/cn/buddy-neko.md",
+			"en": "contents/projects/en/buddy-neko.md",
+			"jp": "contents/projects/jp/buddy-neko.md"
+		},
+		"name": {
+			"zh-CN": "BuddyNeko",
+			"en-US": "BuddyNeko",
+			"ja-JP": "BuddyNeko"
+		},
+		"description": {
+			"zh-CN": "面向 M5Stack CoreS3 StackChan 的社区 Buddy 设计，把 ESP32 设备变成可显示 Agent 状态、接收触摸并执行动作的猫咪形终端。",
+			"en-US": "A community Buddy design for M5Stack CoreS3 StackChan, turning an ESP32 device into a cat-shaped terminal for agent state, touch, audio, sensing, and motion.",
+			"ja-JP": "M5Stack CoreS3 StackChan 向けのコミュニティ Buddy デザイン。ESP32 デバイスを、Agent の状態表示、タッチ、音声、センシング、動作に対応する猫型端末へ変える。"
+		},
+		"repo": "https://github.com/cyberyimein/buddy-neko",
+		"url": "https://github.com/cyberyimein/buddy-neko",
+		"tags": [
+			{
+				"zh-CN": "Agent Embodiment",
+				"en-US": "Agent Embodiment",
+				"ja-JP": "Agent Embodiment"
+			},
+			{
+				"zh-CN": "StackChan",
+				"en-US": "StackChan",
+				"ja-JP": "StackChan"
+			},
+			{
+				"zh-CN": "Embedded AI",
+				"en-US": "Embedded AI",
+				"ja-JP": "Embedded AI"
+			}
+		],
+		"tech": ["C++", "Arduino", "ESP32-S3", "Python"],
+		"featured": true,
+		"status": "active",
+		"createdAt": "2026-07-20"
 	}
 ]

@@ -189,6 +189,30 @@
             "status": "progress",
             "github": "https://github.com/cyberyimein/Anomalo",
             "featured": true
+        },
+        {
+            "id": "RM-P05",
+            "type": "project",
+            "version": "v0.7.0",
+            "content": {
+                "cn": "contents/projects/cn/buddy-neko.md",
+                "en": "contents/projects/en/buddy-neko.md",
+                "jp": "contents/projects/jp/buddy-neko.md"
+            },
+            "title": {
+                "zh-CN": "BUDDYNEKO",
+                "en-US": "BUDDYNEKO",
+                "ja-JP": "BUDDYNEKO"
+            },
+            "desc": {
+                "zh-CN": "面向 M5Stack CoreS3 StackChan 的社区 Buddy 设计，让 Agent 的状态、触摸、音频与动作拥有一个猫咪形的实体终端。",
+                "en-US": "A community StackChan Buddy design that gives agent state, touch, audio, and motion a cat-shaped physical terminal.",
+                "ja-JP": "Agent の状態、タッチ、音声、動作に猫型の実体端末を与える、StackChan 向けコミュニティ Buddy デザイン。"
+            },
+            "percent": null,
+            "status": "progress",
+            "github": "https://github.com/cyberyimein/buddy-neko",
+            "featured": true
         }
     ]
 }
