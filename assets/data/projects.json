@@ -43,6 +43,47 @@
 	},
 	{
 		"_template": "# 项目名称\n\n项目简介\n\n## Technical Specifications\n\n技术栈\n\n## Classification Tags\n\n标签1 / 标签2\n\n## Background\n\n详细描述...",
+		"id": "fruitspy",
+		"content": {
+			"cn": "contents/projects/cn/fruitspy.md",
+			"en": "contents/projects/en/fruitspy.md",
+			"jp": "contents/projects/jp/fruitspy.md"
+		},
+		"name": {
+			"zh-CN": "FruitSpy",
+			"en-US": "FruitSpy",
+			"ja-JP": "FruitSpy"
+		},
+		"description": {
+			"zh-CN": "面向 Mac mini 的 Apple Container 控制台，持续扩展 Anomalo 的 Python Tool 与网页抓取能力。",
+			"en-US": "An Apple Container dashboard for the Mac mini, actively extending Anomalo's Python Tool and web-fetch capabilities.",
+			"ja-JP": "Mac mini 向けの Apple Container ダッシュボードであり、Anomalo の Python Tool と Web 取得を継続的に拡張する。"
+		},
+		"repo": "https://github.com/cyberyimein/FruitSpy",
+		"url": "https://github.com/cyberyimein/FruitSpy",
+		"tags": [
+			{
+				"zh-CN": "Apple Container",
+				"en-US": "Apple Container",
+				"ja-JP": "Apple Container"
+			},
+			{
+				"zh-CN": "Mac 工具",
+				"en-US": "Mac Tooling",
+				"ja-JP": "Mac ツール"
+			},
+			{
+				"zh-CN": "Agent Tooling",
+				"en-US": "Agent Tooling",
+				"ja-JP": "Agent Tooling"
+			}
+		],
+		"tech": ["FastAPI", "React", "Vite", "Apple Container", "Crawl4AI"],
+		"featured": false,
+		"status": "active"
+	},
+	{
+		"_template": "# 项目名称\n\n项目简介\n\n## Technical Specifications\n\n技术栈\n\n## Classification Tags\n\n标签1 / 标签2\n\n## Background\n\n详细描述...",
 		"id": "teaforge",
 		"content": {
 			"cn": "contents/projects/cn/teaforge.md",

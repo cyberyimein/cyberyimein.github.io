@@ -207,12 +207,12 @@
         },
         {
             "id":"RM-E02",
-            "type": "experiment",
-            "version": "v1.0",
+            "type": "project",
+            "version": "v0.1",
             "content": {
-                "cn": "contents/roadmap/cn/02_fruitspy.md",
-                "en": "contents/roadmap/en/02_fruitspy.md",
-                "jp": "contents/roadmap/jp/02_fruitspy.md"
+                "cn": "contents/projects/cn/fruitspy.md",
+                "en": "contents/projects/en/fruitspy.md",
+                "jp": "contents/projects/jp/fruitspy.md"
             },
             "title": {
                 "zh-CN": "水果间谍",
@@ -220,12 +220,17 @@
                 "ja-JP": "フルーツスパイ"
             },
             "desc": {
-                "zh-CN": "原生运行于 Mac mini 的主机与 Apple Container 控制台，同时为 Anomalo 提供隔离的 Python Tool 执行中继。",
-                "en-US": "A native Mac mini and Apple Container dashboard that also relays isolated Python Tool execution for Anomalo.",
-                "ja-JP": "Mac mini と Apple Container を監視・管理し、Anomalo に隔離 Python Tool 実行を中継するネイティブダッシュボード。"
+                "zh-CN": "面向 Mac mini 的 Apple Container 控制台，持续扩展 Anomalo 的 Python Tool 与网页抓取能力。",
+                "en-US": "An Apple Container dashboard for the Mac mini, actively extending Anomalo's Python Tool and web-fetch capabilities.",
+                "ja-JP": "Mac mini 向けの Apple Container ダッシュボードであり、Anomalo の Python Tool と Web 取得を継続的に拡張する。"
             },
-            "percent": 100,
-            "status": "done",
+            "percent": null,
+            "status": "progress",
+            "currentFocus": {
+                "zh-CN": "继续完善主机与容器状态、登录后常驻服务、Python Tool 与 Crawl4AI 的运维边界。",
+                "en-US": "Refine host and container state, login-time service persistence, and the operational boundaries of the Python Tool and Crawl4AI relays.",
+                "ja-JP": "ホストとコンテナの状態、ログイン時の常駐サービス、Python Tool と Crawl4AI リレーの運用境界を整える。"
+            },
             "github": "https://github.com/cyberyimein/FruitSpy"
         },
         {

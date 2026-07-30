@@ -18,6 +18,7 @@ This repository contains the source for my personal homepage. It presents a publ
 | SimsCommu | **Suspended · Awaiting restart.** A multi-agent speaking practice experiment that validated a three-stage STT, TTT, and TTS architecture. Development was stopped because a live duplex model is a better foundation for real-time voice interaction; a future restart will use that approach. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
 | Anomalo | An event-driven personal AI engineering lab combining an agent harness, StackChan robot control, voice interaction, and auditable stock research in one runtime. | Agent Harness / Embodied AI / Stock Research | [Repo](https://github.com/cyberyimein/Anomalo) |
 | BuddyNeko | A community M5Stack CoreS3 StackChan buddy design with cat sprites, touch approval, camera sensing, audio transport, and host-agent control. | Agent Embodiment / StackChan / Embedded AI | [Repo](https://github.com/cyberyimein/buddy-neko) |
+| FruitSpy | An Apple Container dashboard for the Mac mini, actively extending Anomalo's Python Tool and web-fetch capabilities. | Apple Container / Mac Tooling / Agent Tooling | [Repo](https://github.com/cyberyimein/FruitSpy) |
 
 ## Roadmap
 
@@ -26,6 +27,7 @@ This repository contains the source for my personal homepage. It presents a publ
 - KABUMEMO (70%): An AI-agent-built trading journal now covering trades, positions, funds, tax, yield analytics, dual storage, and Apple Container deployment.
 - ANOMALO (60%): An event-driven FastAPI and Vue agent host for testing tools, skills, MCP, memory, voice interaction, StackChan embodiment, and AI-assisted personal stock research.
 - BUDDYNEKO (v0.7.0): A CoreS3 StackChan firmware experiment that gives host agents a cat-shaped physical interface for state, touch, audio, sensing, and motion.
+- FRUITSPY (v0.1): An Apple Container control plane for the Mac mini, with host metrics, container management, and bounded Python Tool and Crawl4AI relays.
 
 ### Suspended
 
@@ -35,7 +37,6 @@ This repository contains the source for my personal homepage. It presents a publ
 
 - This Blog: A personal blog experiment built entirely with vibe coding.
 - Agent Applications on Azure AI Foundry: Implemented multi-agent collaboration, MCP calls, and RAG retrieval in practice.
-- Fruit Spy: A native Mac mini and Apple Container dashboard with host metrics, package inspection, logs and controls, plus an isolated Python Tool relay for Anomalo.
 - Hanami CLI: A cherry blossom front crawler with CLI and SKILL capabilities, allowing local agents to access seasonal data directly.
 - TeaForge: A completed v0.2.0 CLI and Agent Skill for producing auditable test specifications, coverage evidence, diagrams, and PDFs across Python and JavaScript test frameworks.
 

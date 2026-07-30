@@ -1,81 +1,25 @@
-# 这个博客
+# 实验：用 Vibe Coding 维护这个博客
 
-这个博客也是 Vibe Coding 的产物，完全由 Copilot CLI 生成。作为一个软件工程师，自己编写博客架构也曾是我的爱好，如今 coding agent 终结了这一切，我只需要写提示词了。
+这个博客是一个静态个人主页实验。我使用 Vibe Coding 和 Copilot CLI 生成并持续修改页面，再用 Markdown 内容文件与 JSON 数据文件承载多语言项目和路线图。当前结论是：当渲染器与数据结构保持简单时，Agent 可以参与这类站点的持续维护。
 
-## Markdown 预览示例
+## 问题
 
-`inline code`、**bold text**、*italic text*、~~strikethrough~~、[link](https://example.com)、> blockquote、- [ ] task
+我想验证两个问题：个人主页的页面结构能否交给 Coding Agent 演进，以及在不引入完整前端框架的情况下，三种语言的文章、项目卡片和路线图能否保持同步。
 
-### 三级标题
+## 方法
 
-#### 四级标题
+站点使用静态 `index.html`、CSS 和 JavaScript。项目与路线图的三种语言版本存放在 `contents/` 下，`assets/data/projects.json` 与 `assets/data/roadmap.json` 保存卡片和状态数据，`assets/js/md.js` 负责把文章支持的 Markdown 结构转换成页面内容。
 
-##### 五级标题
+渲染器支持标题、段落、粗体、斜体、行内代码、链接、列表、清单、代码块、表格、引用和分隔线。页面通过现有的 i18n 脚本切换语言，而不是为每种语言复制一套页面逻辑。
 
-###### 六级标题
+## 结果
 
-- 无序列表项 1
-- 无序列表项 2
+当前站点已经能够从同一套静态资源渲染主页、项目卡片、路线图和三语文章。文章内容可以独立修改，项目状态与链接则由 JSON 数据驱动。这个结果说明该结构足以支持个人主页的持续迭代，但没有证明 Agent 可以在没有 Review 的情况下可靠维护内容。
 
-1. 有序列表项 1
-2. 有序列表项 2
+## 局限
 
-### 代码块
+这是一个个人站点，不是通用 CMS。Markdown 解析器只实现站点需要的有限语法；复杂 HTML、脚注、嵌套列表等内容不在支持范围内。文章的事实准确性、三语语义一致性和数据状态仍需要人工检查。
 
-```ts
-type TradeRecord = {
-	symbol: string;
-	side: 'BUY' | 'SELL';
-	quantity: number;
-	price: number;
-};
+## 后续影响
 
-const latestTrade: TradeRecord = {
-	symbol: '7203.T',
-	side: 'BUY',
-	quantity: 100,
-	price: 2845,
-};
-```
-
-```python
-def calc_pnl(entry_price: float, exit_price: float, quantity: int) -> float:
-		return (exit_price - entry_price) * quantity
-
-
-print(calc_pnl(2845, 2910, 100))
-```
-
-### 表格
-
-| Symbol | Strategy | Win Rate | Note |
-| --- | --- | ---: | --- |
-| 7203.T | Swing | 58% | Focus on earnings season |
-| 9984.T | Intraday | 51% | Volatility is high |
-| NVDA | Position | 63% | AI trend driven |
-
-### 引用
-
-> Keep the workflow lightweight.
-> Let the data structure stay simple first, then refine the UI.
-
-### 清单
-
-- [x] Static JSON data source
-- [x] Basic trade timeline
-- [ ] Portfolio analytics panel
-- [ ] Export and backup flow
-
-### 分隔线
-
----
-
-### 混合内容
-
-1. 采集订单历史。
-2. 归一化到 `trades.json`。
-3. 用同一份数据源渲染仪表板卡片。
-
-- 每日快照
-- 月度表现
-- 标签筛选
+博客实验保留了一个明确的工程边界：页面逻辑、文章内容和项目元数据分开维护。后续修改会优先保持这三个边界，并在文章或项目状态变化时同步检查三种语言版本。

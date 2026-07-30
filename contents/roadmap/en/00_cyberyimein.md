@@ -1,81 +1,25 @@
-# This Blog
+# Experiment: Maintaining This Blog with Vibe Coding
 
-This blog is also a product of vibe coding and was generated entirely with Copilot CLI. As a software engineer, building a blog architecture by hand used to be one of my hobbies. Now coding agents have brought that era to an end, and all I need to write are prompts.
+This blog is a static personal-homepage experiment. I used Vibe Coding and Copilot CLI to generate and keep changing the site, while Markdown content files and JSON data files carry its multilingual projects and roadmap. The current conclusion is that an agent can participate in maintaining this kind of site when the renderer and data structures stay simple.
 
-## Markdown Preview Samples
+## Question
 
-`inline code`, **bold text**, *italic text*, ~~strikethrough~~, [link](https://example.com), > blockquote, - [ ] task
+I wanted to test two questions: whether a coding agent could evolve a personal-homepage structure, and whether three-language articles, project cards, and roadmap entries could stay synchronized without introducing a full frontend framework.
 
-### Heading Level 3
+## Method
 
-#### Heading Level 4
+The site uses static `index.html`, CSS, and JavaScript. The three language editions of projects and roadmap items live under `contents/`; `assets/data/projects.json` and `assets/data/roadmap.json` hold card and status data; and `assets/js/md.js` converts the Markdown constructs supported by the site into page content.
 
-##### Heading Level 5
+The renderer supports headings, paragraphs, bold, italic, inline code, links, lists, checklists, fenced code, tables, blockquotes, and horizontal rules. The existing i18n scripts switch languages instead of duplicating a page implementation for each locale.
 
-###### Heading Level 6
+## Result
 
-- Unordered list item 1
-- Unordered list item 2
+The site can now render the homepage, project cards, roadmap, and three-language articles from one set of static resources. Article content can change independently, while project status and links are driven by JSON. This shows that the structure is sufficient for continued iteration on a personal homepage, but it does not show that an agent can maintain content reliably without review.
 
-1. Ordered list item 1
-2. Ordered list item 2
+## Limitations
 
-### Code Block
+This is a personal site, not a general CMS. The Markdown parser implements only the syntax the site needs; complex HTML, footnotes, nested lists, and similar constructs are outside its support. Factual accuracy, semantic parity across languages, and metadata status still require human review.
 
-```ts
-type TradeRecord = {
-	symbol: string;
-	side: 'BUY' | 'SELL';
-	quantity: number;
-	price: number;
-};
+## Subsequent impact
 
-const latestTrade: TradeRecord = {
-	symbol: '7203.T',
-	side: 'BUY',
-	quantity: 100,
-	price: 2845,
-};
-```
-
-```python
-def calc_pnl(entry_price: float, exit_price: float, quantity: int) -> float:
-		return (exit_price - entry_price) * quantity
-
-
-print(calc_pnl(2845, 2910, 100))
-```
-
-### Table
-
-| Symbol | Strategy | Win Rate | Note |
-| --- | --- | ---: | --- |
-| 7203.T | Swing | 58% | Focus on earnings season |
-| 9984.T | Intraday | 51% | Volatility is high |
-| NVDA | Position | 63% | AI trend driven |
-
-### Quote
-
-> Keep the workflow lightweight.
-> Let the data structure stay simple first, then refine the UI.
-
-### Checklist
-
-- [x] Static JSON data source
-- [x] Basic trade timeline
-- [ ] Portfolio analytics panel
-- [ ] Export and backup flow
-
-### Horizontal Rule
-
----
-
-### Mixed Content
-
-1. Capture order history.
-2. Normalize records into `trades.json`.
-3. Render dashboard cards from the same source of truth.
-
-- Daily snapshot
-- Monthly performance
-- Tag-based filtering
+The experiment established a clear engineering boundary: page logic, article content, and project metadata are maintained separately. Future changes will preserve those boundaries and check all three language editions when an article or project status changes.

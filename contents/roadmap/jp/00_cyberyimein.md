@@ -1,81 +1,25 @@
-# このブログ
+# 実験：Vibe Coding でこのブログを保守する
 
-このブログも Vibe Coding の産物で、すべて Copilot CLI によって生成された。ソフトウェアエンジニアとして、ブログのアーキテクチャを自分で組むことは以前の趣味のひとつだったが、いまや coding agent がその時代を終わらせ、私はプロンプトを書くだけでよくなった。
+このブログは、静的な個人ホームページの実験である。Vibe Coding と Copilot CLI を使ってページを生成・変更し、Markdown コンテンツと JSON データで多言語のプロジェクトとロードマップを管理している。現在の結論は、レンダラーとデータ構造を単純に保てば、Agent がこの種のサイトの継続的な保守に参加できるというものだ。
 
-## Markdown プレビューサンプル
+## 検証課題
 
-`inline code`、**bold text**、*italic text*、~~strikethrough~~、[link](https://example.com)、> blockquote、- [ ] task
+二つの課題を検証したかった。個人ホームページの構造を Coding Agent が発展させられるか、そして完全なフロントエンドフレームワークを導入せずに、三言語の記事、プロジェクトカード、ロードマップを同期できるかである。
 
-### 見出しレベル 3
+## 方法
 
-#### 見出しレベル 4
+サイトは静的な `index.html`、CSS、JavaScript で構成する。プロジェクトとロードマップの三言語版は `contents/` に置き、`assets/data/projects.json` と `assets/data/roadmap.json` にカードと状態のデータを保存する。`assets/js/md.js` は、サイトが対応する Markdown の構文をページコンテンツへ変換する。
 
-##### 見出しレベル 5
+レンダラーは見出し、段落、太字、斜体、インラインコード、リンク、リスト、チェックリスト、フェンス付きコード、表、引用、区切り線に対応する。言語切り替えは既存の i18n スクリプトで行い、ロケールごとにページロジックを複製しない。
 
-###### 見出しレベル 6
+## 結果
 
-- 箇条書き項目 1
-- 箇条書き項目 2
+現在のサイトは、一つの静的リソース群からホームページ、プロジェクトカード、ロードマップ、三言語の記事を描画できる。記事本文は独立して変更でき、プロジェクトの状態とリンクは JSON が駆動する。この構造が個人ホームページの継続的な更新に十分であることは確認できたが、レビューなしで Agent が内容を確実に保守できることを示したわけではない。
 
-1. 番号付き項目 1
-2. 番号付き項目 2
+## 制約
 
-### コードブロック
+これは個人サイトであり、汎用 CMS ではない。Markdown パーサーはサイトに必要な構文だけを実装しており、複雑な HTML、脚注、入れ子のリストなどは対象外である。事実の正確さ、三言語の意味の一致、メタデータの状態は人間が確認する必要がある。
 
-```ts
-type TradeRecord = {
-	symbol: string;
-	side: 'BUY' | 'SELL';
-	quantity: number;
-	price: number;
-};
+## その後への影響
 
-const latestTrade: TradeRecord = {
-	symbol: '7203.T',
-	side: 'BUY',
-	quantity: 100,
-	price: 2845,
-};
-```
-
-```python
-def calc_pnl(entry_price: float, exit_price: float, quantity: int) -> float:
-		return (exit_price - entry_price) * quantity
-
-
-print(calc_pnl(2845, 2910, 100))
-```
-
-### 表
-
-| Symbol | Strategy | Win Rate | Note |
-| --- | --- | ---: | --- |
-| 7203.T | Swing | 58% | Focus on earnings season |
-| 9984.T | Intraday | 51% | Volatility is high |
-| NVDA | Position | 63% | AI trend driven |
-
-### 引用
-
-> Keep the workflow lightweight.
-> Let the data structure stay simple first, then refine the UI.
-
-### チェックリスト
-
-- [x] Static JSON data source
-- [x] Basic trade timeline
-- [ ] Portfolio analytics panel
-- [ ] Export and backup flow
-
-### 区切り線
-
----
-
-### 混在コンテンツ
-
-1. 注文履歴を収集する。
-2. `trades.json` に正規化する。
-3. 同じデータソースからダッシュボードカードを描画する。
-
-- デイリースナップショット
-- 月次パフォーマンス
-- タグによる絞り込み
+この実験では、ページロジック、記事本文、プロジェクトメタデータを分離して保守する境界を定めた。今後もこの境界を保ち、記事やプロジェクトの状態を変更する際には三言語版を確認する。

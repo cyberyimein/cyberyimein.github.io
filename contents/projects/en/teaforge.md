@@ -1,35 +1,36 @@
-# TeaForge: Forging Automated Tests into Auditable Engineering Evidence
+# TeaForge: Turning Test Runs into Auditable Engineering Evidence
 
-When AI agents can generate large amounts of code and tests in minutes, the human bottleneck moves from writing to verification. A row of green tests does not explain what was tested, what values were expected and observed, which branches ran, whether failures were hidden, or whether another engineer can audit the result.
+TeaForge is a Python CLI and Agent Skill that turns automated tests into reviewable, versioned engineering documents. Version 0.2.0 completes its original objective: generating PCL documents, coverage reports, Mermaid diagrams, and optional PDFs for pytest, Jest, Angular/Jest, and Playwright.
 
-TeaForge turns executable tests into reviewable engineering evidence. It is an installable Python CLI with an Agent Skill, giving engineers and coding agents the same commands and boundaries for producing Japanese-style PCL documents, coverage reports, flowcharts, sequence diagrams, and PDFs.
+## Background and goal
 
-## From Demo to v0.2.0
+When an agent can generate code and tests quickly, the engineering problem shifts to verifying the result. Green tests alone do not explain the test subject, expected and actual values, executed branches, or whether a failure was hidden. TeaForge keeps that evidence available for another engineer or agent to review.
 
-TeaForge began as an experiment that generated test checklists from pytest. The completed v0.2.0 supports pytest, Jest and TypeScript, Angular/Jest, and Playwright, mapping each test to a proven Test Subject. For JavaScript and TypeScript, packaged Tree-sitter grammars produce structural evidence instead of relying on fragile regular expressions.
+## Design and implementation
 
-Jest supports static, runtime, and automatic evidence modes. Runtime mode invokes the target project's already-installed, locked Jest and captures matcher, expected value, observed actual value, pass/fail state, `.not`, Promise, and thrown-error behavior. TeaForge never uses `npx` to download a runner and does not disguise test failures as tool success; an evidence-bearing failed test run has its own exit code.
+TeaForge maps each test to a provable Test Subject and keeps design-time static evidence separate from runtime evidence. The Python workflow uses pytest. JavaScript and TypeScript workflows use packaged Tree-sitter grammars to extract structural evidence instead of guessing source relationships with regular expressions.
 
-## PCL and Coverage
+Jest supports static, runtime, and automatic evidence modes. Runtime mode invokes only the Jest already installed by the target project and records matcher, expected value, actual value, pass/fail state, `.not`, Promise, and thrown-error behavior. The coverage workflow reads Python coverage or Jest/Istanbul data, produces file-level C0/C1 metrics, and can add typed Mermaid flowchart and sequence-diagram pages.
 
-PCL documents are grouped by test subject and emitted as adjacent, versioned JSON and HTML artifacts. Large matrices split into fixed 25-column sheets without changing the stable subject identity or schema version.
+## Current capabilities
 
-Coverage generation reads Python coverage or Jest/Istanbul data, produces file-level C0/C1 metrics, and can enforce minimum thresholds. Reports may include typed Mermaid flowchart and sequence-diagram pages and can be exported to PDF with optional WeasyPrint support. A metric with no measurable statements or branches is reported as N/A instead of being turned into a flattering percentage.
+- Generates versioned PCL documents from pytest, Jest/TypeScript, Angular/Jest, and Playwright tests.
+- Emits sibling JSON and HTML artifacts and splits large matrices into fixed 25-column sheets.
+- Produces file-level C0/C1 coverage reports from Python coverage or Istanbul data.
+- Generates and validates Mermaid flowcharts and sequence diagrams and can export PDFs through optional WeasyPrint support.
+- Uses `teaforge doctor` to check runners, renderers, packaged resources, and target-project capabilities.
+- Uses separate exit codes for tool errors, Jest runs with failure evidence, and reports that miss coverage gates.
 
-## Boundaries Designed for Agents
+## Boundaries and tradeoffs
 
-`teaforge doctor` checks target projects, runners, renderers, and packaged resources in human-readable or JSON form. External processes use exact paths, one workflow deadline, bounded diagnostics, and process-tree cleanup after a timeout. Artifacts use same-directory temporary files and atomic replacement so interrupted writes do not destroy the last valid report.
+TeaForge is not a TypeScript type checker and does not infer dynamic imports or complex dynamic test construction. Jest must come from a runner already installed by the target project; TeaForge never uses `npx` to download dependencies. It fails explicitly when it cannot prove source identity, diagram type, or a required capability.
 
-Runtime evidence redacts common credential keys and patterns and enforces value, record, and file-size limits. TeaForge prefers an explicit failure when it cannot prove source identity, diagram type, or an environmental capability over producing a plausible but unauditable document.
+Runtime evidence applies default redaction for common credential keys and patterns and limits values, records, and file sizes. Coverage remains file-level evidence; organization-wide aggregation and policy profiles are outside the current product boundary. PDF and Mermaid rendering are optional capabilities that depend on external tools.
 
-## Cross-Platform Quality Gates
+## Status and next step
 
-CI covers Linux and Windows, Python 3.11 through 3.14, and Node 20 and 22. It enforces Ruff, an 80% branch-coverage baseline, wheel and sdist builds, real pytest coverage from an isolated install, Jest smoke tests, Mermaid validation, and PDF checks. Architecture decisions live in ADRs, while the shared domain language is maintained in CONTEXT.md.
+TeaForge v0.2.0 completes its original objective, and the current product boundary is closed. Organization-level reporting and more complex integration-test strategies remain possible future explorations, but they are not implemented capabilities of the current version.
 
-## Technical Specifications
+## Technology stack
 
 Python 3.11+ / Typer / pytest / Jest / Angular / Playwright / Tree-sitter / coverage.py / Istanbul / Mermaid / Jinja2 / WeasyPrint
-
-## Project Status: Completed
-
-TeaForge v0.2.0 completes its original objective: reliably converting multi-framework test evidence into auditable, versioned engineering artifacts that humans and agents can use together. Organization-level reporting and broader integration-test strategies remain possible future directions, but the current product boundary is complete.
