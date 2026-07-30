@@ -5,7 +5,7 @@
 
 Create · Explore · AI
 
-ALOHA, I'm CyberYimein, an AI Agent engineer and a Vibe Coder who has been writing very little code by hand since the summer of 2025.
+ALOHA, I'm CyberYimein, an AI Agent engineer and an AI-native builder. Since summer 2025, I've been working with AI agents to turn ideas into products.
 
 This repository contains the source for my personal homepage. It presents a public overview of my work around AI Agents, LLM automation, Vibe Coding, and personal project experiments.
 

@@ -13,9 +13,9 @@
 			"ja-JP": "Kabumemo"
 		},
 		"description": {
-			"zh-CN": "一个由 AI Agent 持续重构的个人股票交易日志，现已支持交易、持仓、资金、税务、收益分析及 JSON/SQLite 双存储。",
-			"en-US": "An AI-agent-built personal trading journal covering trades, positions, funds, tax, yield analytics, and mirrored JSON/SQLite storage.",
-			"ja-JP": "AI Agent が継続的にリファクタリングする個人株式取引ジャーナル。取引、保有、資金、税務、利回り分析、JSON/SQLite 二重保存に対応。"
+			"zh-CN": "由 Agent 持续演进的个人股票交易日志，支持券商报表导入、持仓与税务分析，以及 JSON/SQLite 双存储。",
+			"en-US": "A personal trading journal evolving with agents, with broker-report imports, position and tax analysis, and mirrored JSON/SQLite storage.",
+			"ja-JP": "Agent と継続的に育てる個人株式取引ジャーナル。証券会社レポートの取込、保有・税務分析、JSON/SQLite 二重保存に対応する。"
 		},
 		"repo": "https://github.com/cyberyimein/kabumemo",
 		"url": "https://github.com/cyberyimein/kabumemo",

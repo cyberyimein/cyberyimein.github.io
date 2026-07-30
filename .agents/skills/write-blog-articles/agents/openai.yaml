@@ -1,0 +1,4 @@
+interface:
+  display_name: "CyberYimein Blog Style"
+  short_description: "Standardize multilingual technical blog articles"
+  default_prompt: "Use $write-blog-articles to draft or revise this project article in consistent Chinese, English, and Japanese."

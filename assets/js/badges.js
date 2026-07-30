@@ -10,7 +10,11 @@
     const WORM_SVG = '<svg viewBox="0 0 380 60" xmlns="http://www.w3.org/2000/svg" aria-label="CyberYimein"><text x="0" y="48" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="900" font-size="42" letter-spacing="6" fill="#FF3C00" style="text-transform:uppercase">CYBERYIMEIN</text></svg>';
 
     function current() {
-        return (window.I18N && I18N.state && I18N.state.lang) || 'zh-CN';
+        return (typeof I18N !== 'undefined' && I18N.state && I18N.state.lang) || 'zh-CN';
+    }
+
+    function ui(key, fallback) {
+        return typeof I18N !== 'undefined' && I18N.t ? I18N.t(key, fallback) : (fallback || key);
     }
 
     function pickLabel(obj) {
@@ -52,6 +56,7 @@
 
     // ====== Envelope overlay (singleton) ======
     let overlay = document.querySelector('.badge-card-overlay');
+    let activeBadgeItem = null;
     if (!overlay) {
         overlay = document.createElement('div');
         overlay.className = 'badge-card-overlay';
@@ -62,12 +67,12 @@
                     <div class="envelope-sender">
                         <div class="sender-logo">${WORM_SVG}</div>
                         <div class="sender-org">
-                            CyberYimein · Bug Manufacturing Unit<br>
-                            Tokyo, Japan
+                            <span class="badge-org-line-1"></span><br>
+                            <span class="badge-org-line-2"></span>
                         </div>
                     </div>
                     <div class="envelope-stamp">
-                        <div class="stamp-label">Official Record</div>
+                        <div class="stamp-label"></div>
                         <div class="stamp-icon"></div>
                     </div>
                 </div>
@@ -101,7 +106,27 @@
         });
     }
 
+    function updateOverlayChrome() {
+        if (!overlay) return;
+        const close = overlay.querySelector('.envelope-close');
+        if (close) close.setAttribute('aria-label', ui('document.close', 'Close document'));
+        const setText = (selector, key, fallback) => {
+            const el = overlay.querySelector(selector);
+            if (el) el.textContent = ui(key, fallback);
+        };
+        setText('.badge-org-line-1', 'document.organization', 'CyberYimein · Bug Manufacturing Unit');
+        setText('.badge-org-line-2', 'document.location', 'Tokyo, Japan');
+        setText('.stamp-label', 'badge.official', 'OFFICIAL RECORD');
+    }
+
+    updateOverlayChrome();
+    document.addEventListener('languageChanged', () => {
+        updateOverlayChrome();
+        if (activeBadgeItem && overlay.classList.contains('active')) openCard(activeBadgeItem);
+    });
+
     function openCard(item) {
+        activeBadgeItem = item;
         const lang = current();
         const label = pickLabel(item.label);
         const kind = item.kind || 'skill';
@@ -112,8 +137,8 @@
         // Title + kind
         overlay.querySelector('.envelope-title').textContent = label;
         const kindLabel = kind === 'cert'
-            ? { 'zh-CN': '认证', 'en-US': 'Certification', 'ja-JP': '認定' }[lang] || 'Certification'
-            : { 'zh-CN': '技能', 'en-US': 'Skill', 'ja-JP': 'スキル' }[lang] || 'Skill';
+            ? ui('badge.certification', 'Certification')
+            : ui('badge.skill', 'Skill');
         overlay.querySelector('.envelope-kind').textContent = kindLabel;
 
         // Proficiency (skills only)
@@ -122,7 +147,7 @@
             const max = 5;
             const filled = Math.min(max, Math.max(0, Number(item.proficiency)));
             profBlock.innerHTML = `
-                <span class="proficiency-label">${PROF_LABEL[lang] || PROF_LABEL['en-US']}</span>
+                <span class="proficiency-label">${ui('badge.proficiency', PROF_LABEL[lang] || PROF_LABEL['en-US'])}</span>
                 <div class="proficiency-dots">
                     ${Array.from({ length: max }, (_, i) =>
                         `<div class="dot${i < filled ? ' filled' : ''}"></div>`
@@ -142,11 +167,11 @@
             const statusClass = 'status-' + (item.status || 'active');
             certBlock.innerHTML = `
                 <div class="cert-info-item">
-                    <span class="cert-info-label">${OBTAINED_LABEL[lang] || OBTAINED_LABEL['en-US']}</span>
+                    <span class="cert-info-label">${ui('badge.obtained', OBTAINED_LABEL[lang] || OBTAINED_LABEL['en-US'])}</span>
                     <span class="cert-info-value">${escapeHtml(item.obtainedDate || '—')}</span>
                 </div>
                 <div class="cert-info-item">
-                    <span class="cert-info-label">${VALIDITY_LABEL[lang] || VALIDITY_LABEL['en-US']}</span>
+                    <span class="cert-info-label">${ui('badge.validity', VALIDITY_LABEL[lang] || VALIDITY_LABEL['en-US'])}</span>
                     <span class="cert-info-value ${statusClass}">${escapeHtml(statusText)}</span>
                 </div>
             `;
@@ -163,7 +188,7 @@
         const linkEl = overlay.querySelector('.envelope-link');
         if (item.url) {
             linkEl.href = item.url;
-            linkEl.querySelector('.link-text').textContent = LEARN_MORE[lang] || LEARN_MORE['en-US'];
+            linkEl.querySelector('.link-text').textContent = ui('badge.learnMore', LEARN_MORE[lang] || LEARN_MORE['en-US']);
             linkEl.style.display = '';
         } else {
             linkEl.style.display = 'none';
@@ -173,6 +198,7 @@
     }
 
     function closeCard() {
+        activeBadgeItem = null;
         overlay.classList.remove('active');
     }
 
@@ -202,7 +228,7 @@
         if (!cache.groups.length) {
             const empty = document.createElement('div');
             empty.className = 'badge badge-empty';
-            empty.textContent = window.I18N ? I18N.t('badges.placeholder') : 'Coming soon';
+            empty.textContent = typeof I18N !== 'undefined' ? I18N.t('badges.placeholder') : 'Coming soon';
             section.appendChild(empty);
             return;
         }
@@ -211,12 +237,12 @@
             const header = document.createElement('div');
             header.className = 'badge-group-title';
             const i18nKey = 'badges.group.' + (group.type || '').trim();
-            if (window.I18N && I18N.dict && I18N.t && I18N.t(i18nKey) !== i18nKey) {
+            if (typeof I18N !== 'undefined' && I18N.dict && I18N.t && I18N.t(i18nKey) !== i18nKey) {
                 header.textContent = I18N.t(i18nKey);
             } else if (group.label) {
                 header.textContent = pickLabel(group.label);
             } else {
-                header.textContent = group.type || 'Group';
+                header.textContent = ui('badge.groupFallback', group.type || 'Group');
             }
             section.appendChild(header);
 

@@ -4,44 +4,159 @@
         {
             "id": "agent-harness",
             "code": "BR-01",
-            "title": "Agent Harness 演化分支",
-            "summary": "不起眼的工具验证没有消失。联网、隔离执行与知识检索逐渐汇流，最终成为 Anomalo Harness 的基础能力。",
+            "title": {
+                "zh-CN": "Agent Harness 演化分支",
+                "en-US": "Agent Harness Evolution",
+                "ja-JP": "Agent Harness の進化ブランチ"
+            },
+            "summary": {
+                "zh-CN": "不起眼的工具验证没有消失。联网、隔离执行、知识检索与环境感知逐渐汇流，最终成为 Anomalo Harness 的基础能力。",
+                "en-US": "Small tool validations did not disappear. Web access, isolated execution, retrieval, and environmental sensing converged into the foundation of the Anomalo Harness.",
+                "ja-JP": "目立たないツール検証は消えなかった。Web 接続、分離実行、検索、環境センシングが集まり、Anomalo Harness の基盤になった。"
+            },
             "origin": {
                 "itemId": "RM-E03",
-                "title": "花见 CLI",
-                "eyebrow": "早期小实验",
-                "desc": "验证本地 Agent 如何调用外部季节数据。它提供了联网能力的早期经验，但并不是 Fetch + Search 的简单实现。",
-                "relation": "经验延续 · 非代码复用"
+                "title": {
+                    "zh-CN": "花见 CLI",
+                    "en-US": "Hanami CLI",
+                    "ja-JP": "花見 CLI"
+                },
+                "eyebrow": {
+                    "zh-CN": "早期小实验",
+                    "en-US": "Early experiment",
+                    "ja-JP": "初期の小実験"
+                },
+                "desc": {
+                    "zh-CN": "验证本地 Agent 如何调用外部季节数据。它提供了联网能力的早期经验，但并不是 Search & Fetch 的简单实现。",
+                    "en-US": "Validated how a local Agent could call seasonal data. It was early web-tool experience, not a simple implementation of Search & Fetch.",
+                    "ja-JP": "ローカル Agent が季節データを呼び出す方法を検証した。Web ツールの初期経験であり、Search & Fetch の単純な実装ではない。"
+                },
+                "relation": {
+                    "zh-CN": "EXPERIENCE CONTINUITY · NO CODE REUSE",
+                    "en-US": "EXPERIENCE CONTINUITY · NO CODE REUSE",
+                    "ja-JP": "EXPERIENCE CONTINUITY · NO CODE REUSE"
+                }
             },
             "capabilities": [
                 {
                     "id": "python-tool",
-                    "title": "Python 沙箱",
-                    "eyebrow": "容器沙箱执行",
-                    "desc": "在隔离容器中执行 Python，把计算、代码运行与结果回传纳入 Harness。",
-                    "status": "已整合"
+                    "itemId": "RM-E04",
+                    "title": {
+                        "zh-CN": "Python 沙箱",
+                        "en-US": "Python Sandbox",
+                        "ja-JP": "Python サンドボックス"
+                    },
+                    "eyebrow": {
+                        "zh-CN": "容器沙箱执行",
+                        "en-US": "Container sandbox",
+                        "ja-JP": "コンテナサンドボックス"
+                    },
+                    "desc": {
+                        "zh-CN": "在隔离容器中执行 Python，把计算、代码运行与结果回传纳入 Harness。",
+                        "en-US": "Runs Python in an isolated container and brings computation, execution, and result return into the Harness.",
+                        "ja-JP": "分離コンテナで Python を実行し、計算・コード実行・結果返却を Harness に組み込む。"
+                    },
+                    "status": {
+                        "zh-CN": "INTEGRATED",
+                        "en-US": "INTEGRATED",
+                        "ja-JP": "INTEGRATED"
+                    }
                 },
                 {
                     "id": "fetch-search",
-                    "title": "Fetch + Search",
-                    "eyebrow": "联网检索能力",
-                    "desc": "Search 发现候选来源，Fetch 读取指定资源；两个工具组合成 Agent 的联网检索能力。",
-                    "status": "已整合"
+                    "itemId": "RM-E05",
+                    "title": {
+                        "zh-CN": "Search & Fetch",
+                        "en-US": "Search & Fetch",
+                        "ja-JP": "Search & Fetch"
+                    },
+                    "eyebrow": {
+                        "zh-CN": "联网检索能力",
+                        "en-US": "Web retrieval",
+                        "ja-JP": "Web 検索能力"
+                    },
+                    "desc": {
+                        "zh-CN": "Search 发现候选来源，Fetch 读取指定资源；两个工具组合成 Agent 的联网检索能力。",
+                        "en-US": "Search discovers candidate sources and Fetch reads a selected resource; together they give the Agent a composable web-retrieval path.",
+                        "ja-JP": "Search が候補ソースを見つけ、Fetch が指定リソースを読む。二つを組み合わせて Agent の Web 検索経路にする。"
+                    },
+                    "status": {
+                        "zh-CN": "INTEGRATED",
+                        "en-US": "INTEGRATED",
+                        "ja-JP": "INTEGRATED"
+                    }
                 },
                 {
                     "id": "rag-database",
-                    "title": "RAG Database",
-                    "eyebrow": "知识检索验证",
-                    "desc": "验证知识写入、召回与上下文拼装，让 Harness 能利用可追溯的长期资料。",
-                    "status": "验证完成"
+                    "itemId": "RM-E06",
+                    "title": {
+                        "zh-CN": "RAG Database",
+                        "en-US": "RAG Database",
+                        "ja-JP": "RAG Database"
+                    },
+                    "eyebrow": {
+                        "zh-CN": "知识检索验证",
+                        "en-US": "Retrieval validation",
+                        "ja-JP": "検索検証"
+                    },
+                    "desc": {
+                        "zh-CN": "验证知识写入、召回与上下文拼装，让 Harness 能利用可追溯的长期资料。",
+                        "en-US": "Validates ingestion, retrieval, and context assembly so the Harness can use traceable long-term material.",
+                        "ja-JP": "知識の取込、検索、コンテキスト組み立てを検証し、Harness が追跡可能な長期資料を使えるようにする。"
+                    },
+                    "status": {
+                        "zh-CN": "VALIDATED",
+                        "en-US": "VALIDATED",
+                        "ja-JP": "VALIDATED"
+                    }
+                },
+                {
+                    "id": "room-climate-mcp",
+                    "itemId": "RM-E07",
+                    "title": {
+                        "zh-CN": "Room Climate MCP",
+                        "en-US": "Room Climate MCP",
+                        "ja-JP": "室内環境 MCP"
+                    },
+                    "eyebrow": {
+                        "zh-CN": "新 MCP 协议",
+                        "en-US": "New MCP protocol",
+                        "ja-JP": "新 MCP プロトコル"
+                    },
+                    "desc": {
+                        "zh-CN": "通过 FruitSpy 的 MCP Server，让 Agent 读取房间温度、湿度与二氧化碳浓度。",
+                        "en-US": "Uses FruitSpy's MCP Server so the Agent can read room temperature, humidity, and CO2 concentration.",
+                        "ja-JP": "FruitSpy の MCP Server を通じて、Agent が室温、湿度、二酸化炭素濃度を読み取る。"
+                    },
+                    "status": {
+                        "zh-CN": "VALIDATED",
+                        "en-US": "VALIDATED",
+                        "ja-JP": "VALIDATED"
+                    }
                 }
             ],
             "destination": {
                 "itemId": "RM-P04",
-                "title": "ANOMALO HARNESS",
-                "eyebrow": "能力汇流点",
-                "desc": "联网检索、沙箱工具与 RAG 数据库在事件驱动运行时中汇流，形成可继续扩展的 Agent Harness。",
-                "status": "持续演化"
+                "title": {
+                    "zh-CN": "ANOMALO HARNESS",
+                    "en-US": "ANOMALO HARNESS",
+                    "ja-JP": "ANOMALO HARNESS"
+                },
+                "eyebrow": {
+                    "zh-CN": "能力汇流点",
+                    "en-US": "Capability convergence",
+                    "ja-JP": "能力の合流点"
+                },
+                "desc": {
+                    "zh-CN": "联网检索、沙箱工具、RAG 数据库与环境感知在事件驱动运行时中汇流，形成可继续扩展的 Agent Harness。",
+                    "en-US": "Web retrieval, sandbox tools, RAG, and environmental sensing converge in an event-driven runtime to form an extensible Agent Harness.",
+                    "ja-JP": "Web 検索、サンドボックス、RAG、環境センシングがイベント駆動ランタイムに集まり、拡張可能な Agent Harness になる。"
+                },
+                "status": {
+                    "zh-CN": "EVOLVING",
+                    "en-US": "EVOLVING",
+                    "ja-JP": "EVOLVING"
+                }
             }
         }
     ],
@@ -134,7 +249,95 @@
             },
             "percent": 100,
             "status": "done"
-        },       
+        },
+        {
+            "id": "RM-E04",
+            "type": "experiment",
+            "version": "v0.1",
+            "content": {
+                "cn": "contents/roadmap/cn/04_python_sandbox.md",
+                "en": "contents/roadmap/en/04_python_sandbox.md",
+                "jp": "contents/roadmap/jp/04_python_sandbox.md"
+            },
+            "title": {
+                "zh-CN": "Python 沙箱",
+                "en-US": "Python Sandbox",
+                "ja-JP": "Python サンドボックス"
+            },
+            "desc": {
+                "zh-CN": "把 Anomalo 的 Python Tool 交给 FruitSpy，在一次性 Apple Container 中执行并回传结果。",
+                "en-US": "Delegates Anomalo's Python Tool to FruitSpy, executing code in a disposable Apple Container and returning the result.",
+                "ja-JP": "Anomalo の Python Tool を FruitSpy に委譲し、一時的な Apple Container で実行して結果を返す。"
+            },
+            "percent": 100,
+            "status": "done"
+        },
+        {
+            "id": "RM-E05",
+            "type": "experiment",
+            "version": "v0.1",
+            "content": {
+                "cn": "contents/roadmap/cn/05_fetch_search.md",
+                "en": "contents/roadmap/en/05_fetch_search.md",
+                "jp": "contents/roadmap/jp/05_fetch_search.md"
+            },
+            "title": {
+                "zh-CN": "Search & Fetch",
+                "en-US": "Search & Fetch",
+                "ja-JP": "Search & Fetch"
+            },
+            "desc": {
+                "zh-CN": "按 Search → Fetch 的顺序发现候选来源并读取指定网页，让 Agent 获得可处理的 Markdown。",
+                "en-US": "Runs Search → Fetch in order: discover candidate sources, then read a selected page as Markdown for the Agent.",
+                "ja-JP": "Search → Fetch の順に候補ソースを見つけ、指定ページを Agent が扱える Markdown として読む。"
+            },
+            "percent": 100,
+            "status": "done"
+        },
+        {
+            "id": "RM-E06",
+            "type": "experiment",
+            "version": "v0.1",
+            "content": {
+                "cn": "contents/roadmap/cn/06_rag_database.md",
+                "en": "contents/roadmap/en/06_rag_database.md",
+                "jp": "contents/roadmap/jp/06_rag_database.md"
+            },
+            "title": {
+                "zh-CN": "RAG Database",
+                "en-US": "RAG Database",
+                "ja-JP": "RAG Database"
+            },
+            "desc": {
+                "zh-CN": "在独立的 myRAG 工作台验证混合召回、索引版本与可追溯证据，为 Harness 的上下文组装提供检索基础。",
+                "en-US": "Validates hybrid retrieval, index versions, and traceable evidence in the myRAG workbench for Harness context assembly.",
+                "ja-JP": "独立した myRAG ワークベンチでハイブリッド検索、インデックス版、追跡可能な証拠を検証し、Harness のコンテキスト組み立ての基盤にする。"
+            },
+            "percent": 100,
+            "status": "done"
+        },
+        {
+            "id": "RM-E07",
+            "type": "experiment",
+            "version": "v0.1",
+            "content": {
+                "cn": "contents/roadmap/cn/07_room_climate_mcp.md",
+                "en": "contents/roadmap/en/07_room_climate_mcp.md",
+                "jp": "contents/roadmap/jp/07_room_climate_mcp.md"
+            },
+            "title": {
+                "zh-CN": "房间环境 MCP",
+                "en-US": "Room Climate MCP",
+                "ja-JP": "室内環境 MCP"
+            },
+            "desc": {
+                "zh-CN": "验证新 MCP 协议后，Agent 可以通过 FruitSpy 读取房间温度、湿度与二氧化碳浓度。",
+                "en-US": "After validating the new MCP protocol, the Agent can read room temperature, humidity, and CO2 through FruitSpy.",
+                "ja-JP": "新しい MCP プロトコルを検証し、Agent が FruitSpy 経由で室温、湿度、二酸化炭素濃度を取得できることを確認した。"
+            },
+            "percent": 100,
+            "status": "done"
+        },
         {
             "id": "RM-P01",
             "type": "project",
@@ -150,13 +353,17 @@
                 "ja-JP": "KABUMEMO"
             },
             "desc": {
-                "zh-CN": "由 AI Agent 持续重构的个人股票交易日志，覆盖交易、持仓、资金、税务、收益分析与双存储。",
-                "en-US": "An AI-agent-built trading journal covering trades, positions, funds, tax, yield analytics, and mirrored storage.",
-                "ja-JP": "AI Agent が継続的に再構築する、取引・保有・資金・税務・利回り分析・二重保存対応の株式ジャーナル。"
+                "zh-CN": "由 Agent 持续演进的个人交易日志，整合券商报表、持仓、资金、税务分析与双存储。",
+                "en-US": "A personal trading journal evolving with agents, combining broker reports, positions, funds, tax analysis, and mirrored storage.",
+                "ja-JP": "Agent と継続的に育てる個人取引ジャーナル。証券会社レポート、保有、資金、税務分析、二重保存を統合する。"
             },
             "percent": 70,
             "status": "progress",
-            "currentFocus": "继续完善交易、资金、税务与收益分析的数据闭环。",
+            "currentFocus": {
+                "zh-CN": "提高券商报表导入、双存储同步与多币种边界处理的可靠性。",
+                "en-US": "Improve broker-report imports, mirrored-storage sync, and multi-currency boundary handling.",
+                "ja-JP": "証券会社レポートの取込、二重保存の同期、複数通貨の境界処理を安定させる。"
+            },
             "github": "https://github.com/cyberyimein/kabumemo",
             "featured": true
         },
@@ -233,7 +440,11 @@
             },
             "percent": 60,
             "status": "progress",
-            "currentFocus": "把联网检索、容器沙箱执行与 RAG 验证收束为稳定的 Harness 能力。",
+            "currentFocus": {
+                "zh-CN": "把联网检索、容器沙箱执行与 RAG 验证收束为稳定的 Harness 能力。",
+                "en-US": "Turn web retrieval, container sandbox execution, and RAG validation into stable Harness capabilities.",
+                "ja-JP": "Web 検索、コンテナサンドボックス、RAG 検証を安定した Harness 能力へまとめる。"
+            },
             "github": "https://github.com/cyberyimein/Anomalo",
             "featured": true
         },
@@ -258,7 +469,11 @@
             },
             "percent": null,
             "status": "progress",
-            "currentFocus": "继续验证触摸、音频、传感与动作如何成为 Agent 的实体接口。",
+            "currentFocus": {
+                "zh-CN": "继续验证触摸、音频、传感与动作如何成为 Agent 的实体接口。",
+                "en-US": "Continue testing how touch, audio, sensing, and motion become the Agent's physical interface.",
+                "ja-JP": "タッチ、音声、センシング、動作を Agent の実体インターフェースにする方法を検証する。"
+            },
             "github": "https://github.com/cyberyimein/buddy-neko",
             "featured": true
         }

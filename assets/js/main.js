@@ -42,9 +42,12 @@
         }
     }
     function updateBtn() {
-        if (!btn) return; btn.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark';
+        if (!btn) return;
+        const key = root.getAttribute('data-theme') === 'dark' ? 'theme.light' : 'theme.dark';
+        btn.textContent = typeof I18N !== 'undefined' ? I18N.t(key, key === 'theme.light' ? 'Light' : 'Dark') : (key === 'theme.light' ? 'Light' : 'Dark');
     }
     updateBtn();
+    document.addEventListener('languageChanged', updateBtn);
     btn && btn.addEventListener('click', () => {
         const nowDark = root.getAttribute('data-theme') === 'dark';
         if (nowDark) { root.removeAttribute('data-theme'); localStorage.setItem(STORAGE_KEY, 'light'); }

@@ -16,9 +16,13 @@
         console.warn('[projects] load failed', e);
     }
 
+    function ui(key, fallback) {
+        return typeof I18N !== 'undefined' && I18N.t ? I18N.t(key, fallback) : (fallback || key);
+    }
+
     function getFallbackChain() {
         const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
-        const activeLang = (window.I18N && I18N.state && I18N.state.lang) || stored || 'en-US';
+        const activeLang = (typeof I18N !== 'undefined' && I18N.state && I18N.state.lang) || stored || 'en-US';
         const chain = [activeLang, 'en-US', 'zh-CN'];
         return chain.filter((lang, idx) => chain.indexOf(lang) === idx);
     }
@@ -35,9 +39,9 @@
     }
 
     const STATUS_LABELS = {
-        active: { 'zh-CN': '运行中', 'en-US': 'OPERATIONAL', 'ja-JP': '稼働中' },
-        completed: { 'zh-CN': '已完成', 'en-US': 'COMPLETED', 'ja-JP': '完了' },
-        aborted: { 'zh-CN': '已中止', 'en-US': 'SUSPENDED', 'ja-JP': '中止' }
+        active: ['status.operational', 'OPERATIONAL'],
+        completed: ['status.completed', 'COMPLETED'],
+        aborted: ['status.suspended', 'SUSPENDED']
     };
 
     function getStatus(item) {
@@ -46,7 +50,8 @@
 
     function getStatusLabel(item) {
         const status = getStatus(item);
-        return pick(STATUS_LABELS[status]) || status.toUpperCase();
+        const entry = STATUS_LABELS[status];
+        return entry ? ui(entry[0], entry[1]) : status.toUpperCase();
     }
 
     function orderForStack(items) {
@@ -150,34 +155,36 @@
 
     // 创建 NASA 文档 overlay（只创建一次）
     let overlay = document.querySelector('.project-overlay');
+    let activeDocumentItem = null;
+    let documentRequestId = 0;
     if (!overlay) {
         overlay = document.createElement('div');
         overlay.className = 'project-overlay';
         overlay.innerHTML = `
-            <div class="nasa-document">
-                <div class="nasa-doc-actions">
-                    <a class="nasa-doc-github nasa-doc-action" href="#" target="_blank" rel="noopener noreferrer" hidden>GitHub →</a>
-                    <button class="nasa-doc-close nasa-doc-action" type="button">CLOSE [X]</button>
+                <div class="nasa-document">
+                    <div class="nasa-doc-actions">
+                    <a class="nasa-doc-github nasa-doc-action" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
+                    <button class="nasa-doc-close nasa-doc-action" type="button"></button>
                 </div>
                 <div class="nasa-doc-masthead">
                     <div class="nasa-doc-logo">${WORM_SVG}</div>
-                    <span class="masthead-label">News</span>
+                    <span class="masthead-label"></span>
                 </div>
                 <div class="nasa-doc-org">
-                    CyberYimein · Bug Manufacturing Unit<br>
-                    Unpaid Prompt Engineering Lab<br>
-                    Tokyo, Japan
+                    <span class="org-line-1"></span><br>
+                    <span class="org-line-2"></span><br>
+                    <span class="org-line-3"></span>
                 </div>
                 <div class="nasa-doc-rule"></div>
                 <div class="nasa-doc-meta">
-                    <div class="meta-row"><span>CyberYimein</span></div>
+                    <div class="meta-row"><span class="meta-brand"></span></div>
                     <div class="meta-row">
-                        <span>Vibe Room Floor 4, Tokyo, Japan</span>
-                        <span class="meta-for-release">For Release</span>
+                        <span class="meta-room"></span>
+                        <span class="meta-for-release"></span>
                     </div>
                     <div class="meta-row">
                         <span class="nasa-doc-release-no"></span>
-                        <span>${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span class="meta-date"></span>
                     </div>
                 </div>
                 <div class="nasa-doc-title"></div>
@@ -185,9 +192,9 @@
                 <div class="nasa-doc-signature">
                     <div class="sig-handwriting">CyberYimein</div>
                     <div class="sig-line"></div>
-                    <div class="sig-title">AI Agent Engineer<br>Bug Manufacturing Unit</div>
+                    <div class="sig-title"></div>
                 </div>
-                <div class="nasa-doc-end">-end-</div>
+                <div class="nasa-doc-end"></div>
                 <div class="nasa-doc-telemetry"></div>
             </div>
         `;
@@ -212,6 +219,10 @@
     }
 
     function openDocument(item) {
+        activeDocumentItem = item;
+        overlay.dataset.documentOwner = 'projects';
+        const requestId = ++documentRequestId;
+        updateDocumentChrome();
         const name = pick(item.name);
         const desc = pick(item.description || item.desc || '');
         const tags = (item.tags || []).map(t => typeof t === 'string' ? t : pick(t)).join(' / ');
@@ -222,7 +233,7 @@
 
         // Release number
         overlay.querySelector('.nasa-doc-release-no').textContent =
-            'RELEASE NO:  CYBER-' + new Date().getFullYear().toString().slice(-2) + '-' + String(idx + 1).padStart(3, '0');
+            ui('document.releaseNo', 'RELEASE NO:') + '  CYBER-' + new Date().getFullYear().toString().slice(-2) + '-' + String(idx + 1).padStart(3, '0');
 
         // Fallback title from JSON (only if no md content)
         const titleEl = overlay.querySelector('.nasa-doc-title');
@@ -230,7 +241,7 @@
 
         // Update masthead label to match type
         const mastheadLabel = overlay.querySelector('.masthead-label');
-        if (mastheadLabel) mastheadLabel.textContent = 'Projects';
+        if (mastheadLabel) mastheadLabel.textContent = ui('document.masthead.projects', 'Projects');
 
         const githubBtn = overlay.querySelector('.nasa-doc-github');
         if (githubBtn) {
@@ -247,16 +258,17 @@
         const body = overlay.querySelector('.nasa-doc-body');
         const fallbackHtml = `
             <p>${escapeHtml(desc)}</p>
-            ${tech ? `<p><strong>TECHNICAL SPECIFICATIONS:</strong> ${escapeHtml(tech)}</p>` : ''}
-            ${tags ? `<p><strong>CLASSIFICATION TAGS:</strong> ${escapeHtml(tags)}</p>` : ''}
-            <p><strong>STATUS:</strong> ${escapeHtml(getStatusLabel(item))}</p>
-            ${item.statusReason ? `<p><strong>STATUS NOTE:</strong> ${escapeHtml(pick(item.statusReason))}</p>` : ''}
-            ${item.createdAt ? `<p><strong>DATE OF COMMISSION:</strong> ${escapeHtml(item.createdAt)}</p>` : ''}
+            ${tech ? `<p><strong>${escapeHtml(ui('document.technical', 'TECHNICAL SPECIFICATIONS:'))}</strong> ${escapeHtml(tech)}</p>` : ''}
+            ${tags ? `<p><strong>${escapeHtml(ui('document.tags', 'CLASSIFICATION TAGS:'))}</strong> ${escapeHtml(tags)}</p>` : ''}
+            <p><strong>${escapeHtml(ui('document.status', 'STATUS:'))}</strong> ${escapeHtml(getStatusLabel(item))}</p>
+            ${item.statusReason ? `<p><strong>${escapeHtml(ui('document.statusNote', 'STATUS NOTE:'))}</strong> ${escapeHtml(pick(item.statusReason))}</p>` : ''}
+            ${item.createdAt ? `<p><strong>${escapeHtml(ui('document.commission', 'DATE OF COMMISSION:'))}</strong> ${escapeHtml(item.createdAt)}</p>` : ''}
         `;
         body.innerHTML = fallbackHtml;
 
         if (contentPath && window.MD) {
             MD.fetch(contentPath).then(md => {
+                if (requestId !== documentRequestId) return;
                 if (!md) return;
                 const parsed = MD.parse(md);
                 if (parsed.html) body.innerHTML = parsed.html;
@@ -272,6 +284,9 @@
     }
 
     function closeDocument() {
+        activeDocumentItem = null;
+        documentRequestId += 1;
+        delete overlay.dataset.documentOwner;
         overlay.classList.remove('active');
     }
 
@@ -280,6 +295,45 @@
         div.textContent = str;
         return div.innerHTML;
     }
+
+    function currentLang() {
+        return (typeof I18N !== 'undefined' && I18N.state && I18N.state.lang) || 'en-US';
+    }
+
+    function updateDocumentChrome() {
+        if (!overlay) return;
+        const closeBtn = overlay.querySelector('.nasa-doc-close');
+        if (closeBtn) closeBtn.textContent = ui('document.close', 'CLOSE [X]');
+        const githubBtn = overlay.querySelector('.nasa-doc-github');
+        if (githubBtn) githubBtn.textContent = ui('document.github', 'GitHub →');
+        const masthead = overlay.querySelector('.masthead-label');
+        if (masthead) masthead.textContent = ui('document.masthead.projects', 'PROJECTS');
+        const setText = (selector, key, fallback) => {
+            const el = overlay.querySelector(selector);
+            if (el) el.textContent = ui(key, fallback);
+        };
+        setText('.org-line-1', 'document.organization', 'CyberYimein · Bug Manufacturing Unit');
+        setText('.org-line-2', 'document.lab', 'Unpaid Prompt Engineering Lab');
+        setText('.org-line-3', 'document.location', 'Tokyo, Japan');
+        setText('.meta-brand', 'document.organization', 'CyberYimein · Bug Manufacturing Unit');
+        setText('.meta-room', 'document.room', 'Vibe Room Floor 4, Tokyo, Japan');
+        setText('.meta-for-release', 'document.forRelease', 'FOR RELEASE');
+        setText('.meta-date', '', new Date().toLocaleDateString(currentLang(), { year: 'numeric', month: 'long', day: 'numeric' }));
+        const signature = overlay.querySelector('.sig-title');
+        if (signature) {
+            signature.innerHTML = escapeHtml(ui('document.signature', 'AI Agent Engineer')) + '<br>'
+                + escapeHtml(ui('document.unit', 'Bug Manufacturing Unit'));
+        }
+        setText('.nasa-doc-end', 'document.end', '-END-');
+    }
+
+    updateDocumentChrome();
+    document.addEventListener('languageChanged', () => {
+        updateDocumentChrome();
+        if (activeDocumentItem && overlay.dataset.documentOwner === 'projects' && overlay.classList.contains('active')) {
+            openDocument(activeDocumentItem);
+        }
+    });
 
     function createCard(item) {
         const card = document.createElement('div');
@@ -305,7 +359,7 @@
 
         const status = document.createElement('span');
         status.className = 'card-status';
-        status.textContent = 'STATUS: ' + getStatusLabel(item);
+        status.textContent = ui('document.status', 'STATUS:') + ' ' + getStatusLabel(item);
         nameplate.appendChild(status);
 
         card.appendChild(nameplate);
@@ -388,18 +442,18 @@
         const nameplate = document.createElement('div');
         nameplate.className = 'card-nameplate';
         const h4 = document.createElement('h4');
-        h4.textContent = window.I18N ? I18N.t('projects.empty.title') : 'Coming Soon';
+        h4.textContent = typeof I18N !== 'undefined' ? I18N.t('projects.empty.title') : 'Coming Soon';
         nameplate.appendChild(h4);
         card.appendChild(nameplate);
 
         const body = document.createElement('div');
         body.className = 'card-body';
         const p = document.createElement('p');
-        p.textContent = window.I18N ? I18N.t('projects.empty.desc') : 'Projects will appear here.';
+        p.textContent = typeof I18N !== 'undefined' ? I18N.t('projects.empty.desc') : 'Projects will appear here.';
         body.appendChild(p);
         const note = document.createElement('div');
         note.className = 'empty-note';
-        note.textContent = 'placeholder';
+        note.textContent = ui('projects.placeholder', 'Placeholder record');
         body.appendChild(note);
         card.appendChild(body);
         grid.appendChild(card);

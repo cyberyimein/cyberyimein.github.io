@@ -35,7 +35,7 @@
         },
         async loadLangFiles() {
             // 暂无文件系统索引，这里通过已知语言或 I18N.state / 推断
-            const candidates = (window.I18N && I18N.state && I18N.state.lang) ? [
+            const candidates = (typeof I18N !== 'undefined' && I18N.state && I18N.state.lang) ? [
                 'zh-CN', 'en-US', 'ja-JP'
             ] : ['zh-CN', 'en-US', 'ja-JP'];
             for (const lang of candidates) {

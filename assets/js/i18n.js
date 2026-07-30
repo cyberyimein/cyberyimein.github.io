@@ -1,22 +1,22 @@
-// 简单多语言模块
-// 语言检测 -> 加载对应 JSON -> 替换 data-i18n 属性元素文本
+// Lightweight UI localization module.
+// Detect a language, load its dictionary, and apply data-i18n attributes.
 
 const I18N = (function () {
     const state = { lang: 'en-US', dict: {} };
-    const supported = ['zh-CCN', 'zh-CN', 'en', 'en-US', 'ja', 'ja-JP'];
+    const supported = ['zh-CN', 'en-US', 'ja-JP'];
 
     function detect() {
-    const nav = navigator.language || (navigator.languages && navigator.languages[0]) || 'en-US';
-    if (nav.startsWith('zh')) return 'zh-CN';
-    if (nav.startsWith('ja')) return 'ja-JP';
-    return 'en-US';
+        const nav = navigator.language || (navigator.languages && navigator.languages[0]) || 'en-US';
+        if (nav.startsWith('zh')) return 'zh-CN';
+        if (nav.startsWith('ja')) return 'ja-JP';
+        return 'en-US';
     }
 
     async function load(lang) {
-        const target = lang || detect();
+        const target = supported.includes(lang) ? lang : detect();
         state.lang = target;
         try {
-            const res = await fetch(`./assets/i18n/${target}.json`);
+            const res = await fetch(`./assets/i18n/${target}.json?v=20260731-ui-i18n-5`);
             if (!res.ok) throw new Error('i18n load fail');
             state.dict = await res.json();
         } catch (e) {
@@ -30,7 +30,7 @@ const I18N = (function () {
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: state.lang } }));
     }
 
-    function t(key) { return state.dict[key] || key; }
+    function t(key, fallback) { return state.dict[key] || fallback || key; }
 
     function apply() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -41,9 +41,35 @@ const I18N = (function () {
                 el.textContent = t(key);
             }
         });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+            el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria-label')));
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            el.setAttribute('title', t(el.getAttribute('data-i18n-title')));
+        });
+        document.documentElement.lang = state.lang;
+
+        const title = t('meta.title');
+        if (title !== 'meta.title') {
+            document.title = title;
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) ogTitle.setAttribute('content', title);
+            const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+            if (twitterTitle) twitterTitle.setAttribute('content', title);
+        }
+        const description = t('meta.description');
+        if (description !== 'meta.description') {
+            const meta = document.querySelector('meta[name="description"]');
+            if (meta) meta.setAttribute('content', description);
+            const og = document.querySelector('meta[property="og:description"]');
+            if (og) og.setAttribute('content', description);
+            const twitter = document.querySelector('meta[name="twitter:description"]');
+            if (twitter) twitter.setAttribute('content', description);
+        }
     }
 
     function switchLang(lang) {
+        if (!supported.includes(lang)) return;
         load(lang);
         localStorage.setItem('lang', lang);
         updateLangSwitcher(lang);
@@ -51,7 +77,7 @@ const I18N = (function () {
 
     function init() {
         const saved = localStorage.getItem('lang');
-        const initial = saved || detect();
+        const initial = supported.includes(saved) ? saved : detect();
         updateLangSwitcher(initial);
         load(initial);
 
@@ -70,7 +96,18 @@ const I18N = (function () {
         });
     }
 
-    return { init, t, switchLang, state };
+    return {
+        init,
+        t,
+        switchLang,
+        state,
+        supported,
+        get dict() { return state.dict; }
+    };
 })();
 
-window.addEventListener('DOMContentLoaded', I18N.init);
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', I18N.init);
+} else {
+    I18N.init();
+}
