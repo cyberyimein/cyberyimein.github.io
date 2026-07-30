@@ -1,5 +1,5 @@
 (function () {
-    const FILE = './assets/data/roadmap.json?v=20260731-roadmap-i18n-1';
+    const FILE = './assets/data/roadmap.json?v=20260731-roadmap-i18n-2';
     const state = {
         data: null,
         lang: 'zh-CN',
