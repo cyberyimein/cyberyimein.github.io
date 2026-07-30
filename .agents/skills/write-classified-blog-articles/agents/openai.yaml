@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Classified Blog Articles"
+  short_description: "Write business articles with consistent redaction"
+  default_prompt: "Use $write-classified-blog-articles to redact and edit this internal business article for public release."

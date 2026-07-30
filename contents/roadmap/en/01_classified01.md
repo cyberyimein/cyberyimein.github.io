@@ -1,30 +1,26 @@
-# Classified Experiment: An Agent Application on Azure AI Foundry
+# Agent Based on Azure AI Foundry
 
-This is a redacted internal experiment record. The public edition confirms only that the experiment involved multi-agent collaboration, MCP invocation, RAG retrieval, and result inspection; business names, protocol details, identifiers, datasets, and outcome metrics have been removed.
+Based on Azure AI Foundry, I practiced capabilities such as multi-Agent collaboration, MCP invocation, and RAG retrieval.
 
-## Question
+## Overview
 
-The experiment asked whether tool execution, expert retrieval collaboration, a knowledge base, and agent-to-agent result checks could be organized into a working application on Azure AI Foundry. The public record does not reveal the specific business objective or evaluation criteria.
+1. Practice 1: MCP invocation
 
-## Method
+I developed an app based on FastAPI and let AI write Python scripts. Through the ███████ MCP protocol, the Agent can now run these codes by itself and complete ███████ business processes, achieving full automation.
 
-The publicly describable implementation contains these parts:
+2. Practice 2: Multi-Agent collaborative retrieval
 
-- A FastAPI app lets an agent generate Python scripts and execute them through a redacted MCP protocol.
-- Several expert agents divide the work: one turns vague requirements and redacted identifiers into search instructions, one retrieves material, and one organizes the result and requests more retrieval when information is missing.
-- A redacted feature uses a RAG knowledge base so the agent can retrieve internal know-how before answering, followed by an agent-to-agent check of whether the answer referenced that knowledge.
+Using Azure AI Foundry, I built a multi-expert collaboration mode:
 
-## Result
+- Expert A: Turns the user's vague requirements and ██ numbers into professional search instructions.
+- Expert B: Is responsible for searching for materials on the web.
+- Expert C: Summarizes, organizes, and structures the information, and asks for additional searches if something is missing.
 
-The public record shows that these flows were practiced, but the business outcome, accuracy change, and scope of automation cannot be verified from the redacted edition. This article therefore does not treat “optimized” or “fully automated” as publicly proven conclusions.
+In this way, the information retrieval quality of █████ was optimized.
 
-## Limitations
+3. Practice 3: Knowledge base (RAG) and output quality inspection
 
-The key protocol name, business flow, identifiers, knowledge-base content, and evaluation data were intentionally removed. Without them, the application cannot be reproduced and the result cannot be generalized to another scenario.
-
-## Subsequent impact
-
-The roadmap card is marked complete. The public material does not document a later architecture or migration plan; any more specific conclusion is non-public information.
+I added a RAG knowledge base to the █████ feature. Before answering, the Agent first goes to the knowledge base to find know-how to optimize the prompt. The core part is that I designed a mechanism for Agents to evaluate each other and automatically check whether the generated answer really referenced this knowledge. In the end, the accuracy of the █████ feature was improved.
 
 ---
 
