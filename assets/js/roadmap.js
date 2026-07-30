@@ -1,6 +1,13 @@
 (function () {
-    const FILE = './assets/data/roadmap.json';
-    const state = { data: null, lang: 'zh-CN' };
+    const FILE = './assets/data/roadmap.json?v=20260731-roadmap';
+    const state = {
+        data: null,
+        lang: 'zh-CN',
+        activeTop: 'roadmap',
+        projectView: 'now',
+        roadmapView: 'branches',
+        activeBranch: 0
+    };
 
     function resolveLang(obj) {
         if (!obj || typeof obj !== 'object') return '';
@@ -80,6 +87,10 @@
                 return aAborted - bAborted || a.index - b.index;
             })
             .map(entry => entry.item);
+    }
+
+    function findItem(itemId) {
+        return getRoadmapItems().find(item => item.id === itemId);
     }
 
     /* ========== A4 portrait file card ========== */
@@ -309,6 +320,302 @@
         });
     }
 
+    function createElement(tag, className, text) {
+        const el = document.createElement(tag);
+        if (className) el.className = className;
+        if (text != null) el.textContent = text;
+        return el;
+    }
+
+    function createWorkbenchNav() {
+        const nav = createElement('div', 'workbench-primary-nav');
+        nav.setAttribute('role', 'tablist');
+        nav.setAttribute('aria-label', '构建记录分类');
+
+        [
+            ['projects', 'PROJECTS', '项目'],
+            ['roadmap', 'ROADMAP', '路线图']
+        ].forEach(([id, label, hint]) => {
+            const button = createElement('button', 'workbench-primary-button');
+            button.type = 'button';
+            button.setAttribute('role', 'tab');
+            button.setAttribute('aria-selected', String(state.activeTop === id));
+            button.classList.toggle('active', state.activeTop === id);
+            button.innerHTML = `<span>${label}</span><small>${hint}</small>`;
+            button.addEventListener('click', () => {
+                state.activeTop = id;
+                render();
+            });
+            nav.appendChild(button);
+        });
+
+        return nav;
+    }
+
+    function createSectionNav() {
+        const nav = createElement('div', 'roadmap-nav');
+        nav.setAttribute('role', 'tablist');
+        const isProjects = state.activeTop === 'projects';
+        nav.setAttribute('aria-label', isProjects ? '项目视图' : '路线图视图');
+
+        const items = isProjects
+            ? [
+                ['now', 'NOW', '当前进行'],
+                ['archive', 'ARCHIVE', '项目档案']
+            ]
+            : [
+                ['wander', '随心所欲', '自由探索'],
+                ['branches', 'BRANCHES', '目标分支']
+            ];
+        const activeView = isProjects ? state.projectView : state.roadmapView;
+
+        items.forEach(([id, label, hint]) => {
+            const button = createElement('button', 'roadmap-nav-button');
+            button.type = 'button';
+            button.setAttribute('role', 'tab');
+            button.setAttribute('aria-selected', String(activeView === id));
+            button.classList.toggle('active', activeView === id);
+            button.innerHTML = `<span>${label}</span><small>${hint}</small>`;
+            button.addEventListener('click', () => {
+                if (isProjects) state.projectView = id;
+                else state.roadmapView = id;
+                render();
+            });
+            nav.appendChild(button);
+        });
+
+        return nav;
+    }
+
+    function createNowCard(item) {
+        const card = createElement('article', 'roadmap-now-card');
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
+        const header = createElement('div', 'roadmap-now-header');
+        header.appendChild(createElement('span', 'roadmap-node-code', item.id));
+        header.appendChild(createElement('span', 'roadmap-live-signal', 'LIVE'));
+        card.appendChild(header);
+
+        card.appendChild(createElement('h3', '', resolveLang(item.title)));
+        card.appendChild(createElement('p', 'roadmap-now-desc', resolveLang(item.desc)));
+
+        const focus = createElement('div', 'roadmap-now-focus');
+        focus.appendChild(createElement('span', '', 'CURRENT FOCUS'));
+        focus.appendChild(createElement('p', '', item.currentFocus || '持续推进项目边界与工程验证。'));
+        card.appendChild(focus);
+
+        const footer = createElement('div', 'roadmap-now-footer');
+        footer.appendChild(createElement('span', 'roadmap-version', item.version || '—'));
+        if (item.percent != null) {
+            const meter = createElement('div', 'roadmap-now-meter');
+            const fill = createElement('i', '');
+            fill.style.width = Math.max(0, Math.min(100, Number(item.percent) || 0)) + '%';
+            meter.appendChild(fill);
+            footer.appendChild(meter);
+            footer.appendChild(createElement('strong', '', item.percent + '%'));
+        } else {
+            footer.appendChild(createElement('strong', '', 'ACTIVE'));
+        }
+        card.appendChild(footer);
+        card.addEventListener('click', () => openArchiveDoc(item));
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openArchiveDoc(item);
+            }
+        });
+        return card;
+    }
+
+    function createBranchNode(data, modifier) {
+        const node = createElement('article', 'roadmap-branch-node ' + (modifier || ''));
+        node.appendChild(createElement('span', 'roadmap-node-eyebrow', data.eyebrow));
+        node.appendChild(createElement('h4', '', data.title));
+        node.appendChild(createElement('p', '', data.desc));
+        if (data.status) node.appendChild(createElement('span', 'roadmap-node-status', data.status));
+
+        if (data.itemId) {
+            const item = findItem(data.itemId);
+            if (item) {
+                node.classList.add('is-clickable');
+                node.setAttribute('role', 'button');
+                node.tabIndex = 0;
+                node.addEventListener('click', () => openArchiveDoc(item));
+                node.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openArchiveDoc(item);
+                    }
+                });
+            }
+        }
+        return node;
+    }
+
+    function renderNow(sectionNav) {
+        const view = createElement('div', 'roadmap-view roadmap-now-view');
+        const intro = createElement('div', 'roadmap-view-intro');
+        const copy = createElement('div', 'roadmap-view-copy');
+        copy.appendChild(createElement('span', 'roadmap-kicker', 'MISSION CONTROL / ACTIVE'));
+        copy.appendChild(createElement('p', '', '当前仍在演化的项目。点击任务卡可打开完整档案。'));
+        intro.appendChild(copy);
+        intro.appendChild(sectionNav);
+        view.appendChild(intro);
+
+        const grid = createElement('div', 'roadmap-now-grid');
+        getRoadmapItems()
+            .filter(item => item.type === 'project' && !isDone(item) && !isAborted(item))
+            .forEach(item => grid.appendChild(createNowCard(item)));
+        view.appendChild(grid);
+        return view;
+    }
+
+    function createWanderCard(item, index) {
+        const type = item.type || 'project';
+        const card = createElement('article', 'roadmap-wander-card wander-pattern-' + (index % 5));
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
+
+        const header = createElement('div', 'roadmap-wander-header');
+        header.appendChild(createElement(
+            'span',
+            'roadmap-wander-type type-' + type,
+            (TYPE_LABELS[type] && TYPE_LABELS[type]['zh-CN']) || type
+        ));
+        header.appendChild(createElement('span', 'roadmap-wander-version', item.version || '—'));
+        card.appendChild(header);
+        card.appendChild(createElement('h4', '', resolveLang(item.title)));
+        card.appendChild(createElement('p', '', resolveLang(item.desc)));
+
+        const footer = createElement('div', 'roadmap-wander-footer');
+        footer.appendChild(createElement('span', '', item.id || '—'));
+        footer.appendChild(createElement('strong', '', getStatusLabel(item)));
+        card.appendChild(footer);
+
+        card.addEventListener('click', () => openArchiveDoc(item));
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openArchiveDoc(item);
+            }
+        });
+        return card;
+    }
+
+    function renderWander(sectionNav) {
+        const view = createElement('div', 'roadmap-view roadmap-wander-view');
+        const intro = createElement('div', 'roadmap-wander-intro');
+        const copy = createElement('div', '');
+        copy.appendChild(createElement('span', 'roadmap-kicker', 'OPEN PLAYGROUND / NO FIXED MISSION'));
+        copy.appendChild(createElement('h3', '', '随心所欲'));
+        copy.appendChild(createElement('p', '', '没有明确主题，也不要求形成产品。项目、实验和一时兴起的验证混杂在这里，等待某一天与别的能力发生连接。'));
+        intro.appendChild(copy);
+        const controls = createElement('div', 'roadmap-header-controls');
+        controls.appendChild(sectionNav);
+        controls.appendChild(createElement('span', 'roadmap-wander-count', String(getRoadmapItems().length).padStart(2, '0') + ' RECORDS'));
+        intro.appendChild(controls);
+        view.appendChild(intro);
+
+        const grid = createElement('div', 'roadmap-wander-grid');
+        getRoadmapItems().forEach((item, index) => {
+            grid.appendChild(createWanderCard(item, index));
+        });
+        view.appendChild(grid);
+        return view;
+    }
+
+    function renderBranches(sectionNav) {
+        const branches = Array.isArray(state.data.branches) ? state.data.branches : [];
+        const branch = branches[state.activeBranch];
+        const view = createElement('div', 'roadmap-view roadmap-branches-view');
+        if (!branch) return view;
+
+        const branchHeader = createElement('div', 'roadmap-branch-header');
+        const heading = createElement('div', '');
+        heading.appendChild(createElement('span', 'roadmap-kicker', branch.code + ' / EVOLUTION TRACE'));
+        heading.appendChild(createElement('h3', '', branch.title));
+        heading.appendChild(createElement('p', '', branch.summary));
+        branchHeader.appendChild(heading);
+
+        const pager = createElement('div', 'roadmap-branch-pager');
+        const previous = createElement('button', '', '←');
+        const next = createElement('button', '', '→');
+        previous.type = next.type = 'button';
+        previous.disabled = branches.length < 2;
+        next.disabled = branches.length < 2;
+        previous.setAttribute('aria-label', '上一条分支');
+        next.setAttribute('aria-label', '下一条分支');
+        previous.addEventListener('click', () => {
+            state.activeBranch = (state.activeBranch - 1 + branches.length) % branches.length;
+            render();
+        });
+        next.addEventListener('click', () => {
+            state.activeBranch = (state.activeBranch + 1) % branches.length;
+            render();
+        });
+        pager.appendChild(previous);
+        pager.appendChild(createElement('span', '', String(state.activeBranch + 1).padStart(2, '0') + ' / ' + String(branches.length).padStart(2, '0')));
+        pager.appendChild(next);
+        const controls = createElement('div', 'roadmap-header-controls');
+        controls.appendChild(sectionNav);
+        controls.appendChild(pager);
+        branchHeader.appendChild(controls);
+        view.appendChild(branchHeader);
+
+        const map = createElement('div', 'roadmap-branch-map');
+        const experimentLane = createElement('div', 'roadmap-experiment-lane');
+        experimentLane.appendChild(createElement('span', 'roadmap-lane-label', 'EXPERIMENT CHAIN / CAPABILITY CONTINUATION'));
+
+        const chain = createElement('div', 'roadmap-experiment-chain');
+        [branch.origin, ...branch.capabilities].forEach((nodeData, index, nodes) => {
+            chain.appendChild(createBranchNode(
+                nodeData,
+                index === 0 ? 'roadmap-origin-node' : 'roadmap-capability-node'
+            ));
+            if (index < nodes.length - 1) {
+                const connector = createElement('div', 'roadmap-chain-connector');
+                connector.innerHTML = `<i></i><span>${index === 0 ? '经验延续' : '能力延续'}</span>`;
+                chain.appendChild(connector);
+            }
+        });
+        experimentLane.appendChild(chain);
+        experimentLane.appendChild(createElement('span', 'roadmap-relation-label', branch.origin.relation));
+        map.appendChild(experimentLane);
+
+        const merge = createElement('div', 'roadmap-merge-mark');
+        merge.innerHTML = '<span>CONVERGE</span><i></i>';
+        map.appendChild(merge);
+
+        const destinationLane = createElement('div', 'roadmap-destination-lane');
+        destinationLane.appendChild(createElement('span', 'roadmap-lane-label', 'SYSTEM / CONTINUATION'));
+        destinationLane.appendChild(createBranchNode(branch.destination, 'roadmap-destination-node'));
+        map.appendChild(destinationLane);
+        view.appendChild(map);
+
+        const legend = createElement('div', 'roadmap-branch-legend');
+        legend.innerHTML = '<span><i class="solid"></i>能力汇流</span><span><i class="dashed"></i>经验延续，不代表代码复用</span>';
+        view.appendChild(legend);
+        return view;
+    }
+
+    function renderArchive(sectionNav) {
+        const view = createElement('div', 'roadmap-view roadmap-archive-view');
+        const intro = createElement('div', 'roadmap-view-intro');
+        const copy = createElement('div', 'roadmap-view-copy');
+        copy.appendChild(createElement('span', 'roadmap-kicker', 'RECORD STORAGE / CLOSED'));
+        copy.appendChild(createElement('p', '', '已完成、中止或封存的项目记录。点击档案可查看文章。'));
+        intro.appendChild(copy);
+        intro.appendChild(sectionNav);
+        view.appendChild(intro);
+
+        const grid = createElement('div', 'roadmap-archive-grid');
+        getRoadmapItems()
+            .filter(item => item.type === 'project' && (isDone(item) || isAborted(item)))
+            .forEach(item => grid.appendChild(createFileCard(item)));
+        view.appendChild(grid);
+        return view;
+    }
+
     /* ========== Render ========== */
     function render() {
         const cabinet = document.querySelector('#archive-cabinet');
@@ -316,14 +623,17 @@
         cabinet.innerHTML = '';
         if (!state.data) return;
 
-        const shelf = document.createElement('div');
-        shelf.className = 'archive-shelf';
+        const primaryHost = document.querySelector('#workbench-primary-nav-host');
+        const primaryNav = createWorkbenchNav();
+        if (primaryHost) primaryHost.replaceChildren(primaryNav);
+        else cabinet.appendChild(primaryNav);
+        const sectionNav = createSectionNav();
 
-        getRoadmapItems().forEach(item => {
-            shelf.appendChild(createFileCard(item));
-        });
-
-        cabinet.appendChild(shelf);
+        if (state.activeTop === 'projects') {
+            cabinet.appendChild(state.projectView === 'archive' ? renderArchive(sectionNav) : renderNow(sectionNav));
+        } else {
+            cabinet.appendChild(state.roadmapView === 'wander' ? renderWander(sectionNav) : renderBranches(sectionNav));
+        }
     }
 
     async function load() {

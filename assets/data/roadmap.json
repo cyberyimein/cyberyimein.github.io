@@ -1,5 +1,50 @@
 {
     "_template": "# 标题\n\n简介描述\n\n## Overview\n\n详细说明\n\n## Current Progress\n\n- 进展项1\n- 进展项2",
+    "branches": [
+        {
+            "id": "agent-harness",
+            "code": "BR-01",
+            "title": "Agent Harness 演化分支",
+            "summary": "不起眼的工具验证没有消失。联网、隔离执行与知识检索逐渐汇流，最终成为 Anomalo Harness 的基础能力。",
+            "origin": {
+                "itemId": "RM-E03",
+                "title": "花见 CLI",
+                "eyebrow": "早期小实验",
+                "desc": "验证本地 Agent 如何调用外部季节数据。它提供了联网能力的早期经验，但并不是 Fetch + Search 的简单实现。",
+                "relation": "经验延续 · 非代码复用"
+            },
+            "capabilities": [
+                {
+                    "id": "python-tool",
+                    "title": "Python 沙箱",
+                    "eyebrow": "容器沙箱执行",
+                    "desc": "在隔离容器中执行 Python，把计算、代码运行与结果回传纳入 Harness。",
+                    "status": "已整合"
+                },
+                {
+                    "id": "fetch-search",
+                    "title": "Fetch + Search",
+                    "eyebrow": "联网检索能力",
+                    "desc": "Search 发现候选来源，Fetch 读取指定资源；两个工具组合成 Agent 的联网检索能力。",
+                    "status": "已整合"
+                },
+                {
+                    "id": "rag-database",
+                    "title": "RAG Database",
+                    "eyebrow": "知识检索验证",
+                    "desc": "验证知识写入、召回与上下文拼装，让 Harness 能利用可追溯的长期资料。",
+                    "status": "验证完成"
+                }
+            ],
+            "destination": {
+                "itemId": "RM-P04",
+                "title": "ANOMALO HARNESS",
+                "eyebrow": "能力汇流点",
+                "desc": "联网检索、沙箱工具与 RAG 数据库在事件驱动运行时中汇流，形成可继续扩展的 Agent Harness。",
+                "status": "持续演化"
+            }
+        }
+    ],
     "items": [
         {
             "id": "RM-E01",
@@ -111,6 +156,7 @@
             },
             "percent": 70,
             "status": "progress",
+            "currentFocus": "继续完善交易、资金、税务与收益分析的数据闭环。",
             "github": "https://github.com/cyberyimein/kabumemo",
             "featured": true
         },
@@ -187,6 +233,7 @@
             },
             "percent": 60,
             "status": "progress",
+            "currentFocus": "把联网检索、容器沙箱执行与 RAG 验证收束为稳定的 Harness 能力。",
             "github": "https://github.com/cyberyimein/Anomalo",
             "featured": true
         },
@@ -211,6 +258,7 @@
             },
             "percent": null,
             "status": "progress",
+            "currentFocus": "继续验证触摸、音频、传感与动作如何成为 Agent 的实体接口。",
             "github": "https://github.com/cyberyimein/buddy-neko",
             "featured": true
         }

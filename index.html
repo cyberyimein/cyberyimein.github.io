@@ -38,7 +38,7 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <meta name="theme-color" content="#EBEBEB" />
     <!-- 主题：NASA Industrial Punk -->
-    <link rel="stylesheet" href="./assets/css/nasa.css" />
+    <link rel="stylesheet" href="./assets/css/nasa.css?v=20260731-roadmap-9" />
     <!-- 如需回退深色霓虹版本，改为： ./assets/css/style.css -->
 </head>
 
@@ -74,29 +74,16 @@
                 <h1 data-i18n="hero.title.html"></h1>
                 <p data-i18n="hero.subtitle.html"></p>
             </div>
-        </section>
-
-        <section id="projects" class="section">
-            <div class="section-header">
-                <h2 data-i18n="projects.title"></h2>
-                <span class="ref-id">[REF-ID: CYBER-A01]</span>
-                <div class="bar"></div>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card empty">
-                    <h4 data-i18n="projects.empty.title"></h4>
-                    <p data-i18n="projects.empty.desc"></p>
-                    <div class="empty-note">placeholder</div>
-                </div>
-            </div>
+            <div id="workbench-primary-nav-host" class="hero-workbench-nav"></div>
         </section>
 
         <section id="roadmap" class="section">
             <div class="section-header">
-                <h2 data-i18n="roadmap.title"></h2>
-                <span class="ref-id">[REF-ID: Roadmap-GS]</span>
+                <h2>构建记录</h2>
+                <span class="ref-id">[REF-ID: BUILD-LOG]</span>
                 <div class="bar"></div>
             </div>
+            <div class="projects-grid workbench-project-source" aria-hidden="true"></div>
             <div class="archive-cabinet" id="archive-cabinet"></div>
         </section>
 
@@ -137,7 +124,7 @@
     <script src="./assets/js/md.js"></script>
     <script src="./assets/js/badges.js"></script>
     <script src="./assets/js/projects.js"></script>
-    <script src="./assets/js/roadmap.js"></script>
+    <script src="./assets/js/roadmap.js?v=20260731-roadmap-6"></script>
     <script src="./assets/js/dashboard-fx.js"></script>
     <script src="./assets/js/canvas-bg.js"></script>
     <script src="./assets/js/main.js"></script>
