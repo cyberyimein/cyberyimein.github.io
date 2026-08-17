@@ -481,6 +481,35 @@
             },
             "github": "https://github.com/cyberyimein/buddy-neko",
             "featured": true
+        },
+        {
+            "id": "RM-P06",
+            "type": "project",
+            "version": "v0.1.0",
+            "content": {
+                "cn": "contents/projects/cn/urus.md",
+                "en": "contents/projects/en/urus.md",
+                "jp": "contents/projects/jp/urus.md"
+            },
+            "title": {
+                "zh-CN": "URUS",
+                "en-US": "URUS",
+                "ja-JP": "URUS"
+            },
+            "desc": {
+                "zh-CN": "把市场数据、技术指标、期权结构与可选 Agent 分析纳入可追溯工作流的美股研究与决策辅助系统。",
+                "en-US": "A US equity research and decision-support system that brings market data, technical indicators, option structure, and optional Agent analysis into a traceable workflow.",
+                "ja-JP": "市場データ、テクニカル指標、オプション構造、任意の Agent 分析を追跡可能なワークフローにまとめる米国株リサーチ・意思決定支援システム。"
+            },
+            "percent": null,
+            "status": "progress",
+            "currentFocus": {
+                "zh-CN": "实现 3B 个股事件与财务摘要，扩展行业基准和关注列表，并继续完善历史归档与动态期权模型。",
+                "en-US": "Implement 3B company-event and financial summaries, extend sector benchmarks and the watchlist, and improve historical archives and dynamic option models.",
+                "ja-JP": "3B の企業イベントと財務要約を実装し、セクターベンチマークとウォッチリストを広げ、履歴アーカイブと動的なオプションモデルを改善する。"
+            },
+            "github": "https://github.com/cyberyimein/Urus",
+            "featured": false
         }
     ]
 }

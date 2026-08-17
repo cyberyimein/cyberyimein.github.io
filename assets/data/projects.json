@@ -252,5 +252,47 @@
 		"featured": true,
 		"status": "active",
 		"createdAt": "2026-07-20"
+	},
+	{
+		"_template": "# 项目名称\n\n项目简介\n\n## Technical Specifications\n\n技术栈\n\n## Classification Tags\n\n标签1 / 标签2\n\n## Background\n\n详细描述...",
+		"id": "urus",
+		"content": {
+			"cn": "contents/projects/cn/urus.md",
+			"en": "contents/projects/en/urus.md",
+			"jp": "contents/projects/jp/urus.md"
+		},
+		"name": {
+			"zh-CN": "Urus",
+			"en-US": "Urus",
+			"ja-JP": "Urus"
+		},
+		"description": {
+			"zh-CN": "面向美股股票与 ETF 的研究与决策辅助系统，把数据、技术指标、期权结构与可选 Agent 分析纳入可追溯工作流。",
+			"en-US": "A US equity research and decision-support system that brings data, technical indicators, option structure, and optional Agent analysis into a traceable workflow.",
+			"ja-JP": "米国株と ETF のリサーチ・意思決定支援システム。データ、テクニカル指標、オプション構造、任意の Agent 分析を追跡可能なワークフローにまとめる。"
+		},
+		"repo": "https://github.com/cyberyimein/Urus",
+		"url": "https://github.com/cyberyimein/Urus",
+		"tags": [
+			{
+				"zh-CN": "Stock Research",
+				"en-US": "Stock Research",
+				"ja-JP": "株式リサーチ"
+			},
+			{
+				"zh-CN": "FastAPI + Vue",
+				"en-US": "FastAPI + Vue",
+				"ja-JP": "FastAPI + Vue"
+			},
+			{
+				"zh-CN": "Agent Decision",
+				"en-US": "Agent Decision",
+				"ja-JP": "Agent Decision"
+			}
+		],
+		"tech": ["Python", "FastAPI", "Vue 3", "TypeScript", "SQLAlchemy", "Moomoo OpenD", "OpenRouter"],
+		"featured": false,
+		"status": "active",
+		"createdAt": "2026-08-18"
 	}
 ]
