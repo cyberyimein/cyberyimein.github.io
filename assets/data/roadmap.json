@@ -10,9 +10,9 @@
                 "ja-JP": "Agent Harness の進化ブランチ"
             },
             "summary": {
-                "zh-CN": "不起眼的工具验证没有消失。联网、隔离执行、知识检索与环境感知逐渐汇流，最终成为 Anomalo Harness 的基础能力。",
-                "en-US": "Small tool validations did not disappear. Web access, isolated execution, retrieval, and environmental sensing converged into the foundation of the Anomalo Harness.",
-                "ja-JP": "目立たないツール検証は消えなかった。Web 接続、分離実行、検索、環境センシングが集まり、Anomalo Harness の基盤になった。"
+                "zh-CN": "不起眼的工具验证没有消失。联网、隔离执行、知识检索与环境感知先汇流为 Anomalo Harness；Urus 将它特化为股票研究 Agent，Meganeura 则沿企业受控执行与 Know-how 隔离继续演化。",
+                "en-US": "Small tool validations did not disappear. Web access, isolated execution, retrieval, and environmental sensing converge in the Anomalo Harness; Urus specializes it for stock research, while Meganeura takes it toward governed enterprise execution and know-how isolation.",
+                "ja-JP": "目立たないツール検証は消えなかった。Web 接続、分離実行、検索、環境センシングが Anomalo Harness に合流し、Urus は株式リサーチ向けに特化する。Meganeura は企業向けの統制された実行と Know-how 分離へ発展させている。"
             },
             "origin": {
                 "itemId": "RM-E03",
@@ -157,7 +157,55 @@
                     "en-US": "EVOLVING",
                     "ja-JP": "EVOLVING"
                 }
-            }
+            },
+            "specializations": [
+                {
+                    "itemId": "RM-P06",
+                    "title": {
+                        "zh-CN": "URUS",
+                        "en-US": "URUS",
+                        "ja-JP": "URUS"
+                    },
+                    "eyebrow": {
+                        "zh-CN": "股票研究特化 Agent",
+                        "en-US": "Stock-research Agent",
+                        "ja-JP": "株式リサーチ特化 Agent"
+                    },
+                    "desc": {
+                        "zh-CN": "基于 Anomalo 的事件驱动 Harness，把市场与宏观数据、技术指标、期权结构、冻结证据和只读 Agent 工具编排成可复盘的美股研究工作流。",
+                        "en-US": "Builds on Anomalo's event-driven Harness, arranging market and macro data, technical indicators, option structure, frozen evidence, and read-only Agent tools into a reviewable US-equity research workflow.",
+                        "ja-JP": "Anomalo のイベント駆動 Harness を基盤に、市場・マクロデータ、テクニカル指標、オプション構造、凍結した証拠、読み取り専用 Agent ツールを、再検証可能な米国株リサーチワークフローへまとめる。"
+                    },
+                    "status": {
+                        "zh-CN": "EVOLVING",
+                        "en-US": "EVOLVING",
+                        "ja-JP": "EVOLVING"
+                    }
+                },
+                {
+                    "itemId": "RM-P07",
+                    "title": {
+                        "zh-CN": "MEGANEURA",
+                        "en-US": "MEGANEURA",
+                        "ja-JP": "MEGANEURA"
+                    },
+                    "eyebrow": {
+                        "zh-CN": "企业受控执行 Harness",
+                        "en-US": "Governed enterprise Harness",
+                        "ja-JP": "企業向け統制実行 Harness"
+                    },
+                    "desc": {
+                        "zh-CN": "基于 Anomalo 的 Harness 经验，分离外部 Interaction Agent 与内部 Execution Model，把业务 Know-how 留在本地 Vault，并通过受限 Capability API 委托执行。",
+                        "en-US": "Builds on Anomalo's Harness experience by separating the external Interaction Agent from the internal Execution Model, keeping business know-how in a local Vault, and delegating work through restricted Capability APIs.",
+                        "ja-JP": "Anomalo の Harness で得た経験を基に、外部 Interaction Agent と内部 Execution Model を分離する。業務 Know-how はローカル Vault に保ち、制限された Capability API を通じて実行を委譲する。"
+                    },
+                    "status": {
+                        "zh-CN": "M3 CLOSEOUT",
+                        "en-US": "M3 CLOSEOUT",
+                        "ja-JP": "M3 CLOSEOUT"
+                    }
+                }
+            ]
         }
     ],
     "items": [
@@ -509,6 +557,34 @@
                 "ja-JP": "3B の企業イベントと財務要約を実装し、セクターベンチマークとウォッチリストを広げ、履歴アーカイブと動的なオプションモデルを改善する。"
             },
             "github": "https://github.com/cyberyimein/Urus",
+            "featured": false
+        },
+        {
+            "id": "RM-P07",
+            "type": "project",
+            "version": "v0.1.0",
+            "title": {
+                "zh-CN": "MEGANEURA",
+                "en-US": "MEGANEURA",
+                "ja-JP": "MEGANEURA"
+            },
+            "desc": {
+                "zh-CN": "本地 Know-how 沙箱与受治理 Agent Harness，通过 Capability API 隔离外部 Agent、内部 Execution Model 与受保护业务资产。",
+                "en-US": "A local know-how sandbox and governed Agent Harness that separates external Agents, the internal Execution Model, and protected business assets behind Capability APIs.",
+                "ja-JP": "Capability API を境界として、外部 Agent、内部 Execution Model、保護された業務資産を分離するローカル Know-how サンドボックス兼統制型 Agent Harness。"
+            },
+            "percent": null,
+            "status": "progress",
+            "statusReason": {
+                "zh-CN": "路线图记录；文章将在项目边界与验收结论稳定后补充。",
+                "en-US": "Roadmap record; the article will follow after the project boundaries and acceptance results stabilize.",
+                "ja-JP": "ロードマップ上の記録であり、記事はプロジェクト境界と受入結果が安定した後に追加する。"
+            },
+            "currentFocus": {
+                "zh-CN": "完成里程碑 3 的真实浏览器扩展验收与失败路径收尾，再进入原生应用打包、生产鉴权和交付准备。",
+                "en-US": "Finish Milestone 3 validation with the real browser extension and remaining failure paths, then move to native app packaging, production authorization, and delivery preparation.",
+                "ja-JP": "実ブラウザー拡張と残る失敗経路で Milestone 3 の受入を完了し、その後にネイティブアプリのパッケージ化、本番認可、デリバリー準備へ進む。"
+            },
             "featured": false
         }
     ]

@@ -1,5 +1,5 @@
 (function () {
-    const FILE = './assets/data/roadmap.json?v=20260731-roadmap-i18n-2';
+    const FILE = './assets/data/roadmap.json?v=20260818-harness-branches-2';
     const state = {
         data: null,
         lang: 'zh-CN',
@@ -304,6 +304,7 @@
                     <p><strong>${escapeHtml(ui('document.version', 'VERSION:'))}</strong> ${escapeHtml(item.version || '—')}</p>
                     <p><strong>${escapeHtml(ui('document.status', 'STATUS:'))}</strong> ${escapeHtml(getStatusLabel(item))}</p>
                     ${item.statusReason ? `<p><strong>${escapeHtml(ui('document.statusNote', 'STATUS NOTE:'))}</strong> ${escapeHtml(resolveLang(item.statusReason))}</p>` : ''}
+                    ${item.currentFocus ? `<p><strong>${escapeHtml(ui('document.currentFocus', 'CURRENT FOCUS:'))}</strong> ${escapeHtml(resolveLang(item.currentFocus))}</p>` : ''}
                     ${item.percent != null ? `<p><strong>${escapeHtml(ui('document.progress', 'PROGRESS:'))}</strong> ${item.percent}%</p>` : ''}
                     ${item.github ? `<p><strong>${escapeHtml(ui('document.repository', 'REPOSITORY:'))}</strong> <a href="${escapeHtml(item.github)}" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:none;font-weight:700;">${escapeHtml(item.github)}</a></p>` : ''}
                 `;
@@ -549,6 +550,9 @@
     function renderBranches(sectionNav) {
         const branches = Array.isArray(state.data.branches) ? state.data.branches : [];
         const branch = branches[state.activeBranch];
+        const specializations = branch && Array.isArray(branch.specializations)
+            ? branch.specializations
+            : [];
         const view = createElement('div', 'roadmap-view roadmap-branches-view');
         if (!branch) return view;
 
@@ -609,13 +613,28 @@
         map.appendChild(merge);
 
         const destinationLane = createElement('div', 'roadmap-destination-lane');
-        destinationLane.appendChild(createElement('span', 'roadmap-lane-label', ui('roadmap.branch.lane.system', 'SYSTEM / CONTINUATION')));
-        destinationLane.appendChild(createBranchNode(branch.destination, 'roadmap-destination-node'));
+        destinationLane.appendChild(createElement('span', 'roadmap-lane-label', ui('roadmap.branch.lane.system', 'SYSTEM BASE / DOMAIN SPECIALIZATIONS')));
+
+        const systemTree = createElement('div', 'roadmap-system-tree');
+        systemTree.appendChild(createBranchNode(branch.destination, 'roadmap-destination-node'));
+        if (specializations.length) {
+            const fork = createElement('div', 'roadmap-specialization-fork');
+            fork.innerHTML = `<span>${escapeHtml(ui('roadmap.branch.connector.specialization', 'SPECIALIZE'))}</span><i></i>`;
+            systemTree.appendChild(fork);
+
+            const specializationGrid = createElement('div', 'roadmap-specialization-grid');
+            specializations.forEach(nodeData => {
+                specializationGrid.appendChild(createBranchNode(nodeData, 'roadmap-specialization-node'));
+            });
+            systemTree.appendChild(specializationGrid);
+        }
+        destinationLane.appendChild(systemTree);
         map.appendChild(destinationLane);
         view.appendChild(map);
 
         const legend = createElement('div', 'roadmap-branch-legend');
         legend.innerHTML = '<span><i class="solid"></i>' + escapeHtml(ui('roadmap.branch.legend.merge', 'CAPABILITY MERGE')) + '</span>'
+            + (specializations.length ? '<span><i class="specialization"></i>' + escapeHtml(ui('roadmap.branch.legend.specialization', 'DOMAIN SPECIALIZATION')) + '</span>' : '')
             + '<span><i class="dashed"></i>' + escapeHtml(ui('roadmap.branch.legend.experience', 'EXPERIENCE CONTINUITY, NOT CODE REUSE')) + '</span>';
         view.appendChild(legend);
         return view;

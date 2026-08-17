@@ -1911,6 +1911,88 @@ header {
     transform: translate(-50%, 0) rotate(45deg);
 }
 
+.roadmap-system-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roadmap-system-tree > .roadmap-destination-node {
+    margin: 0;
+}
+
+.roadmap-specialization-fork {
+    position: relative;
+    width: min(100%, 760px);
+    height: 76px;
+}
+
+.roadmap-specialization-fork::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 34px;
+    border-left: 1px solid var(--blue);
+}
+
+.roadmap-specialization-fork::after {
+    content: "";
+    position: absolute;
+    top: 34px;
+    left: 25%;
+    right: 25%;
+    border-top: 1px solid var(--blue);
+}
+
+.roadmap-specialization-fork i {
+    position: absolute;
+    top: 34px;
+    right: 25%;
+    bottom: 0;
+    left: 25%;
+    border-right: 1px solid var(--blue);
+    border-left: 1px solid var(--blue);
+}
+
+.roadmap-specialization-fork i::before,
+.roadmap-specialization-fork i::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid var(--blue);
+    border-bottom: 1px solid var(--blue);
+    transform: translateY(0) rotate(45deg);
+}
+
+.roadmap-specialization-fork i::before {
+    left: -4px;
+}
+
+.roadmap-specialization-fork i::after {
+    right: -4px;
+}
+
+.roadmap-specialization-fork span {
+    position: absolute;
+    top: 8px;
+    left: calc(50% + 12px);
+    width: max-content;
+    color: var(--blue);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: .7px;
+}
+
+.roadmap-specialization-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    width: min(100%, 760px);
+}
+
 .roadmap-destination-node {
     width: min(var(--paper-card-width), 76%);
     margin: 0 auto;
@@ -1928,6 +2010,34 @@ header {
 }
 
 .roadmap-destination-node p {
+    max-width: 70ch;
+    font-size: 10.5px;
+}
+
+.roadmap-specialization-node {
+    min-height: 220px;
+    padding: 20px 22px;
+    border: 2px solid var(--text);
+    border-top-color: var(--text);
+    border-left: 7px solid var(--blue);
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0,
+            transparent 18px,
+            rgba(0, 50, 160, .025) 18px,
+            rgba(0, 50, 160, .025) 36px
+        ),
+        var(--panel);
+    box-shadow: 8px 8px 0 var(--panel-deep);
+    aspect-ratio: auto;
+}
+
+.roadmap-specialization-node h4 {
+    font-size: clamp(18px, 2.4vw, 25px);
+}
+
+.roadmap-specialization-node p {
     max-width: 70ch;
     font-size: 10.5px;
 }
@@ -1957,6 +2067,27 @@ header {
 .roadmap-branch-legend i.dashed {
     border-top-style: dashed;
     border-top-color: var(--divider-bold);
+}
+
+.roadmap-branch-legend i.solid {
+    border-top-color: var(--orange);
+}
+
+.roadmap-branch-legend i.specialization {
+    position: relative;
+    border-top-color: var(--blue);
+}
+
+.roadmap-branch-legend i.specialization::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--blue);
+    border-right: 1px solid var(--blue);
+    transform: rotate(45deg);
 }
 
 /* Free exploration board */
@@ -3105,6 +3236,51 @@ footer a:hover {
 
     .roadmap-destination-node {
         width: min(100%, var(--paper-card-width));
+    }
+
+    .roadmap-specialization-fork {
+        width: 100%;
+        height: 58px;
+    }
+
+    .roadmap-specialization-fork::before {
+        top: 0;
+        bottom: 0;
+        height: auto;
+    }
+
+    .roadmap-specialization-fork::after {
+        top: auto;
+        right: auto;
+        bottom: 1px;
+        left: 50%;
+        width: 7px;
+        height: 7px;
+        border-top: 0;
+        border-right: 1px solid var(--blue);
+        border-bottom: 1px solid var(--blue);
+        transform: translateX(-50%) rotate(45deg);
+    }
+
+    .roadmap-specialization-fork i {
+        display: none;
+    }
+
+    .roadmap-specialization-fork span {
+        top: 50%;
+        left: calc(50% + 13px);
+        transform: translateY(-50%);
+    }
+
+    .roadmap-specialization-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        width: min(100%, var(--paper-card-width));
+    }
+
+    .roadmap-specialization-node {
+        min-height: 0;
+        aspect-ratio: var(--paper-ratio);
     }
 
     .roadmap-now-grid,
