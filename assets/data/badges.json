@@ -167,6 +167,24 @@
                         "en-US": "A developer certification focused on Azure AI, Microsoft Foundry, generative AI, and agentic solutions.",
                         "ja-JP": "Azure AI、Microsoft Foundry、生成AI、agentic solutions に重点を置く開発者向け認定です。"
                     }
+                },
+                {
+                    "id": "az-104",
+                    "label": {
+                        "zh-CN": "Microsoft 认证：Azure 管理员助理 (AZ-104)",
+                        "en-US": "Microsoft Certified: Azure Administrator Associate (AZ-104)",
+                        "ja-JP": "Azure Administrator Associate (AZ-104)"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#0078d4'/><path d='M12 44 28 14h10L22 44z' fill='#fff' opacity='.96'/><path d='M28 44h25L37 19l-5 9 7 12H28z' fill='#d7efff'/></svg>",
+                    "kind": "cert",
+                    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/",
+                    "obtainedDate": "2026-09",
+                    "status": "active",
+                    "comment": {
+                        "zh-CN": "Microsoft Certified: Azure Administrator Associate，涵盖 Azure 身份与治理、网络、存储、计算、监控和维护。",
+                        "en-US": "Microsoft Certified: Azure Administrator Associate. Covers Azure identity and governance, networking, storage, compute, monitoring, and maintenance.",
+                        "ja-JP": "Microsoft Certified: Azure Administrator Associate。Azure の ID とガバナンス、ネットワーク、ストレージ、コンピューティング、監視と保守を扱います。"
+                    }
                 }
             ]
         }
