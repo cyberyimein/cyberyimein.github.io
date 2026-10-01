@@ -200,9 +200,9 @@
                         "ja-JP": "Anomalo の Harness で得た経験を基に、外部 Interaction Agent と内部 Execution Model を分離する。業務 Know-how はローカル Vault に保ち、制限された Capability API を通じて実行を委譲する。"
                     },
                     "status": {
-                        "zh-CN": "M3 CLOSEOUT",
-                        "en-US": "M3 CLOSEOUT",
-                        "ja-JP": "M3 CLOSEOUT"
+                        "zh-CN": "v0.1.0 PUBLIC",
+                        "en-US": "v0.1.0 PUBLIC",
+                        "ja-JP": "v0.1.0 PUBLIC"
                     }
                 }
             ]
@@ -583,23 +583,29 @@
                 "ja-JP": "MEGANEURA"
             },
             "desc": {
-                "zh-CN": "本地 Know-how 沙箱与受治理 Agent Harness，通过 Capability API 隔离外部 Agent、内部 Execution Model 与受保护业务资产。",
-                "en-US": "A local know-how sandbox and governed Agent Harness that separates external Agents, the internal Execution Model, and protected business assets behind Capability APIs.",
-                "ja-JP": "Capability API を境界として、外部 Agent、内部 Execution Model、保護された業務資産を分離するローカル Know-how サンドボックス兼統制型 Agent Harness。"
+                "zh-CN": "通过 REST / MCP 委托业务任务，由内部 Runtime 执行，并通过 macOS Gateway 连接浏览器与 Blender。",
+                "en-US": "Delegate business tasks through REST / MCP to an internal Runtime, with a macOS Gateway connecting the browser and Blender.",
+                "ja-JP": "REST / MCP で業務タスクを内部 Runtime に委譲し、macOS Gateway 経由でブラウザーと Blender に接続する。"
             },
             "percent": null,
             "status": "progress",
             "statusReason": {
-                "zh-CN": "路线图记录；文章将在项目边界与验收结论稳定后补充。",
-                "en-US": "Roadmap record; the article will follow after the project boundaries and acceptance results stabilize.",
-                "ja-JP": "ロードマップ上の記録であり、記事はプロジェクト境界と受入結果が安定した後に追加する。"
+                "zh-CN": "v0.1.0 已公开，首次 CI 的后端、Web 与 Gateway 检查通过。",
+                "en-US": "v0.1.0 is public; the first CI run passed backend, Web, and Gateway checks.",
+                "ja-JP": "v0.1.0 を公開し、初回 CI のバックエンド、Web、Gateway チェックを通過。"
             },
             "currentFocus": {
-                "zh-CN": "完成里程碑 3 的真实浏览器扩展验收与失败路径收尾，再进入原生应用打包、生产鉴权和交付准备。",
-                "en-US": "Finish Milestone 3 validation with the real browser extension and remaining failure paths, then move to native app packaging, production authorization, and delivery preparation.",
-                "ja-JP": "実ブラウザー拡張と残る失敗経路で Milestone 3 の受入を完了し、その後にネイティブアプリのパッケージ化、本番認可、デリバリー準備へ進む。"
+                "zh-CN": "验证 Blender 重启恢复与真实场景回归，完善原生应用打包和生产身份机制。",
+                "en-US": "Validate Blender restart recovery and real scene regressions, then improve native app packaging and production identity.",
+                "ja-JP": "Blender の再起動復旧と実シーンの回帰を検証し、ネイティブアプリのパッケージ化と本番 ID 機構を整備する。"
             },
-            "featured": false
+            "featured": false,
+            "github": "https://github.com/cyberyimein/Meganeura",
+            "content": {
+                "cn": "contents/projects/cn/meganeura.md",
+                "en": "contents/projects/en/meganeura.md",
+                "jp": "contents/projects/jp/meganeura.md"
+            }
         }
     ]
 }

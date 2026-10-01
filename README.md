@@ -13,6 +13,7 @@ This repository contains the source for my personal homepage. It presents a publ
 
 | Project | Summary | Tags | Links |
 | --- | --- | --- | --- |
+| Meganeura | A functional v0.1.0 Agent Runtime demo with REST/MCP capability delegation, an internal know-how vault, and a native macOS gateway for browser and Blender execution. | Agent Runtime / MCP / FastAPI / SwiftUI | [Repo](https://github.com/cyberyimein/Meganeura) |
 | Kabumemo | An AI-agent-built personal trading journal with trades, positions, funding groups, tax settlement, yield analytics, and mirrored JSON/SQLite storage, deployed through Apple Container. | Vibe Coding / Vue 3 / FastAPI / SQLite | [Repo](https://github.com/cyberyimein/kabumemo) |
 | TeaForge | **Completed at v0.2.0.** An agent-native CLI that converts pytest, Jest, Angular, and Playwright evidence into auditable PCL, C0/C1 coverage reports, Mermaid diagrams, and PDF. | Testing / PCL / Coverage / Agent Skill | [Repo](https://github.com/cyberyimein/TeaForge) |
 | SimsCommu | **Suspended · Awaiting restart.** A multi-agent speaking practice experiment that validated a three-stage STT, TTT, and TTS architecture. Development was stopped because a live duplex model is a better foundation for real-time voice interaction; a future restart will use that approach. | Multi-Agent / Speech AI / Roleplay | [Repo](https://github.com/cyberyimein/SimsCommu) |
@@ -24,6 +25,7 @@ This repository contains the source for my personal homepage. It presents a publ
 
 ### Current Focus
 
+- MEGANEURA (v0.1.0): Public functional demo; backend, Web, and Gateway CI checks pass. Next work covers Blender recovery, native packaging, and production identity.
 - KABUMEMO (70%): An AI-agent-built trading journal now covering trades, positions, funds, tax, yield analytics, dual storage, and Apple Container deployment.
 - ANOMALOHARIS (80%): A Node.js/TypeScript agent runtime that centralizes Preset Models, tool calls, WebSocket events, and optional plugins as a local AI compute center.
 - BUDDYNEKO (v0.7.0): A CoreS3 StackChan firmware experiment that gives host agents a cat-shaped physical interface for state, touch, audio, sensing, and motion.
