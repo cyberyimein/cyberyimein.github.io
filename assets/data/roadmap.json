@@ -208,6 +208,12 @@
             ]
         }
     ],
+    "evolutions": [
+        {
+            "id": "test-design",
+            "itemIds": ["RM-P02", "RM-P08"]
+        }
+    ],
     "items": [
         {
             "id": "RM-E01",
@@ -605,6 +611,33 @@
                 "cn": "contents/projects/cn/meganeura.md",
                 "en": "contents/projects/en/meganeura.md",
                 "jp": "contents/projects/jp/meganeura.md"
+            }
+        },
+        {
+            "id": "RM-P08",
+            "type": "project",
+            "version": "v0.1.0",
+            "content": {
+                "cn": "contents/projects/cn/pelago.md",
+                "en": "contents/projects/en/pelago.md",
+                "jp": "contents/projects/jp/pelago.md"
+            },
+            "title": {
+                "zh-CN": "Pelago",
+                "en-US": "Pelago",
+                "ja-JP": "Pelago"
+            },
+            "desc": {
+                "zh-CN": "延续 TeaForge 的 PCL 思路，将需求、设计、测试准备与执行证据纳入宿主 Git 项目的设计与验证工具。",
+                "en-US": "A design and verification tool continuing TeaForge's PCL approach, keeping requirements, design, test preparation, and execution evidence in the host Git project.",
+                "ja-JP": "TeaForgeのPCLの考え方を引き継ぎ、要件、設計、テスト準備、実行エビデンスをホストGitプロジェクトに保存する設計・検証ツール。"
+            },
+            "percent": null,
+            "status": "progress",
+            "currentFocus": {
+                "zh-CN": "根据实际审阅反馈打磨文档层级、头部信息、操作位置与长测试表阅读。",
+                "en-US": "Refine document hierarchy, header information, action placement, and long-table reading from actual review feedback.",
+                "ja-JP": "実際のレビュー指摘を基に、文書の階層、ヘッダー情報、操作の配置、長いテスト表の読み方を整える。"
             }
         }
     ]

@@ -10,7 +10,7 @@
 
     let data = [];
     try {
-        const res = await fetch('./assets/data/projects.json?v=20261001-meganeura-public');
+        const res = await fetch('./assets/data/projects.json?v=20261006-pelago-evolution');
         data = await res.json();
     } catch (e) {
         console.warn('[projects] load failed', e);

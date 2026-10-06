@@ -114,5 +114,13 @@
     "badge.validity": "有効性",
     "badge.learnMore": "詳細を見る",
     "badge.groupFallback": "グループ",
-    "projects.placeholder": "プレースホルダー記録"
+    "projects.placeholder": "プレースホルダー記録",
+    "roadmap.evolution.expand": "{count}段階を展開",
+    "roadmap.evolution.collapse": "変遷を折りたたむ",
+    "roadmap.evolution.stage": "段階 {index} / {count}",
+    "badge.learning": "継続学習",
+    "badges.group.languages": "開発言語",
+    "badges.group.foundations": "モデル基礎",
+    "badges.group.agent-engineering": "Agent エンジニアリング",
+    "badge.alignment": "方向性の検証"
 }

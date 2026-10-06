@@ -1,5 +1,50 @@
 [
 	{
+		"id": "pelago",
+		"content": {
+			"cn": "contents/projects/cn/pelago.md",
+			"en": "contents/projects/en/pelago.md",
+			"jp": "contents/projects/jp/pelago.md"
+		},
+		"name": {
+			"zh-CN": "Pelago",
+			"en-US": "Pelago",
+			"ja-JP": "Pelago"
+		},
+		"description": {
+			"zh-CN": "延续 TeaForge 的 PCL 思路，将需求、设计、测试准备与执行证据纳入宿主 Git 项目的设计与验证工具。",
+			"en-US": "A design and verification tool continuing TeaForge's PCL approach, keeping requirements, design, test preparation, and execution evidence in the host Git project.",
+			"ja-JP": "TeaForgeのPCLの考え方を引き継ぎ、要件、設計、テスト準備、実行エビデンスをホストGitプロジェクトに保存する設計・検証ツール。"
+		},
+		"tags": [
+			{
+				"zh-CN": "设计与验证",
+				"en-US": "Design & Verification",
+				"ja-JP": "設計・検証"
+			},
+			{
+				"zh-CN": "PCL",
+				"en-US": "PCL",
+				"ja-JP": "PCL"
+			},
+			{
+				"zh-CN": "Agent Skill",
+				"en-US": "Agent Skill",
+				"ja-JP": "Agent Skill"
+			}
+		],
+		"tech": [
+			"Node.js",
+			"TypeScript",
+			"Vue 3",
+			"Mermaid",
+			"Git",
+			"HTML + JSON"
+		],
+		"featured": false,
+		"status": "active"
+	},
+	{
 		"id": "meganeura",
 		"content": {
 			"cn": "contents/projects/cn/meganeura.md",

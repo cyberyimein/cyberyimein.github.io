@@ -16,7 +16,7 @@ const I18N = (function () {
         const target = supported.includes(lang) ? lang : detect();
         state.lang = target;
         try {
-            const res = await fetch(`./assets/i18n/${target}.json?v=20260818-harness-branches-2`);
+            const res = await fetch(`./assets/i18n/${target}.json?v=20261007-continuous-learning`);
             if (!res.ok) throw new Error('i18n load fail');
             state.dict = await res.json();
         } catch (e) {

@@ -114,5 +114,13 @@
     "badge.validity": "Validity",
     "badge.learnMore": "Learn More",
     "badge.groupFallback": "Group",
-    "projects.placeholder": "Placeholder record"
+    "projects.placeholder": "Placeholder record",
+    "roadmap.evolution.expand": "Expand {count} stages",
+    "roadmap.evolution.collapse": "Collapse evolution",
+    "roadmap.evolution.stage": "Stage {index} / {count}",
+    "badge.learning": "Continuous Learning",
+    "badges.group.languages": "Languages",
+    "badges.group.foundations": "Model Foundations",
+    "badges.group.agent-engineering": "Agent Engineering",
+    "badge.alignment": "Approach Validation"
 }

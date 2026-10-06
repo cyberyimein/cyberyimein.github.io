@@ -138,6 +138,10 @@
         overlay.querySelector('.envelope-title').textContent = label;
         const kindLabel = kind === 'cert'
             ? ui('badge.certification', 'Certification')
+            : kind === 'learning'
+            ? ui('badge.learning', 'Learning Record')
+            : kind === 'alignment'
+            ? ui('badge.alignment', 'Approach Validation')
             : ui('badge.skill', 'Skill');
         overlay.querySelector('.envelope-kind').textContent = kindLabel;
 
@@ -212,7 +216,7 @@
     async function load() {
         if (cache) return cache;
         try {
-            const res = await fetch('./assets/data/badges.json');
+            const res = await fetch('./assets/data/badges.json?v=20261007-model-design');
             cache = await res.json();
         } catch (e) {
             console.warn('[badges] load failed', e);
@@ -254,6 +258,7 @@
                 el.className = 'badge ' + (item.kind || 'skill');
                 el.tabIndex = 0;
                 el.style.cursor = 'pointer';
+                el.setAttribute('role', 'button');
                 el.setAttribute('aria-label', pickLabel(item.label));
 
                 // Icon
@@ -267,6 +272,15 @@
                 label.className = 'badge-label';
                 label.textContent = pickLabel(item.label);
                 el.appendChild(label);
+
+                if (item.kind === 'learning' || item.kind === 'alignment') {
+                    const note = document.createElement('span');
+                    note.className = 'badge-learning-label';
+                    note.textContent = item.kind === 'alignment'
+                        ? ui('badge.alignment', 'Approach Validation')
+                        : ui('badge.learning', 'Learning Record');
+                    el.appendChild(note);
+                }
 
                 // Click → open envelope card
                 el.addEventListener('click', () => { openCard(item); });

@@ -1,16 +1,18 @@
 {
     "groups": [
         {
-            "type": "skills",
+            "type": "languages",
             "label": {
-                "zh-CN": "技能栈",
-                "en-US": "Skill Stack",
-                "ja-JP": "スキルスタック"
+                "zh-CN": "开发语言",
+                "en-US": "Languages",
+                "ja-JP": "開発言語"
             },
             "items": [
                 {
                     "id": "ts",
-                    "label": { "en-US": "TypeScript" },
+                    "label": {
+                        "en-US": "TypeScript"
+                    },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#3178c6'/><text x='32' y='40' font-size='20' text-anchor='middle' fill='#fff'>TS</text></svg>",
                     "kind": "skill",
                     "url": "https://www.typescriptlang.org/",
@@ -23,7 +25,9 @@
                 },
                 {
                     "id": "python",
-                    "label": { "en-US": "Python" },
+                    "label": {
+                        "en-US": "Python"
+                    },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#3776ab'/><text x='32' y='40' font-size='18' text-anchor='middle' fill='#ffd343'>Py</text></svg>",
                     "kind": "skill",
                     "url": "https://www.python.org/",
@@ -33,57 +37,125 @@
                         "en-US": "My first language since the FFN era. Its rich libraries and concise syntax make it indispensable for AI development. Now with Pydantic, AI-generated Python is more reliable.",
                         "ja-JP": "FFN時代からの私の第一言語です。豊富なライブラリと簡潔な構文は、AI開発に不可欠です。現在はPydanticと組み合わせて、AI生成のPythonコードの信頼性を高めています。"
                     }
-                },
+                }
+            ]
+        },
+        {
+            "type": "foundations",
+            "label": {
+                "zh-CN": "模型基础",
+                "en-US": "Model Foundations",
+                "ja-JP": "モデル基礎"
+            },
+            "items": [
                 {
                     "id": "nlp",
-                    "label": { "en-US": "NLP" },
+                    "label": {
+                        "en-US": "NLP"
+                    },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#6b5b95'/><circle cx='32' cy='28' r='10' fill='#fff'/></svg>",
                     "kind": "skill",
                     "url": "https://en.wikipedia.org/wiki/Natural_language_processing",
                     "proficiency": 3,
                     "comment": {
-                        "zh-CN": "虽然我的硕士研究是NLP相关,但是chatGPT的出现让我连调参侠都不是了.",
-                        "en-US": "My Master's is in NLP, but thanks to ChatGPT, I've lost my status as a mere parameter-tuning dude.",
-                        "ja-JP": "私の修士研究はNLP関連ですが、ChatGPTのおかげで、単なるパラメータ調整者の地位を失いました。"
+                        "zh-CN": "修士研究涉及自然语言处理，关注语言数据、模型与任务评估。",
+                        "en-US": "My master’s research involved natural language processing, with a focus on language data, models, and task evaluation.",
+                        "ja-JP": "修士研究で自然言語処理に取り組み、言語データ、モデル、タスクの評価を扱いました。"
                     }
                 },
                 {
                     "id": "llm",
-                    "label": { "en-US": "LLM" },
+                    "label": {
+                        "en-US": "LLM"
+                    },
                     "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#00aaff'/><path d='M16 40h32v4H16z' fill='#00334d'/></svg>",
                     "kind": "skill",
                     "url": "https://en.wikipedia.org/wiki/Large_language_model",
                     "proficiency": 4,
                     "comment": {
-                        "zh-CN": "硕士研究方向。prompt engineering、fine-tuning、RAG 均有实践经验。",
-                        "en-US": "My Master's focus. Hands-on with prompt engineering, fine-tuning, and RAG.",
-                        "ja-JP": "私の修士の研究テーマ。プロンプトエンジニアリング、ファインチューニング、RAGの経験あり。"
+                        "zh-CN": "具有 Prompt Engineering、Fine-tuning 与 RAG 的实践经验，关注模型能力如何转化为可验证的应用。",
+                        "en-US": "Hands-on experience with prompt engineering, fine-tuning, and RAG, focused on turning model capabilities into verifiable applications.",
+                        "ja-JP": "Prompt Engineering、Fine-tuning、RAG の実践経験があり、モデルの能力を検証可能なアプリケーションにつなげることに関心があります。"
                     }
                 },
                 {
-                    "id": "ai-agent",
-                    "label": { "en-US": "AI Agent" },
+                    "id": "cs336",
+                    "label": {
+                        "en-US": "CS336"
+                    },
+                    "kind": "learning",
+                    "url": "https://cs336.stanford.edu/",
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8c1515'/><text x='32' y='39' font-size='18' text-anchor='middle' fill='#fff'>336</text></svg>",
+                    "comment": {
+                        "zh-CN": "以 Stanford CS336 — Language Modeling from Scratch 为持续学习的参照。ChatGPT 出现后，大模型的架构与工程实践和我研究时期已有很大差异。我关注深层模型中 bias 的取舍、残差流的处理，以及降低 KV Cache 占用等设计，理解这些变化背后的原因与权衡，并持续更新自己的知识体系。",
+                        "en-US": "I use Stanford CS336 — Language Modeling from Scratch as a reference for continuous learning. Model architectures and engineering practices have changed substantially since my research years, especially following the emergence of ChatGPT. I focus on choices such as omitting bias terms in deep models, handling the residual stream, and reducing KV-cache memory use, seeking to understand the reasons and tradeoffs behind these changes and continually update my knowledge.",
+                        "ja-JP": "Stanford CS336 — Language Modeling from Scratch を継続学習の参照にしています。ChatGPT の登場以降、モデルのアーキテクチャとエンジニアリングの実践は、私が研究していた頃から大きく変化しています。深いモデルでの bias の採否、残差ストリームの扱い、KV Cache のメモリ使用量を抑える設計などに注目し、変化の理由とトレードオフを理解しながら知識を更新し続けています。"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "agent-engineering",
+            "label": {
+                "zh-CN": "Agent 工程",
+                "en-US": "Agent Engineering",
+                "ja-JP": "Agent エンジニアリング"
+            },
+            "items": [
+                {
+                    "id": "agent-systems",
+                    "label": {
+                        "en-US": "Agent Systems"
+                    },
                     "icon": "<svg viewBox='0 0 80 64' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='80' height='64' rx='10' fill='#00b894'/><rect x='48' y='8' width='32' height='48' rx='8' fill='#ff7f50' opacity='0.9'/><circle cx='24' cy='24' r='8' fill='#fff'/></svg>",
                     "kind": "skill",
-                    "url": "https://en.wikipedia.org/wiki/Intelligent_agent",
-                    "proficiency": 4,
+                    "url": "https://github.com/cyberyimein/AnomaloHaris",
                     "comment": {
-                        "zh-CN": "使用智能体的系统设计与实现是我目前最核心的技能。",
-                        "en-US": "Designing and implementing systems with agents is my current core skill.",
-                        "ja-JP": "エージェントを使用したシステムの設計と実装は、私の現在のコアスキルです。"
+                        "zh-CN": "设计与实现 Agent Runtime / Harness，集成工具与 MCP，管理上下文与运行状态，并通过受限能力接口委托执行。实践项目：AnomaloHaris、Meganeura。",
+                        "en-US": "Designing and implementing agent runtimes and harnesses: tool and MCP integration, context and runtime-state management, and execution delegated through bounded capability interfaces. Projects: AnomaloHaris and Meganeura.",
+                        "ja-JP": "Agent Runtime / Harness の設計と実装。ツールと MCP の統合、コンテキストと実行状態の管理、制限付き Capability API による実行委任に取り組んでいます。実践プロジェクト：AnomaloHaris、Meganeura。"
                     }
                 },
                 {
-                    "id": "agentic-coding",
-                    "label": { "en-US": "Agentic Coding" },
-                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8e44ad'/><text x='32' y='31' font-size='10' text-anchor='middle' fill='#fff'>Agentic</text><text x='32' y='45' font-size='10' text-anchor='middle' fill='#fff'>Coding</text></svg>",
+                    "id": "agentic-development",
+                    "label": {
+                        "en-US": "Agentic Development"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8e44ad'/><path d='m24 20-12 12 12 12m16-24 12 12-12 12M36 16l-8 32' fill='none' stroke='#fff' stroke-width='4'/></svg>",
                     "kind": "skill",
-                    "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview",
-                    "proficiency": 5,
+                    "url": "https://github.com/cyberyimein/TeaForge",
                     "comment": {
-                        "zh-CN": "以智能体为中心的开发方式，强调多步推理、工具调用与自动化执行。这个网站也在朝这个方向持续演进。",
-                        "en-US": "An agent-centered way of building software, focused on multi-step reasoning, tool use, and automated execution. This site is evolving in that direction too.",
-                        "ja-JP": "エージェント中心の開発スタイルで、複数ステップの推論、ツール利用、自動実行を重視しています。このサイトもその方向へ進化しています。"
+                        "zh-CN": "与 Agent 协作推进需求拆解、设计、实现、测试与审查，将设计约定、测试准备和执行证据纳入可追溯的开发流程。实践项目：TeaForge、Pelago。",
+                        "en-US": "Working with agents across requirement breakdown, design, implementation, testing, and review, keeping design commitments, test preparation, and execution evidence traceable. Projects: TeaForge and Pelago.",
+                        "ja-JP": "Agent と協働して要件分解、設計、実装、テスト、レビューを進め、設計上の合意、テスト準備、実行証跡を追跡可能な開発フローにまとめています。実践プロジェクト：TeaForge、Pelago。"
+                    }
+                },
+                {
+                    "id": "cs146s",
+                    "label": {
+                        "en-US": "CS146S"
+                    },
+                    "kind": "alignment",
+                    "url": "https://themodernsoftware.dev/",
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8c1515'/><text x='32' y='38' font-size='15' text-anchor='middle' fill='#fff'>146S</text></svg>",
+                    "comment": {
+                        "zh-CN": "以 Stanford CS146S — The Modern Software Developer 为参照，对照我当前与 Coding Agent 协作的开发路线，检查上下文、工具、规格与迭代验证等实践是否与主流课程的工程方向一致。重点是验证现有路线，并识别需要补强的环节。",
+                        "en-US": "I use Stanford CS146S — The Modern Software Developer as a reference to check whether my current coding-agent development approach aligns with the engineering direction taught in mainstream courses, particularly context, tools, specifications, and iterative validation. The focus is on validating my existing approach and identifying gaps.",
+                        "ja-JP": "Stanford CS146S — The Modern Software Developer を参照し、現在の Coding Agent との協働開発の方向性を、主流の授業で扱うコンテキスト、ツール、仕様、反復的な検証と照合しています。目的は既存のアプローチの妥当性を確認し、補強すべき点を見つけることです。"
+                    }
+                },
+                {
+                    "id": "cs329z",
+                    "label": {
+                        "en-US": "CS329Z"
+                    },
+                    "kind": "alignment",
+                    "url": "https://cs329z.stanford.edu/",
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='10' fill='#8c1515'/><text x='32' y='38' font-size='15' text-anchor='middle' fill='#fff'>329Z</text></svg>",
+                    "comment": {
+                        "zh-CN": "以 Stanford CS329Z — Engineering AI Agents 为参照，对照我当前 Agent Runtime / Harness 的工程路线，检查 RAG、工具调用、Agent Loop、任务拆解与评估等实践是否与主流课程的系统设计方向一致。重点是验证架构取舍，并识别需要补强的环节。",
+                        "en-US": "I use Stanford CS329Z — Engineering AI Agents as a reference to check whether my current agent runtime and harness approach aligns with the system-design direction taught in mainstream courses, including RAG, tool use, agent loops, task decomposition, and evaluation. The focus is on validating architectural choices and identifying gaps.",
+                        "ja-JP": "Stanford CS329Z — Engineering AI Agents を参照し、現在の Agent Runtime / Harness の方向性を、主流の授業で扱う RAG、ツール利用、Agent Loop、タスク分解、評価と照合しています。目的は設計上の選択の妥当性を確認し、補強すべき点を見つけることです。"
                     }
                 }
             ]

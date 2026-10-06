@@ -1455,6 +1455,14 @@ header {
     margin: 2px 0 14px;
 }
 
+.badge-learning-label {
+    border-left: 1px solid var(--divider);
+    padding-left: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-faint);
+}
+
 .badge-icon svg {
     width: 16px;
     height: 16px;
@@ -1484,8 +1492,8 @@ header {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: 9px;
-    border: 1px solid var(--text);
-    background: var(--text);
+    border: 1px solid var(--divider);
+    background: var(--panel-deep);
 }
 
 .workbench-primary-button {
@@ -1498,9 +1506,9 @@ header {
     min-height: 54px;
     padding: 14px 16px 12px;
     border: 0;
-    border-right: 1px solid var(--divider-bold);
-    background: var(--text);
-    color: var(--bg);
+    border-right: 1px solid var(--divider);
+    background: var(--panel-deep);
+    color: var(--text-faint);
     cursor: pointer;
     font-family: 'IBM Plex Mono', monospace;
     text-align: left;
@@ -1511,14 +1519,15 @@ header {
     border-right: 0;
 }
 
-.workbench-primary-button::before {
+.workbench-primary-button::after {
     content: "";
     position: absolute;
-    left: 16px;
-    top: 9px;
-    width: 22px;
-    height: 2px;
-    background: var(--divider-bold);
+    left: 0;
+    right: 100%;
+    bottom: -1px;
+    height: 3px;
+    background: var(--orange);
+    transition: right 220ms ease;
 }
 
 .workbench-primary-button span {
@@ -1538,13 +1547,13 @@ header {
     color: var(--text);
 }
 
-.workbench-primary-button.active::before {
-    width: 40px;
-    background: var(--orange);
+.workbench-primary-button.active::after {
+    right: 0;
 }
 
 .workbench-primary-button:hover {
-    color: var(--orange);
+    color: var(--text);
+    background: var(--panel);
 }
 
 .workbench-primary-button:focus-visible {
@@ -1581,7 +1590,7 @@ header {
     padding: 9px 11px 8px;
     border: 0;
     border-right: 1px solid var(--divider);
-    background: transparent;
+    background: var(--panel-deep);
     color: var(--text-faint);
     cursor: pointer;
     font-family: 'IBM Plex Mono', monospace;
@@ -2175,6 +2184,7 @@ header {
 .roadmap-wander-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, var(--paper-card-width)));
+    container: wander / inline-size;
     justify-content: center;
     gap: 12px;
     padding: 18px;
@@ -2270,6 +2280,72 @@ header {
 .roadmap-wander-footer strong {
     color: var(--blue);
     font-size: 7.5px;
+}
+
+/* Related projects remain one pile until the reader opens their history. */
+.evolution-stack {
+    width: min(100%, var(--paper-card-width));
+    min-width: 0;
+    justify-self: center;
+    align-self: start;
+    margin-bottom: 12px;
+}
+.evolution-stack > summary {
+    position: relative;
+    display: block;
+    list-style: none;
+    cursor: pointer;
+    outline-offset: 5px;
+}
+.evolution-stack > summary::-webkit-details-marker { display: none; }
+.evolution-stack > summary:focus-visible { outline: 2px solid var(--focus-ring); }
+.evolution-stack > summary::before,
+.evolution-stack > summary::after {
+    content: "";
+    position: absolute;
+    inset: 36px 0 0;
+    border: 1px solid var(--divider);
+    background: var(--panel);
+    pointer-events: none;
+}
+.evolution-stack > summary::before { transform: translate(5px, 7px) rotate(1deg); }
+.evolution-stack > summary::after { transform: translate(9px, 11px) rotate(2deg); }
+.evolution-stack-label {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: var(--text-dim);
+    font-size: 9px;
+    line-height: 1.6;
+}
+.evolution-stack-label strong { font-size: 9px; font-weight: 500; overflow-wrap: anywhere; }
+.evolution-stack-label small { font-size: 8px; color: var(--orange); white-space: nowrap; }
+.evolution-stack-face { position: relative; z-index: 1; }
+.evolution-stack-face .roadmap-wander-card { box-shadow: none; cursor: inherit; }
+.evolution-stack-face .roadmap-wander-card:hover { transform: none; }
+.evolution-stack > summary:hover .roadmap-wander-card { border-color: var(--orange); }
+.evolution-stack[open] { grid-column: span 2; width: 100%; }
+.evolution-stack[open] > summary::before,
+.evolution-stack[open] > summary::after,
+.evolution-stack[open] .evolution-stack-face { display: none; }
+.evolution-stack[open] .evolution-stack-label { border-bottom: 1px solid var(--divider); padding: 8px 0; margin-bottom: 16px; }
+.evolution-stack-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, var(--paper-card-width)));
+    gap: 12px;
+    justify-content: center;
+}
+.evolution-stack-member { min-width: 0; }
+.evolution-stack-stage { display: block; margin-bottom: 7px; color: var(--text-faint); font-size: 8px; }
+@container wander (max-width: 491px) {
+    .evolution-stack[open] { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .evolution-stack .roadmap-wander-card { transition: none; }
 }
 
 /* Current missions */
@@ -3224,11 +3300,6 @@ footer a:hover {
     .workbench-primary-button {
         min-height: 52px;
         padding: 14px 13px 11px;
-    }
-
-    .workbench-primary-button::before {
-        left: 13px;
-        top: 11px;
     }
 
     .roadmap-nav-button small {

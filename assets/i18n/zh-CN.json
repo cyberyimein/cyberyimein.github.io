@@ -114,5 +114,13 @@
     "badge.validity": "状态",
     "badge.learnMore": "了解更多",
     "badge.groupFallback": "分组",
-    "projects.placeholder": "占位记录"
+    "projects.placeholder": "占位记录",
+    "roadmap.evolution.expand": "展开 {count} 个阶段",
+    "roadmap.evolution.collapse": "收起演进记录",
+    "roadmap.evolution.stage": "阶段 {index} / {count}",
+    "badge.learning": "持续学习",
+    "badges.group.languages": "开发语言",
+    "badges.group.foundations": "模型基础",
+    "badges.group.agent-engineering": "Agent 工程",
+    "badge.alignment": "路线验证"
 }

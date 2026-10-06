@@ -1,12 +1,13 @@
 (function () {
-    const FILE = './assets/data/roadmap.json?v=20261001-meganeura-public';
+    const FILE = './assets/data/roadmap.json?v=20261006-pelago-evolution';
     const state = {
         data: null,
         lang: 'zh-CN',
         activeTop: 'roadmap',
         projectView: 'now',
         roadmapView: 'branches',
-        activeBranch: 0
+        activeBranch: 0,
+        expandedEvolutions: new Set()
     };
     let activeArchiveItem = null;
     let archiveDocumentRequestId = 0;
@@ -501,11 +502,10 @@
         return view;
     }
 
-    function createWanderCard(item, index) {
+    function createWanderCard(item, index, interactive = true) {
         const type = item.type || 'project';
-        const card = createElement('article', 'roadmap-wander-card wander-pattern-' + (index % 5));
-        card.setAttribute('role', 'button');
-        card.tabIndex = 0;
+        const card = createElement(interactive ? 'article' : 'div', 'roadmap-wander-card wander-pattern-' + (index % 5));
+        if (interactive) { card.setAttribute('role', 'button'); card.tabIndex = 0; }
 
         const header = createElement('div', 'roadmap-wander-header');
         header.appendChild(createElement(
@@ -523,14 +523,57 @@
         footer.appendChild(createElement('strong', '', getStatusLabel(item)));
         card.appendChild(footer);
 
-        card.addEventListener('click', () => openArchiveDoc(item));
-        card.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                openArchiveDoc(item);
-            }
-        });
+        if (interactive) {
+            card.addEventListener('click', () => openArchiveDoc(item));
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openArchiveDoc(item);
+                }
+            });
+        }
         return card;
+    }
+
+    function createEvolutionStack(entry, index) {
+        const stack = createElement('details', 'evolution-stack');
+        stack.dataset.evolution = entry.id;
+        stack.open = state.expandedEvolutions.has(entry.id);
+        const summary = createElement('summary', '');
+        const label = createElement('span', 'evolution-stack-label');
+        const chain = entry.items.map(item => resolveLang(item.title)).join(' → ');
+        label.appendChild(createElement('strong', '', chain));
+        const toggleText = createElement('small', '');
+        label.appendChild(toggleText);
+        summary.appendChild(label);
+        const face = createElement('div', 'evolution-stack-face');
+        face.appendChild(createWanderCard(entry.items[entry.items.length - 1], index, false));
+        summary.appendChild(face);
+        stack.appendChild(summary);
+        const members = createElement('div', 'evolution-stack-members');
+        members.id = 'evolution-' + entry.id;
+        summary.setAttribute('aria-controls', members.id);
+        entry.items.forEach((item, stage) => {
+            const member = createElement('div', 'evolution-stack-member');
+            member.appendChild(createElement('span', 'evolution-stack-stage', formatUi(
+                'roadmap.evolution.stage', { index: stage + 1, count: entry.items.length },
+                'Stage ' + (stage + 1) + ' / ' + entry.items.length
+            )));
+            member.appendChild(createWanderCard(item, index + stage));
+            members.appendChild(member);
+        });
+        stack.appendChild(members);
+        const updateToggle = () => {
+            const text = stack.open ? ui('roadmap.evolution.collapse', 'Collapse evolution')
+                : formatUi('roadmap.evolution.expand', { count: entry.items.length }, 'Expand ' + entry.items.length + ' stages');
+            toggleText.textContent = text;
+            summary.setAttribute('aria-label', text + ': ' + chain);
+            if (stack.open) state.expandedEvolutions.add(entry.id);
+            else state.expandedEvolutions.delete(entry.id);
+        };
+        stack.addEventListener('toggle', updateToggle);
+        updateToggle();
+        return stack;
     }
 
     function renderWander(sectionNav) {
@@ -552,8 +595,8 @@
         view.appendChild(intro);
 
         const grid = createElement('div', 'roadmap-wander-grid');
-        getRoadmapItems().forEach((item, index) => {
-            grid.appendChild(createWanderCard(item, index));
+        EvolutionStacks.group(getRoadmapItems(), state.data.evolutions).forEach((entry, index) => {
+            grid.appendChild(entry.items.length > 1 ? createEvolutionStack(entry, index) : createWanderCard(entry.items[0], index));
         });
         view.appendChild(grid);
         return view;
