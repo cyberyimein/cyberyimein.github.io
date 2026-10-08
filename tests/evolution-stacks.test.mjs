@@ -46,5 +46,6 @@ test('the site keeps TeaForge and Pelago as separate stages outside the Harness 
     assert.equal(stack.items[1].status,'progress');
     assert.equal(stack.items[1].percent,null);
     assert.equal(result.flatMap(entry=>entry.items).length,data.items.length);
-    assert.equal(JSON.stringify(data.branches).includes('RM-P08'),false);
+    const harness=data.branches.find(branch=>branch.id==='agent-harness');
+    assert.equal(JSON.stringify(harness).includes('RM-P08'),false);
 });

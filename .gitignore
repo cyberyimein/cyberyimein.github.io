@@ -10,3 +10,7 @@ Thumbs.db
 .vscode/
 .idea/
 README.local.md
+
+# Browser inspection artifacts
+.playwright-cli/
+output/playwright/

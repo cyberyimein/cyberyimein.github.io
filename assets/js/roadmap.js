@@ -1,5 +1,5 @@
 (function () {
-    const FILE = './assets/data/roadmap.json?v=20261006-pelago-evolution';
+    const FILE = './assets/data/roadmap.json?v=20261009-rag-agentic';
     const state = {
         data: null,
         lang: 'zh-CN',
@@ -644,6 +644,16 @@
         view.appendChild(branchHeader);
 
         const map = createElement('div', 'roadmap-branch-map');
+        if (!branch.capabilities.length && !specializations.length) {
+            map.classList.add('roadmap-linear-map');
+            map.appendChild(createBranchNode(branch.origin, 'roadmap-origin-node'));
+            const arrow = createElement('div', 'roadmap-linear-arrow');
+            arrow.setAttribute('aria-hidden', 'true');
+            map.appendChild(arrow);
+            map.appendChild(createBranchNode(branch.destination, 'roadmap-destination-node'));
+            view.appendChild(map);
+            return view;
+        }
         const experimentLane = createElement('div', 'roadmap-experiment-lane');
         experimentLane.appendChild(createElement('span', 'roadmap-lane-label', ui('roadmap.branch.lane.experiment', 'EXPERIMENT CHAIN / CAPABILITY CONTINUATION')));
 

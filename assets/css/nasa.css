@@ -1744,6 +1744,41 @@ header {
     position: relative;
 }
 
+.roadmap-linear-map {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, var(--paper-card-width)));
+    justify-content: center;
+    align-items: stretch;
+    column-gap: 64px;
+    position: relative;
+}
+
+.roadmap-linear-map > .roadmap-branch-node {
+    width: 100%;
+    margin: 0;
+}
+
+.roadmap-linear-arrow {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 22px);
+    width: 44px;
+    height: 1px;
+    background: var(--orange);
+}
+
+.roadmap-linear-arrow::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--orange);
+    border-right: 1px solid var(--orange);
+    transform: rotate(45deg);
+}
+
 .roadmap-lane-label {
     display: block;
     margin-bottom: 10px;
@@ -3313,6 +3348,28 @@ footer a:hover {
 
     .roadmap-experiment-chain {
         flex-direction: column;
+    }
+
+    .roadmap-linear-map {
+        grid-template-columns: minmax(0, var(--paper-card-width));
+        row-gap: 0;
+    }
+
+    .roadmap-linear-arrow {
+        position: relative;
+        top: auto;
+        left: auto;
+        justify-self: center;
+        width: 1px;
+        height: 36px;
+        margin: 12px 0;
+    }
+
+    .roadmap-linear-arrow::after {
+        top: auto;
+        right: -3px;
+        bottom: 0;
+        transform: rotate(135deg);
     }
 
     .roadmap-experiment-chain .roadmap-branch-node {

@@ -95,14 +95,14 @@
                         "ja-JP": "RAG Database"
                     },
                     "eyebrow": {
-                        "zh-CN": "知识检索验证",
-                        "en-US": "Retrieval validation",
-                        "ja-JP": "検索検証"
+                        "zh-CN": "Agentic 搜索实验",
+                        "en-US": "Agentic search experiment",
+                        "ja-JP": "Agentic検索実験"
                     },
                     "desc": {
-                        "zh-CN": "验证知识写入、召回与上下文拼装，让 Harness 能利用可追溯的长期资料。",
-                        "en-US": "Validates ingestion, retrieval, and context assembly so the Harness can use traceable long-term material.",
-                        "ja-JP": "知識の取込、検索、コンテキスト組み立てを検証し、Harness が追跡可能な長期資料を使えるようにする。"
+                        "zh-CN": "探索 Agent 主动浏览、搜索与阅读；索引内部准备关键词和向量，当前已验证工具基础。",
+                        "en-US": "Explores Agent-led browsing, search, and reading, with keywords and vectors prepared internally; the tool foundation is verified.",
+                        "ja-JP": "Agent主導の閲覧・検索・読解を試す。キーワードとベクトルは内部で準備し、現在はツール基盤を検証した。"
                     },
                     "status": {
                         "zh-CN": "VALIDATED",
@@ -206,6 +206,67 @@
                     }
                 }
             ]
+        },
+        {
+            "id": "agentic-coding-oversight",
+            "code": "BR-02",
+            "title": {
+                "zh-CN": "TeaForge → Pelago：工程监督的演化分支",
+                "en-US": "TeaForge → Pelago: Engineering Oversight Evolution",
+                "ja-JP": "TeaForge → Pelago：エンジニアリング監督の進化ブランチ"
+            },
+            "summary": {
+                "zh-CN": "这条分支的出发点是：在 agentic coding 中，人类的作用逐渐从直接编写代码上移到定义需求、判断设计与确认交付。因此，监控需要一种新范式，让人能够沿需求、设计、测试与执行证据审阅 Agent 的工作。TeaForge 从测试证据入手，Pelago 将这条证据链前移到设计与验证全过程。",
+                "en-US": "This branch starts from an idea: in agentic coding, the human role gradually moves from writing code directly to defining requirements, judging designs, and accepting delivery. Monitoring therefore needs a new paradigm that lets people review Agent work through requirements, designs, tests, and execution evidence. TeaForge starts with test evidence; Pelago extends that evidence chain upstream across design and verification.",
+                "ja-JP": "このブランチの出発点は、agentic codingでは人間の役割がコードを直接書くことから、要件の定義、設計の判断、成果物の受け入れへと徐々に上位へ移るという考えだ。そのため、要件・設計・テスト・実行エビデンスをたどってAgentの作業をレビューできる、新しい監視の枠組みが必要になる。TeaForgeはテストの証拠から出発し、Pelagoはその証拠の連鎖を設計・検証の全工程へ広げる。"
+            },
+            "origin": {
+                "itemId": "RM-P02",
+                "title": {
+                    "zh-CN": "TEAFORGE",
+                    "en-US": "TEAFORGE",
+                    "ja-JP": "TEAFORGE"
+                },
+                "eyebrow": {
+                    "zh-CN": "起点：可审计的测试证据",
+                    "en-US": "Starting point: auditable test evidence",
+                    "ja-JP": "出発点：監査可能なテスト証拠"
+                },
+                "desc": {
+                    "zh-CN": "把测试对象、预期值、实际值与执行结果整理为 PCL 和报告，让人能够审查测试通过所依据的证据。v0.2.0 已完成最初目标。",
+                    "en-US": "Organizes test subjects, expected and actual values, and execution results into PCL and reports so people can inspect the evidence behind passing tests. v0.2.0 completed the original goal.",
+                    "ja-JP": "テスト対象、期待値、実測値、実行結果をPCLとレポートにまとめ、テスト合格の根拠を人が確認できるようにする。v0.2.0で当初の目標を達成した。"
+                },
+                "relation": {
+                    "zh-CN": "思路延续 · TeaForge 报告直接导入尚未实现",
+                    "en-US": "Idea continuity · Direct TeaForge report import is not yet implemented",
+                    "ja-JP": "考え方の継承 · TeaForgeレポートの直接取り込みは未実装"
+                }
+            },
+            "capabilities": [],
+            "destination": {
+                "itemId": "RM-P08",
+                "title": {
+                    "zh-CN": "PELAGO",
+                    "en-US": "PELAGO",
+                    "ja-JP": "PELAGO"
+                },
+                "eyebrow": {
+                    "zh-CN": "落点：设计与验证的审阅工作台",
+                    "en-US": "Destination: design and verification workbench",
+                    "ja-JP": "到達点：設計と検証のレビューワークベンチ"
+                },
+                "desc": {
+                    "zh-CN": "在宿主 Git 项目中关联需求、带版本的设计、PCL 与执行证据，为人类确认和审阅提供上下文。v0.1.0 已有 CLI、工作台和宿主 Agent 工作流，审阅体验仍在打磨。",
+                    "en-US": "Links requirements, versioned designs, PCL, and execution evidence in the host Git project, providing context for human confirmation and review. v0.1.0 includes a CLI, workbench, and host Agent workflow; the review experience is still being refined.",
+                    "ja-JP": "ホストGitプロジェクト内で要件、バージョン付き設計、PCL、実行エビデンスを関連付け、人による確認とレビューに必要な文脈を提供する。v0.1.0ではCLI、ワークベンチ、ホストAgentのワークフローを実装済みで、レビュー体験は引き続き改善中だ。"
+                },
+                "status": {
+                    "zh-CN": "EVOLVING",
+                    "en-US": "EVOLVING",
+                    "ja-JP": "EVOLVING"
+                }
+            }
         }
     ],
     "evolutions": [
@@ -370,7 +431,14 @@
         {
             "id": "RM-E06",
             "type": "experiment",
-            "version": "v0.1",
+            "version": "v0.2",
+            "previousVersion": "v0.1",
+            "updated": true,
+            "updateLabel": {
+                "zh-CN": "更新",
+                "en-US": "UPDATED",
+                "ja-JP": "更新"
+            },
             "content": {
                 "cn": "contents/roadmap/cn/06_rag_database.md",
                 "en": "contents/roadmap/en/06_rag_database.md",
@@ -382,9 +450,9 @@
                 "ja-JP": "RAG Database"
             },
             "desc": {
-                "zh-CN": "在独立的 myRAG 工作台验证混合召回、索引版本与可追溯证据，为 Harness 的上下文组装提供检索基础。",
-                "en-US": "Validates hybrid retrieval, index versions, and traceable evidence in the myRAG workbench for Harness context assembly.",
-                "ja-JP": "独立した myRAG ワークベンチでハイブリッド検索、インデックス版、追跡可能な証拠を検証し、Harness のコンテキスト組み立ての基盤にする。"
+                "zh-CN": "从单次向量召回走向更接近人类习惯的 Agentic 搜索，测试按需阅读与补搜；目前已实现目录、搜索、读取和案例索引基础。",
+                "en-US": "Moves from single-pass vector retrieval toward human-like agentic search, testing on-demand reading and follow-up search; outline, search, reading, and case-index foundations are implemented.",
+                "ja-JP": "単発のベクトル検索から、人の調べ方に近いAgentic検索へ。必要に応じた読解と追加検索を試すため、目次・検索・読取・case索引の基盤を実装した。"
             },
             "percent": 100,
             "status": "done"
