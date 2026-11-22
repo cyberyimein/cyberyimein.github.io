@@ -1453,6 +1453,16 @@ header {
     flex-wrap: wrap;
     gap: 10px;
     margin: 2px 0 14px;
+    max-width: 100%;
+}
+
+.badge-group > .badge {
+    max-width: 100%;
+}
+
+.badge-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .badge-learning-label {
@@ -1471,6 +1481,7 @@ header {
 
 .badge-icon {
     display: inline-flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     width: 18px;
@@ -3803,8 +3814,4 @@ nav a.active {
     color: var(--orange);
     border-color: var(--orange);
     background: var(--panel);
-}
-
-.badge-label {
-    white-space: nowrap;
 }
