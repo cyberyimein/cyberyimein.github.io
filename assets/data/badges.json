@@ -257,6 +257,24 @@
                         "en-US": "Microsoft Certified: Azure Administrator Associate. Covers Azure identity and governance, networking, storage, compute, monitoring, and maintenance.",
                         "ja-JP": "Microsoft Certified: Azure Administrator Associate。Azure の ID とガバナンス、ネットワーク、ストレージ、コンピューティング、監視と保守を扱います。"
                     }
+                },
+                {
+                    "id": "ai-200",
+                    "label": {
+                        "zh-CN": "Azure AI Cloud Developer Associate (AI-200)",
+                        "en-US": "Azure AI Cloud Developer Associate (AI-200)",
+                        "ja-JP": "Azure AI Cloud Developer Associate (AI-200)"
+                    },
+                    "icon": "<svg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><rect width='64' height='64' rx='12' fill='#082f49'/><path d='M20 43a8 8 0 0 1-1-16 12 12 0 0 1 23-2 9 9 0 0 1 1 18z' fill='#38bdf8'/><path d='m28 30-5 4 5 4m8-8 5 4-5 4' fill='none' stroke='#fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+                    "kind": "cert",
+                    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-cloud-developer-associate/",
+                    "obtainedDate": "2026-11",
+                    "status": "active",
+                    "comment": {
+                        "zh-CN": "聚焦 Azure 上的 AI 后端开发，涵盖容器化部署、数据服务、应用安全和监控。",
+                        "en-US": "Focuses on building AI backends on Azure, including containerized deployment, data services, application security, and monitoring.",
+                        "ja-JP": "Azure 上の AI バックエンド開発に重点を置き、コンテナーでのデプロイ、データサービス、アプリケーションのセキュリティと監視を扱います。"
+                    }
                 }
             ]
         }
